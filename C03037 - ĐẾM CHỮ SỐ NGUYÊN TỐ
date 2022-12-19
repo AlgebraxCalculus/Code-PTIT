@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+	long long n;
+	scanf("%lld", &n);
+	int count2 = 0, count3 = 0, count5 = 0, count7 = 0;
+	while (n != 0) {
+		int chuso = n % 10;
+		n /= 10;
+		if (chuso == 2) {
+			count2++;
+		} if (chuso == 3) {
+			count3++;
+		} if (chuso == 5) {
+			count5++;
+		} if (chuso == 7) {
+			count7++;
+		}
+	}
+	if (count2 != 0) {
+		printf("%d %d\n", 2, count2);
+	} if (count3 != 0) {
+		printf("%d %d\n", 3, count3);
+	} if (count5 != 0) {
+	printf("%d %d\n", 5, count5);
+	} if (count7 != 0) {
+	printf("%d %d\n", 7, count7);
+	}
+	return 0;
+}
