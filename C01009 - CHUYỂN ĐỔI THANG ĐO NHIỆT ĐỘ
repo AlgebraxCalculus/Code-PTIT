@@ -1,0 +1,9 @@
+#include <stdio.h>
+
+int main() {
+    int c;
+    scanf("%d", &c);
+    float f = (c * 1.0 * 9 / 5) + 32;
+    printf("%0.2f", f);
+    return 0;
+}
