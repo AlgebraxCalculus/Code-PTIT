@@ -1,0 +1,9 @@
+#include <stdio.h>
+
+int main() {
+	int x, y, tong;
+	scanf("%d %d", &x, &y);
+	tong = x + y;
+	printf("%d", tong);
+	return 0;
+}
