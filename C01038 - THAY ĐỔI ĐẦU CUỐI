@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <math.h>
+int main() {
+	int n;
+	scanf("%d", &n);
+	int cuoi = n % 10;
+	int somu = 0;
+	int dau = n;
+	while (dau >= 10) {
+		somu++;
+		dau /= 10;
+	}
+	int giua = n - pow(10, somu) * dau - cuoi;
+	int answer = cuoi * pow(10, somu) + giua + dau;
+	printf("%d", answer);
+	return 0;
+}
