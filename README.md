@@ -1,4 +1,4 @@
-# CODE PTIT LẬP TRÌNH C
+# CODE PTIT
 # HỌC CODE LÀM NGƯỜI
 # AC MUÔN NĂM AC MUÔN NĂM
 ![image](https://user-images.githubusercontent.com/121043282/208472523-6771008e-7f26-43ca-ba6b-f07c30185881.png)
