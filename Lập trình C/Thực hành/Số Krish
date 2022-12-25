@@ -1,0 +1,33 @@
+//Số có tổng giai thừa bằng chính nó
+#include <stdio.h>
+
+long long giaithua (int n) {
+	long long gt = 1;
+	for (int i = 1; i <= n; i++) {
+		gt *= i;
+	}
+	return gt;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		long long sum = 0;
+		int temp = n;
+		while (temp != 0) {
+			int chuso = temp % 10;
+			temp /= 10;
+			sum += giaithua(chuso);
+		}
+		if (sum == n) {
+			printf("Yes");
+		} else {
+			printf("No");
+		}
+		printf("\n");
+	}
+	return 0;
+}
