@@ -1,0 +1,33 @@
+//Số có tổng chia hết cho 10 và khoảng cách giữa 2 chữ số = 2
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		long long n;
+		scanf("%lld", &n);
+		int a[100001];
+		int count = 0, sum = 0, ok = 0;
+		while (n != 0) {
+			a[count++] = n % 10;
+			n /= 10;
+		}
+		for (int j = 0; j < count; j++) {
+			sum += a[j];
+			int dis = abs(a[j + 1] - a[j]);
+			if (dis != 2 && j < count - 1) {
+				ok = 1;
+				break;
+			}
+		}
+		if (sum % 10 == 0 && ok == 0) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n");
+	}
+	return 0;
+}
