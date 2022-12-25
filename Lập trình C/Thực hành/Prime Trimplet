@@ -1,0 +1,34 @@
+//Bộ ba số nguyên tố: p, p + 2, p + 6 hoặc p, p + 4, p + 6
+#include <stdio.h>
+
+int snt (int n) {
+	if (n < 2) {
+		return 0;
+	} else {
+		for (int i = 2; i * i <= n; i++) {
+			if (n % i == 0) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		int count = 0, count1 = 0;
+		for (int i = 2; i <= n - 6; i++) {
+			if (snt(i) && snt(i + 2) && snt(i + 6)) {
+				count++;
+			} else if (snt(i) && snt(i + 4) && snt(i + 6)) {
+				count1++;
+			}
+		}
+		printf("%d\n", count + count1);
+	}
+	return 0;
+}
