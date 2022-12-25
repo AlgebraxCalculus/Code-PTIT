@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int kiemtra (int n) {
+	int m = n;
+	int dao = 0;
+	while (n > 0) {
+		int chuso = n % 10;
+		if (chuso % 2 == 1) {
+			return 0;
+		}
+		dao = dao * 10 + chuso;
+		n /= 10;
+	}
+	if (dao == m) {
+		return 1;
+	} else {
+		return 0;	
+	}
+}
+
+int sochuso (int n) {
+	int count = 0;
+	while (n > 0) {
+		int a = n % 10;
+		n /= 10;
+		count++;
+	}
+	if (count % 2 == 0) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		for (int i = 22; i < n; i++) {
+			if (kiemtra(i) && sochuso(i)) {
+				printf("%d ", i);
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}
