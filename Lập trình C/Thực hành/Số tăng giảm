@@ -18,6 +18,7 @@ long long tanggiam (long long a) {
 			} else {
 				a /= 10;
 				chuyen = 1;
+				//tìm ra vị trí 
 			}
 		} else if (chuyen == 1) {
 			if (b > c) {
