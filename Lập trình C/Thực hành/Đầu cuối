@@ -1,0 +1,22 @@
+//2 chữ số đầu có bằng 2 chữ số cuối không
+#include <stdio.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		long long n;
+		scanf("%lld", &n);
+		int kiemtra = n % 100;
+		while (n >= 100) {
+			n /= 10;
+		}
+		if (kiemtra == n) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n");
+	}
+	return 0;
+}
