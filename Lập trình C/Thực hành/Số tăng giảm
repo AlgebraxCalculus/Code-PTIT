@@ -13,8 +13,6 @@ long long tanggiam (long long a) {
 				a /= 10;
 			} else if (b == c) {
 				return 0;
-			} else if (c < b && a == check) {
-				return 0;
 			} else {
 				a /= 10;
 				chuyen = 1;
