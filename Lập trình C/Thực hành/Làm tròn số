@@ -1,0 +1,44 @@
+Cho trước một số nguyên, người ta sẽ làm tròn số này theo quy tắc sau:
+- Nếu số đó lớn hơn 10 thì sẽ được làm tròn đến số hàng chục gần nhất
+- Sau đó nếu kết quả lớn hơn 100 thì làm tròn đến số hàng trăm gần nhất
+- Sau đó nếu kết quả lớn hơn 1000 thì làm tròn đến số hàng nghìn gần nhất
+…cứ tiếp tục như vậy …
+- Chú ý: giá trị 5 được làm tròn lên.
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		char s[10001];
+		sprintf(s, "%d", n);
+		int ok = 0;
+		int dai = strlen(s);
+		for (int i = strlen(s) - 1; i > 0; i--) {
+			s[i] += ok;
+			if (s[i] >= '5') {
+				ok = 1;
+			} else {
+				ok = 0;
+			}
+			s[i] = '0';
+		}
+		if (ok == 1) {
+			if (s[0] != '9') {
+				s[0] += 1;
+				printf("%s", s);
+			} else {
+				s[0] = '0';
+				printf("%c%s", '1', s);
+			}
+		} else {
+			printf("%s", s);
+		}
+		printf("\n");
+	}
+	return 0;
+}
