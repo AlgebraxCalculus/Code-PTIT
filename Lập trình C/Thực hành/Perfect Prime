@@ -1,0 +1,71 @@
+//Số đó là số nguyên tố, đảo cũng là số nguyên tố, tổng là số nguyên tố, số chữ số là số nguyên tố
+#include <stdio.h>
+
+int snt(int n) {
+	for (int i = 2; i * i <= n; i++) {
+		if (n % i == 0) {
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int dao (int n) {
+	int dao = 0;
+	while (n > 0) {
+		dao = dao * 10 + n % 10;
+		n /= 10;
+	}
+	if (snt(dao)) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int tong (int n) {
+	int sum = 0;
+	while (n != 0) {
+		int chuso = n % 10;
+		sum += chuso;
+		n /= 10;
+	}
+	if (snt(sum)) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int ktchuso (int n) {
+	int ok = 1;
+	while (n >= 10) {
+		int a = n % 10;
+		n /= 10;
+		if (snt(a) == 0) {
+			ok = 0;
+			break;
+		}
+	}
+	if (ok == 1) {
+		return 1;
+	} else {
+		return 0;	
+	}
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		if (snt(n) && dao(n) && tong(n) && ktchuso(n)) {
+			printf("Yes");
+		} else {
+			printf("No");
+		}
+		printf("\n");
+	}
+	return 0;
+}
