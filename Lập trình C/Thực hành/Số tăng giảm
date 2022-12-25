@@ -1,0 +1,51 @@
+//Số có từ 3 chữ số trở lên 
+//Tìm ra một vị trí trong dãy chữ số sao cho từ bên trái đến vị trí đó thỏa mãn thứ tự tăng dần (tăng chặt) còn từ vị trí đó đến hết thì thỏa mãn thứ tự giảm dần (giảm chặt)
+#include <stdio.h>
+
+long long tanggiam (long long a) {
+	int chuyen = 0;
+	long long check = a;
+	while (a >= 10) {
+		int b = a % 10;
+		int c = (a / 10) % 10;
+		if (chuyen == 0) {
+			if (c > b) {
+				a /= 10;
+			} else if (b == c) {
+				return 0;
+			} else if (c < b && a == check) {
+				return 0;
+			} else {
+				a /= 10;
+				chuyen = 1;
+			}
+		} else if (chuyen == 1) {
+			if (b > c) {
+				a /= 10;
+			} else {
+				return 0;
+			}
+		}
+	}
+	if (chuyen == 1) {
+		return 1;
+	} else if (chuyen == 0) {
+		return 0;
+	}
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		long long n;
+		scanf("%lld", &n);
+		if (tanggiam(n)) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n");
+	}
+	return 0;
+}
