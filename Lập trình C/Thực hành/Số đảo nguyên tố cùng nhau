@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int ucln (int a, int b) {
+	while (b != 0) {
+		int r = a % b;
+		a = b;
+		b = r;
+	}
+	return a;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		int dao = 0;
+		int m = n;
+		while (m > 0) {
+			dao = dao * 10 + m % 10;
+			m /= 10;
+		}
+		if (ucln(n, dao) == 1) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n");
+	} 
+	return 0;
+}
