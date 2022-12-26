@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int tongchuso (int n) {
+	int sum = 0;
+	while (n != 0) {
+		int chuso = n % 10;
+		sum += chuso;
+		n /= 10;
+	}
+	return sum;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		if (tongchuso(n) % 10 == 0) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n");
+	}
+	return 0;
+}
