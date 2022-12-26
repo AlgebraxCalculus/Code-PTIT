@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		long long n;
+		scanf("%lld", &n);
+		int ok;
+		while (n != 0) {
+			long long a = n % 10;
+			long long b = (n / 10) % 10;
+			if (a < b) {
+				ok = 0;
+				break;
+			} else {
+				n /= 10;
+				ok = 1;
+			} 
+		}
+		if (ok == 0) {
+			printf("NO");
+		} else {
+			printf("YES");
+		}
+		printf("\n");
+	}
+	return 0;
+}
