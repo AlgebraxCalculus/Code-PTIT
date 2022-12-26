@@ -3,22 +3,22 @@
 #include <stdio.h>
 
 long long tanggiam (long long a) {
-	int chuyen = 0;
+	int vitri = 0;
 	long long check = a;
 	while (a >= 10) {
 		int b = a % 10;
 		int c = (a / 10) % 10;
-		if (chuyen == 0) {
+		if (vitri == 0) {
 			if (c > b) {
 				a /= 10;
 			} else if (b == c) {
 				return 0;
 			} else {
 				a /= 10;
-				chuyen = 1;
+				vitri = 1;
 				//tìm ra vị trí 
 			}
-		} else if (chuyen == 1) {
+		} else if (vitri == 1) {
 			if (b > c) {
 				a /= 10;
 			} else {
@@ -26,9 +26,9 @@ long long tanggiam (long long a) {
 			}
 		}
 	}
-	if (chuyen == 1) {
+	if (vitri == 1) {
 		return 1;
-	} else if (chuyen == 0) {
+	} else if (vitri == 0) {
 		return 0;
 	}
 }
