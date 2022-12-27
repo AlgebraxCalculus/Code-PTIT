@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+long long giaithua (long long n) {
+    long long gt = 1;
+    for (int i = 1; i <= n; i++) {
+        gt *= i;
+    }
+    return gt;
+}
+
+long long isStrong (long long n) {
+    long long sum = 0;
+    long long temp = n;
+    while (temp != 0) {
+        long long chuso = temp % 10;
+        sum += giaithua(chuso);
+        temp /= 10;
+    }
+    if (sum == n) {
+        return 1;
+    }
+    return 0;
+}
+
+int main () {
+    long long a, b;
+    scanf("%lld %lld", &a, &b);
+    if (a < b) {
+        for (int i = a; i <= b; i++) {
+            if (isStrong(i)) {
+                printf("%lld ", i);
+            }
+        }
+    } else if (a > b) {
+        for (int i = b; i <= a; i++) {
+            if (isStrong(i)) {
+                printf("%lld ", i);
+            }
+        }
+    }
+    return 0;
+}
