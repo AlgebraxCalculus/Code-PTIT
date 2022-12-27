@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+long long thuannghich (long long n) {
+	long long dao = 0, m = n;
+	while (m != 0) {
+		dao = dao * 10 + m % 10;
+		m /= 10;
+	}
+	if (dao == n) {
+		return 1;
+	}
+	return 0;
+}
+
+long long chuso (long long n) {
+	long long sum = 0;
+	while (n != 0) {
+		long long chuso = n % 10;
+		if (chuso % 2 == 0) {
+			return 0;
+		} 
+		sum += chuso;
+		n /= 10;
+	}
+	if (sum % 2 == 0) {
+		return 0;
+	}
+	return 1;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		long long n;
+		scanf("%lld", &n);
+		if (thuannghich(n) && chuso(n)) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n");
+	}
+	return 0;
+}
