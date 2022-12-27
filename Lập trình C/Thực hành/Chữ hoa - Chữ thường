@@ -1,0 +1,20 @@
+//Nếu là chữ thường thì chuyển thành chữ hoa và ngược lại
+#include <stdio.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		scanf("\n");
+		char c;
+		scanf("%c", &c);
+		if (c >= 'a' && c <= 'z') {
+			c -= 32;
+		} else if (c >= 'A' && c <= 'Z') {
+			c += 32;
+		}
+		printf("%c", c);
+		printf("\n");
+	}
+	return 0;
+}
