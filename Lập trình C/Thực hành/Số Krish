@@ -1,4 +1,4 @@
-//Số có tổng giai thừa bằng chính nó
+//Số có tổng giai thừa các chữ số bằng chính nó
 #include <stdio.h>
 
 long long giaithua (int n) {
