@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+long long sochandacbiet (long long n) {
+	if (n % 2 != 0) {
+		return 0;
+	} else {
+		while (n != 0) {
+			int chuso = n % 10;
+			if (chuso % 2 != 0) {
+				return 0;
+			}
+			n /= 10;
+		}
+	}
+	return 1;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		long long n;
+		scanf("%lld", &n);
+		if (sochandacbiet(n)) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n");
+	}
+	return 0;
+}
