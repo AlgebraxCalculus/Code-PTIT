@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <math.h>
+
+int sokhonggiam (int n) {
+    int ok;
+    while (n != 0) {
+        int a = n % 10, b = (n / 10) % 10;
+        if (a < b) {
+            ok = 0;
+            break;
+        } else {
+            ok = 1;
+            n /= 10;
+        }
+    }
+    if (ok == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+void xuatsokhonggiam () {
+    int n;
+    scanf("%d", &n);
+    int a = pow(10, n - 1);
+    int b = pow(10, n);
+    for (int i = a; i < b; i++) {
+        if (sokhonggiam(i)) {
+            printf("%d ", i);
+        }
+    }
+    return;
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        xuatsokhonggiam();
+        printf("\n");
+    }
+    return 0;
+}
