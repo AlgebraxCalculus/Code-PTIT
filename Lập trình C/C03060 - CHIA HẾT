@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int n, k;
+    scanf("%d %d", &n, &k);
+    int count = 0;
+    for (int i = 1; i <= n; i++) {
+        if (i % 2 == 0) {
+            int temp = i;
+            while (temp % 2 == 0) {
+                count++;
+                temp /= 2;
+            }
+        }
+    }
+    if (count >= k) {
+        printf("Yes");
+    } else {
+        printf("No");
+    }
+    return 0;
+}
