@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+	int n, m;
+	scanf("%d %d", &n, &m);
+	int a[n + 5], b[m + 5];
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &a[i]);
+	}
+	for (int i = 0; i < m; i++) {
+		scanf("%d", &b[i]);
+	}
+	int vitri;
+	scanf("%d", &vitri);
+	for (int i = 0; i < vitri; i++) {
+		printf("%d ", a[i]);
+	}
+	for (int i = 0; i < m; i++) {
+		printf("%d ", b[i]);
+	}
+	for (int i = vitri; i < n; i++) {
+		printf("%d ", a[i]);
+	}
+	return 0;	
+}
