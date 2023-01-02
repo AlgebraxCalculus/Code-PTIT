@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <math.h> 
+
+int snt (int n) {
+	if (n < 2) {
+		return 0;
+	} else {
+		for (int i = 2; i <= sqrt(n); i++) {
+			if (n % i == 0) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+int chusonguyento (int n) {
+	while (n > 0) {
+		int chuso = n % 10;
+		if (chuso != 2 && chuso != 3 && chuso != 5 && chuso != 7) {
+			return 0;
+		}
+		n /= 10;
+	}
+	return 1;
+}
+int tongchuso (int n) {
+	int sum = 0;
+	while (n > 0) {
+		sum += (n % 10);
+		n /= 10;
+	}
+	return snt(sum);
+}
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int a, b;
+		scanf("%d %d", &a, &b);
+		int count = 0;
+		for (int i = a; i <= b; i++) {
+			if (chusonguyento(i) && snt(i) && tongchuso(i)) {
+				count++;
+			}
+		}
+		printf("%d\n", count);
+	}
+	return 0;
+}
+//Đặt hàm có tỷ lệ đúng ít nhất (chữ số nguyên tố), tránh hàm có tỷ lệ đúng nhiều nhất (tổng nguyên tố và số nguyên tố)
