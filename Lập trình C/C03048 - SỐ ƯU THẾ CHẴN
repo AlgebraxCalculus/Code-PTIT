@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+long long uuthechan (long long n) {
+	if (n % 2 != 0) {
+		return 0;
+	}
+	int count1 = 0, count2 = 0;
+	while (n != 0) {
+		int chuso = n % 10;
+		if (chuso % 2 == 0) {
+			count1++;
+		} else {
+			count2++;
+		}
+		n /= 10;
+	}
+	if (count1 > count2) {
+		return 1;
+	}
+	return 0;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		long long n;
+		scanf("%lld", &n);
+		if (uuthechan(n)) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n");
+	}
+	return 0;
+}
