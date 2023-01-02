@@ -1,0 +1,43 @@
+//Trong ma trận, nếu là số nguyên tố thì thay bởi 1, không thì thay bởi 0
+
+#include <stdio.h>
+
+int snt (int n) {
+	if (n < 2) {
+		return 0;
+	} else {
+		for (int i = 2; i * i <= n; i++) {
+			if (n % i == 0) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+int main() {
+	int n, m;
+	scanf("%d %d", &n, &m);
+	int a[n + 5][m + 5];
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			scanf("%d", &a[i][j]);
+		}
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (snt(a[i][j])) {
+				a[i][j] = 1;
+			} else {
+				a[i][j] = 0;
+			}
+		}
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			printf("%d ", a[i][j]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
