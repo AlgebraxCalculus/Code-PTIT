@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		int a[n + 5];
+		for (int i = 0; i < n; i++) {
+			scanf("%d", &a[i]);
+		}
+		int ok = 1;
+		for (int i = 0; i < n; i++) {
+			if (a[i] != a[n - i - 1]) {
+				ok = 0;
+			}
+		}
+		if (ok == 1) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n\n");
+	}
+	return 0;
+}
