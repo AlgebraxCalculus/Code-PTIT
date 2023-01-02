@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+long long fibo (int n) {
+	long long f[100];
+	f[0] = 0;
+	f[1] = 1;
+	for (int i = 2; i <= n; i++) {
+		f[i] = f[i - 1] + f[i - 2];
+	}
+	return f[n];
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		printf("%lld\n", fibo(n));
+	}
+	return 0;
+}
