@@ -1,0 +1,39 @@
+#include <stdio.h>
+int max (int a, int b) {
+	if (a > b) {
+		return a;
+	}
+	return b;
+}
+
+int min (int a, int b) {
+	if (a < b) {
+		return a;
+	}
+	return b;
+}
+
+int main() {
+	int n, m;
+	scanf("%d %d", &n, &m);
+	int a[n + 5], b[m + 5], count[100001] = {};
+	int min_val = 1e9, max_val = -1e9;
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &a[i]);
+		count[a[i]]++;
+		min_val = min(min_val, a[i]);
+		max_val = max(max_val, a[i]);
+	}
+	for (int j = 0; j < m; j++) {
+		scanf("%d", &b[j]);
+		count[b[j]]++;
+		min_val = min(min_val, b[j]);
+		max_val = max(max_val, b[j]);
+	}
+	for (int i = min_val; i <= max_val; i++) {
+		if (count[i] != 0) {
+			printf("%d ", i);
+		}
+	}
+	return 0;
+}
