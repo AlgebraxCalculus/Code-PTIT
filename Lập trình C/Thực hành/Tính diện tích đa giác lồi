@@ -10,7 +10,7 @@ double polygonArea (double x[], double y[], int n) {
 		j = i; 	// j is previous vertex to i
 	}
 	// Return absolute value
-    return abs(area / 2.0);
+    return fabs(area / 2.0);
 }
 
 int main() {
