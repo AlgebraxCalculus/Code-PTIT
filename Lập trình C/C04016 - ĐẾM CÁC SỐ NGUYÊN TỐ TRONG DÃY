@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int snt (int n) {
+	if (n < 2) {
+		return 0;
+	} else {
+		for (int i = 2; i * i <= n; i++) {
+			if (n % i == 0) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	int lan = 1;
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		int a[n + 5];
+		int count[100005] = {0};
+		for (int i = 0; i < n; i++) {
+			scanf("%d", &a[i]);
+			if (snt(a[i])) {
+				count[a[i]]++;
+			}
+		}
+        printf("Test %d:\n", lan++);
+        for (int i = 2; i < 100005; i++) {
+            if (count[i] > 0) {
+                printf("%d xuat hien %d lan\n", i, count[i]);
+            }
+        }
+	}
+	return 0;
+}
