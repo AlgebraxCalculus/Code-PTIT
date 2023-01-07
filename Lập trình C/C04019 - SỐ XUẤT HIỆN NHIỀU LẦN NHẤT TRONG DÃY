@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        int n;
+        scanf("%d", &n);
+        int a[n + 5], count[105] = {}, max = 0;
+        for (int i = 0; i < n; i++) {
+            scanf("%d", &a[i]);
+            count[a[i]]++;
+            if (count[a[i]] > max) {
+                max = count[a[i]];
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (max == count[a[i]]) {
+                printf("%d ", a[i]);
+                count[a[i]] = 0;
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
