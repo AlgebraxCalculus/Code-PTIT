@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+void nhap (int a[100][100], int m, int n) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &a[i][j]);
+        }
+    }
+}
+
+void xuat (int a[100][100], int m, int n) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int m, n, p, q;
+    scanf("%d %d %d %d", &m, &n, &p, &q);
+    int a[100][100], b[100][100], c[100][100];
+    nhap(a, m, n);
+    nhap(b, n, p);
+    nhap(c, p, q);
+    int d[100][100], e[100][100];
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < p; j++) {
+            d[i][j] = 0;
+            for (int k = 0; k < n; k++) {
+                d[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < q; j++) {
+            e[i][j] = 0;
+            for (int l = 0; l < p; l++) {
+                e[i][j] += d[i][l] * c[l][j];
+            }
+        }
+    }
+    xuat(e, m, q);
+    return 0;
+}
