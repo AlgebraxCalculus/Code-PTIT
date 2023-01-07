@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		int a[n + 5], b[n + 5], count = 0;
+		for (int i = 0; i < n; i++) {
+			scanf("%d", &a[i]);
+		}
+		int max = 0;
+		for (int i = n - 1; i >= 0; i--) {
+			if (a[i] > max) {
+				max = a[i];
+				b[count] = a[i];
+				count++;
+			}
+		}
+		for (int i = count - 1; i >= 0; i--) {
+			printf("%d ", b[i]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
