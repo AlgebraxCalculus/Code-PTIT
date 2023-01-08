@@ -6,20 +6,19 @@ void doicoso(int n, int b) {
 	char s[100];
 	int count = 0;
 	int m;
-	int r = n;
-	while (r > 0) {
-			m = r % b;
+	while (n > 0) {
+			m = n % b; // Lấy dư
 		if (m >= 10) {
-			s[count++] = (char) (m + 55);
+			s[count++] = (char) (m + 55); // A đến Z từ 65 đến 90, tức bằng 'A' + (m - 10)
 		} else {
-			s[count++] = (char) (m + 48);
+			s[count++] = (char) (m + 48); // 0 đến 9 từ 48 đến 57, tức bằng '0' + m
 			
 		}
-		r /= b;
+		n /= b; // Chia lấy nguyên
 	}
-	s[count] = '\0';
+	s[count] = '\0'; //cắt đuôi
 	for (int i = count - 1; i>= 0; i--) {
-		printf("%c", s[i]);
+		printf("%c", s[i]); //đảo ngược xâu
 	}
 }
 int main() {
