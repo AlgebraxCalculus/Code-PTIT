@@ -1,0 +1,35 @@
+//Chuyển đổi số từ cơ số 10 sang cơ số bất kì
+#include <stdio.h>
+#include <string.h>
+
+void doicoso(int n, int b) {
+	char s[100];
+	int count = 0;
+	int m;
+	int r = n;
+	while (r > 0) {
+			m = r % b;
+		if (m >= 10) {
+			s[count++] = (char) (m + 55);
+		} else {
+			s[count++] = (char) (m + 48);
+			
+		}
+		r /= b;
+	}
+	s[count] = '\0';
+	for (int i = count - 1; i>= 0; i--) {
+		printf("%c", s[i]);
+	}
+}
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n, b;
+		scanf("%d %d", &n, &b);
+		doicoso(n, b);
+		printf("\n");
+	}
+	return 0;
+}
