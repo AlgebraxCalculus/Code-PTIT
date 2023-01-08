@@ -1,0 +1,28 @@
+//Kiểm tra xem xâu kí tự có thuộc hệ cơ số 3 không (tức chỉ bao gồm kí tự 0, 1, 2)
+#include <stdio.h>
+#include <string.h>
+
+int hecoso3 (char s[]) {
+	int n = strlen(s);
+	for (int i = 0; i < n; i++) {
+		if (!(s[i] >= '0' && s[i] < ('0' + 3))) {
+			return 0;
+		}
+	}
+	return 1;
+}
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		char s[20];
+		scanf("%s", s);
+		if (hecoso3(s)) {
+			printf("YES");
+		} else {
+			printf("NO");
+		}
+		printf("\n");
+	}
+	return 0;
+}
