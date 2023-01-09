@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	int lan = 1;
+	while (t--) {
+		int n, m;
+		scanf("%d %d", &n, &m);
+		int a[n + 5][m + 5];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				scanf("%d", &a[i][j]);
+			}
+		}
+		int max = 0, hang, cot;
+//Tìm hàng có tổng các phần tử lớn nhất
+		for (int i = 0; i < n; i++) {
+			int sum = 0;
+			for (int j = 0; j < m; j++) {
+				sum += a[i][j];
+			}
+			if (sum > max) {
+				max = sum;
+				hang = i;
+			}
+		}
+//Tìm cột có tổng các phần tử lớn nhất
+		max = 0;
+		for (int i = 0; i < m; i++) {
+			int sum = 0;
+			for (int j = 0; j < n; j++) {
+				if (j != hang) {
+					sum += a[j][i];
+				}
+			}
+			if (sum > max) {
+				max = sum;
+				cot = i;
+			}
+		}
+		printf("Test %d:\n", lan++);
+		for (int i = 0; i < n; i++) {
+			if (i != hang) {
+				for (int j = 0; j < m; j++) {
+					if (j != cot) {
+						printf("%d ", a[i][j]);
+					}
+				}
+				printf("\n");
+			}
+		}
+	}
+	return 0;
+}
