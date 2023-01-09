@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+	char s[105];
+	gets(s);
+	char words[105][105];
+	char *token = strtok(s, " ");
+	int count = 0;
+	while (token != NULL) {
+		strcpy(words[count++], token);
+		token = strtok(NULL, " ");
+	}
+	int ok[count];
+	for (int i = 0; i < count; i++) {
+		ok[i] = 1;
+	}
+	for (int i = 0; i < count - 1; i++) {
+		for (int j = i + 1; j < count; j++) {
+			if (strcmp(words[i], words[j]) == 0) {
+				ok[j] = 0;
+			}
+		}
+	}
+	for (int i = 0; i < count; i++) {
+		if (ok[i] == 1) {
+			printf("%s ", words[i]);
+		}
+	}
+	return 0;
+}
