@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+int snt (int n) {
+	if (n < 2) {
+		return 0;
+	} else {
+		for (int i = 2; i * i <= n; i++) {
+			if (n % i == 0) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+int main() {
+	int t; 
+	scanf("%d", &t);
+	int lan = 1, count = 0;
+	int nt[405];
+	for (int i = 2; i < 405; i++) {
+		if (snt(i)) {
+			nt[count++] = i;
+		}
+	}
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		int a[n + 5][n + 5];
+		int hang1 = 0, hang2 = n - 1, cot1 = 0, cot2 = n - 1, giatri = 0;
+		while (hang1 <= hang2 && cot1 <= cot2) {
+		//Hàng đầu tiên
+			for (int i = cot1; i <= cot2; i++) {
+				a[hang1][i] = nt[giatri++];
+			}
+			hang1++;
+		//Cột cuối cùng
+			for (int i = hang1; i <= hang2; i++) {
+				a[i][cot2] = nt[giatri++];
+			}
+			cot2--;
+		//Hàng cuối cùng
+			if (cot1 <= cot2) {
+				for (int i = cot2; i >= cot1; i--) {
+					a[hang2][i] = nt[giatri++];
+				}
+				hang2--;
+			}
+		//Cột đầu tiên
+			if (hang1 <= hang2) {
+				for (int i = hang2; i >= hang1; i--) {
+					a[i][cot1] = nt[giatri++];
+				}
+				cot1++;
+			}
+		}
+		printf("Test %d:\n", lan++);
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				printf("%d ", a[i][j]);
+			}
+			printf("\n");
+		}
+	}
+	return 0;
+}
