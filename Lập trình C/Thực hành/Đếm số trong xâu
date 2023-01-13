@@ -11,11 +11,11 @@ int main() {
         char n[10];
         scanf("%s", n);
         int count = 0;
-//to store an address written by strstr function
+//Khởi tạo một con trỏ p để trỏ đến ký tự đầu tiên của chuỗi lớn hơn
         char *p = s;
         while ((p = strstr(p, n)) != NULL) {
             count++;
-            p++;
+            p++; //Cập nhật con trỏ p để trỏ đến ký tự tiếp theo của chuỗi con
         }
         printf("%d\n", count);
     }
@@ -34,11 +34,11 @@ int main() {
         char n[10];
         scanf("%s", n);
         int count = 0;
-//to store an address written by strstr function
+//Khởi tạo một con trỏ p để trỏ đến ký tự đầu tiên của chuỗi lớn hơn
         char *p = s;
         while ((p = strstr(p, n)) != NULL) {
             count++;
-            p += strlen(n);
+            p += strlen(n); //Cập nhật con trỏ p để trỏ đến ký tự tiếp theo của chuỗi lớn hơn và bỏ qua các ký tự của chuỗi con vừa tìm thấy
         }
         printf("%d\n", count);
     }
