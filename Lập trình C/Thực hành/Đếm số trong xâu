@@ -1,0 +1,46 @@
+//TH1: Các kí tự số được đếm lặp
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        char s[50];
+        scanf("%s", s);
+        char n[10];
+        scanf("%s", n);
+        int count = 0;
+//to store an address written by strstr function
+        char *p = s;
+        while ((p = strstr(p, n)) != NULL) {
+            count++;
+            p++;
+        }
+        printf("%d\n", count);
+    }
+    return 0;
+}
+//TH2: Các kí tự số không được đếm lặp
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        char s[50];
+        scanf("%s", s);
+        char n[10];
+        scanf("%s", n);
+        int count = 0;
+//to store an address written by strstr function
+        char *p = s;
+        while ((p = strstr(p, n)) != NULL) {
+            count++;
+            p += strlen(n);
+        }
+        printf("%d\n", count);
+    }
+    return 0;
+}
