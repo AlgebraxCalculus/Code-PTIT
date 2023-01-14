@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int thuannghich (int n) {
+	int temp = n, dao = 0;
+	while (temp != 0) {
+		dao = dao * 10 + temp % 10;
+		temp /= 10;
+	}
+	if (dao == n) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int chuso (int n) {
+	while (n != 0) {
+		int chuso = n % 10;
+		if (chuso == 6) {
+			return 1;
+		}
+		n /= 10;
+	}
+	return 0;
+}
+
+int tongchuso (int n) {
+	int sum = 0;
+	while (n != 0) {
+		int chuso = n % 10;
+		sum += chuso;
+		n /= 10;
+	}
+	if (sum % 10 == 8) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int main() {
+	int a, b;
+	scanf("%d %d", &a, &b);
+	if (a < b) {
+		for (int i = a; i <= b; i++) {
+			if (tongchuso(i) && thuannghich(i) && chuso(i)) {
+				printf("%d ", i);
+			}
+		}
+	} else if (a > b) {
+		for (int i = b; i <= a; i++) {
+			if (tongchuso(i) && thuannghich(i) && chuso(i)) {
+				printf("%d ", i);
+			}
+		}
+	}
+	return 0;
+}
