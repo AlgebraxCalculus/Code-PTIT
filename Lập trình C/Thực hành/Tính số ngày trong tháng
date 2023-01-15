@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int tinhsongay (int thang, int nam) {
+    if (thang == 1 || thang == 3 || thang == 5 || thang == 7 || thang == 8 || thang == 10 || thang == 12) {
+        return 31;
+    } else if (thang == 2) {
+        if ((nam % 400 == 0) || (nam % 4 == 0 && nam % 100 != 0)) {
+            return 29;
+        } else {
+            return 28;
+        }
+    }
+    return 30;
+}
+
+int main() {
+    int thang, nam;
+    scanf("%d %d", &thang, &nam);
+    printf("%d", tinhsongay(thang, nam));
+    return 0;
+}
