@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int max (int a, int b) {
+	if (a > b) {
+		return a;
+	}
+	return b;
+}
+
+int main() {
+	int a, b;
+	scanf("%d %d", &a, &b);
+	int giatri = max(a, b);
+	for (int i = 1; i <= a; i++) {
+		int count = giatri;
+		int j = 1;
+		while (j <= b) {
+			if (count > 1) {
+				printf("%d", count--);
+			} else if (count == 1) {
+				while (j <= b) {
+					printf("%d", count++);
+					j++;
+				}
+			}
+			j++;
+		}
+		giatri--;
+		printf("\n");
+	}
+	return 0;
+}
