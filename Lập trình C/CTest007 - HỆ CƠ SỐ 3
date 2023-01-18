@@ -1,4 +1,3 @@
-//Kiểm tra xem xâu kí tự có thuộc hệ cơ số 3 không (tức chỉ bao gồm kí tự 0, 1, 2)
 #include <stdio.h>
 #include <string.h>
 
