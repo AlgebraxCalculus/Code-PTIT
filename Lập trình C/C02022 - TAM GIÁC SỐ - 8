@@ -1,3 +1,4 @@
+//Cách 1:
 #include <stdio.h>
 
 int main() {
@@ -16,7 +17,32 @@ int main() {
 			}
 			giatri += i;
 		}
-		printf("\n\n");
+		printf("\n");
 	}
 	return 0;
 } 
+
+//Cách 2:
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int sum = 1;
+    for (int i = 1; i <= n; i++) {
+        //cận trái: sum
+        //cận phải: sum + i - 1
+        if (i % 2 == 0) {
+            for (int j = sum + i - 1; j >= sum; j--) {
+                printf("%d ", j);
+            }
+        } else {
+            for (int j = sum; j <= sum + i - 1; j++) {
+                printf("%d ", j);
+            }
+        }
+        sum += i;
+        printf("\n");
+    }
+    return 0;
+}
