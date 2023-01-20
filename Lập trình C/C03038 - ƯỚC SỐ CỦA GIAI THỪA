@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int count (int n, int p) {
+    int dem = 0;
+    for (int i = p; i <= n; i += p) {
+        int temp = i;
+        while (temp % p == 0) {
+            dem++;
+            temp /= p;
+        }
+    }
+    return dem;
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        int n, p;
+        scanf("%d %d", &n, &p);
+        printf("%d\n", count(n, p));
+    }
+    return 0;
+}
