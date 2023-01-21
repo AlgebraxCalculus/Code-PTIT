@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+long long ucln (long long a, long long b) {
+    while (b != 0) {
+        long long r = a % b;
+        a = b;
+        b = r;
+    }
+    return a;
+}
+
+long long bcnn (long long a, long long b) {
+    return a * b / ucln(a, b);
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        long long a, b;
+        scanf("%lld %lld", &a, &b);
+        long long boi_min = a;
+        for (int i = a + 1; i <= b; i++) {
+            boi_min = bcnn(boi_min, i);
+        }
+        printf("%lld\n", boi_min);
+    }
+    return 0;
+}
