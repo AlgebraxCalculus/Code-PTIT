@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+void nhapmang (int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+}
+
+void tangdan (int a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (a[i] > a[j]) {
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+}
+
+void giamdan (int a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (a[i] < a[j]) {
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+}
+
+void xuatmang (int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", a[i]);
+    }
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    int lan = 1;
+    while (t--) {
+        int n; 
+        scanf("%d", &n);
+        int a[n], b[n], c[2 * n];
+        nhapmang(a, n);
+        nhapmang(b, n);
+        tangdan(a, n);
+        giamdan(b, n);
+        int chan = 0, le = 1;
+        for (int i = 0; i < n; i++) {
+            c[chan] = a[i];
+            c[le] = b[i];
+            chan += 2;
+            le += 2;
+        }
+        printf("Test %d:\n", lan++);
+        xuatmang(c, 2 * n);
+        printf("\n");
+    }
+    return 0;
+}
