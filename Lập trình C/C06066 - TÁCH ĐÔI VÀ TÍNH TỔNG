@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <string.h>
+
+char c[500], x[500];
+
+void tinhtong (char a[], char b[]) {
+    int ans = 0, nho = 0;
+    char v[500];
+    int ok = 1;
+    for (int i = 0; i < 200; i++) {
+        c[i] = 0;
+        x[i] = 0;
+        v[i] = 0;
+    }
+    if (strlen(a) < strlen(b)) {
+        int n = strlen(b) - strlen(a);
+        for (int i = 0; i < n; i++) {
+            v[i] = '0';
+            a = strcat(v, a);
+        }
+    } else if (strlen(b) < strlen(a)) {
+        int n = strlen(a) - strlen(b);
+        for (int i = 0; i < n; i++) {
+            v[i] = '0';
+            b = strcat(v, b);
+        }
+    }
+    for (int i = strlen(a) - 1; i >= 0; i--) {
+        ans = (a[i] - '0') + (b[i] - '0') + nho;
+        if (ans >= 10) {
+            nho = 1;
+        } else {
+            nho = 0;
+        }
+        c[i] = ans % 10 + '0';
+    }
+    if (nho == 1) {
+        x[0] = '1';
+        strcat(x, c);
+        printf("%s\n", x);
+    } else {
+        int y = 0;
+        for (int i = 0; i < strlen(c); i++) {
+            if (c[i] == '0' && ok == 1) {
+                continue;
+            } else {
+                ok = 0;
+                x[y] = c[i];
+                y++;
+            }
+        }
+        printf("%s\n", x);
+    }
+}
+
+int main() {
+    char s[500];
+    scanf("%s", s);
+    char a[500], b[500];
+    int n = strlen(s);
+    while (n > 1) {
+        for (int i = 0; i < 200; i++) {
+            a[i] = 0;
+            b[i] = 0;
+        }
+        int nua = n / 2;
+        for (int i = 0; i <= nua - 1; i++) {
+            a[i] = s[i];
+        }
+        int h = 0;
+        for (int j = nua; j <= n - 1; j++) {
+            b[h] = s[j];
+            h++;
+        }
+        tinhtong(a, b);
+        strcpy(s, x);
+        n = strlen(s);
+    }
+    return 0;
+}
