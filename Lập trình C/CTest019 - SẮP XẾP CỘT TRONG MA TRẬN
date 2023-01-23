@@ -1,3 +1,4 @@
+//Sắp xếp 1 cột trong ma trận
 #include <stdio.h>
 
 void sapxep (int a[105][105], int n, int index) {
