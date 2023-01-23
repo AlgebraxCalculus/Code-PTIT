@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+void sapxep(int a[105][105], int n, int m) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            for (int k = i; k < n; k++) {
+                for (int l = j; l < m; l++) {
+                    if (a[i][j] > a[k][l]) {
+                        int temp = a[i][j];
+                        a[i][j] = a[k][l];
+                        a[k][l] = temp;
+                    }
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    int lan = 1;
+    while (t--) {
+        int n, m;
+        scanf("%d %d", &n, &m);
+        int a[105][105];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                scanf("%d", &a[i][j]);
+            }
+        }
+        sapxep(a, n, m);
+        printf("Test %d:\n", lan++);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                printf("%d ", a[i][j]);
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
