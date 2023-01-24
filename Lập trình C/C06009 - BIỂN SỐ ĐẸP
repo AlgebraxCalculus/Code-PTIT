@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+int kiemtra (char s[]) {
+    if (s[11] > s[10] && s[10] > s[8] && s[8] > s[7] && s[7] > s[6]) {
+        return 1;
+    }
+    if (s[11] == s[10] && s[10] == s[8] && s[8] == s[7] && s[7] == s[6]) {
+        return 1;
+    }
+    if (s[11] == s[10] && s[8] == s[7] && s[7] == s[6]) {
+        return 1;
+    }
+    for (int i = 6; i <= 11; i++) {
+        if (i != 9) {
+            if (s[i] != '6' && s[i] != '8') {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+    	scanf("\n");
+        char s[20];
+        gets(s);
+        if (kiemtra(s)) {
+            printf("YES");
+        } else {
+            printf("NO");
+        }
+        printf("\n");
+    }
+    return 0;
+}
