@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        int count = 0, chan = 0, le = 0;
+        char kitu = ' ';
+        while (kitu != '\n') {
+            int x;
+            scanf("%d", &x);
+            count++;
+            kitu = getchar(); //đọc kí tự được nhập từ bàn phím
+            if (x % 2 == 0) {
+                chan++;
+            } else {
+                le++;
+            }
+        }
+        if ((count % 2 == 0 && chan > le) || (count % 2 == 1 && le > chan)) {
+            printf("YES");
+        } else {
+            printf("NO");
+        }
+        printf("\n");
+    }
+    return 0;
+}
