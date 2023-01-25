@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		char s[1005];
+		scanf("%s", s);
+		int count[500] = {}, dem = 0, ok;
+		for (int i = 0; i < strlen(s); i++) {
+			if (s[0] != '0' && s[i] >= '0' && s[i] <= '9') {
+				ok = 1;
+			} else {
+				ok = 0;
+				break;
+			}
+		}
+		if (ok == 0) {
+			printf("INVALID");
+		} else {
+			for (int i = 0; i < strlen(s); i++) {
+				count[s[i]]++;
+			}
+			for (int i = 0; i < strlen(s); i++) {
+				if (count[s[i]] != 0) {
+					dem++;
+					count[s[i]] = 0;
+				}
+			}
+			if (dem == 10) {
+				printf("YES");
+			} else {
+				printf("NO");
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}
