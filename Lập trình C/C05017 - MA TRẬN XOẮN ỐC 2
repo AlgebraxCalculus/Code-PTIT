@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n, m;
+		scanf("%d %d", &n, &m);
+		int a[n + 5][m + 5];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				scanf("%d", &a[i][j]);
+			}
+		}
+		int k = 0, l = 0, hang = n - 1, cot = m - 1;
+		while (k <= hang && l <= cot) {
+			for (int i = l; i <= cot; i++) {
+				printf("%d ", a[k][i]);
+			}
+			k++;
+			for (int i = k; i <= hang; i++) {
+				printf("%d ", a[i][cot]);
+			}
+			cot--;
+			if (k <= hang) {
+				for (int i = cot; i >= l; i--) {
+					printf("%d ", a[hang][i]);
+				}
+				hang--;
+			}
+			if (l <= cot) {
+				for (int i = hang; i >= k; i--) {
+					printf("%d ", a[i][l]);
+				}
+				l++;
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}
