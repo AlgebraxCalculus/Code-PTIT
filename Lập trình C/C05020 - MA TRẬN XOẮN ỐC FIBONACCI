@@ -19,18 +19,14 @@ int main() {
             a[i][cot2] = fb[giatri++];
         }
         cot2--;
-        if (cot1 <= cot2) {
-            for (int i = cot2; i >= cot1; i--) {
-                a[hang2][i] = fb[giatri++];
-            }
-            hang2--;
+        for (int i = cot2; i >= cot1; i--) {
+            a[hang2][i] = fb[giatri++];
         }
-        if (hang1 <= hang2) {
-            for (int i = hang2; i >= hang1; i--) {
-                a[i][cot1] = fb[giatri++];
-            }
-            cot1++;
+        hang2--;
+        for (int i = hang2; i >= hang1; i--) {
+            a[i][cot1] = fb[giatri++];
         }
+        cot1++;
     }
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
