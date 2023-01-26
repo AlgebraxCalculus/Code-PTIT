@@ -17,19 +17,15 @@ int main() {
 		}
 		cot2--;
 //Hàng cuối cùng
-		if (cot1 <= cot2) {
-			for (int i = cot2; i >= cot1; i--) {
-				a[hang2][i] = giatri++;
-			}
-			hang2--;
+		for (int i = cot2; i >= cot1; i--) {
+			a[hang2][i] = giatri++;
 		}
+		hang2--;
 //Cột đầu tiên
-		if (hang1 <= hang2) {
-			for (int i = hang2; i >= hang1; i--) {
-				a[i][cot1] = giatri++;
-			}
-			cot1++;
+		for (int i = hang2; i >= hang1; i--) {
+			a[i][cot1] = giatri++;
 		}
+		cot1++;
 	}
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
