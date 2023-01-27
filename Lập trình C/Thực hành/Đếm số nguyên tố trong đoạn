@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+
+int prime[100001];
+void sieve () {
+	for (int i = 0; i <= 100000; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 0;
+	for (int i = 2; i <= sqrt(100000); i++) {
+		for (int j = i * i; j <= 100000; j += i) {
+			prime[j] = 0;
+		}
+	}
+}
+
+int F[100001];
+int main() {
+	sieve();
+	F[0] = 0; 
+	F[1] = 0;
+	int dem = 0;
+	for (int i = 2; i <= 100000; i++) {
+		if (prime[i]) {
+			dem++;
+			F[i] = dem;
+		}
+	}
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int l, r;
+		scanf("%d %d", &l, &r);
+		if (l == 0) {
+			printf("%d", F[r]);
+		} else {
+			printf("%d", F[r] - F[l - 1]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
