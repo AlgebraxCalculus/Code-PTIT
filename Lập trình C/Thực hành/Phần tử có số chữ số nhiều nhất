@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <math.h>
+
+void nhapmang (int a[], int n) {
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &a[i]);
+	}
+}
+
+//Cách 1:
+int soluongchuso1 (int n) {
+	int dem = 0;
+	while (n != 0) {
+		n /= 10;
+		dem++;
+	}
+	return dem;
+}
+
+//Cách 2:
+int soluongchuso2 (int n) {
+	if (n == 0) {
+		return 1;
+	}
+	return log10((double)(abs(n))) + 1;
+}
+
+int phantunhieusochusonhat (int a[], int n) {
+	int index = 0;
+	int max = soluongchuso2(a[0]);
+	for (int i = 1; i < n; i++) {
+		if (soluongchuso2(a[i]) > max) {
+			max = soluongchuso2(a[i]);
+			index = i;
+		}
+	}
+	return a[index];
+}
+
+int main() {
+	int n;
+	scanf("%d", &n);
+	int a[1000];
+	nhapmang(a, n);
+	printf("%d", phantunhieusochusonhat(a, n));
+	return 0;
+}
