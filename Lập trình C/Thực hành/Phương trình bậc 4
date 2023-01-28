@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <math.h>
+
+void phuongtrinhbac4 (double a, double b, double c) {
+	if (a == 0) {
+		if (b == 0) {
+			if (c == 0) {
+				printf("Vo so nghiem");
+			} else {
+				printf("Vo nghiem");
+			}
+		} else {
+			double t = -c / b;
+			if (t < 0) {
+				printf("Vo nghiem");
+			} else {
+				printf("%0.2lf %0.2lf", -sqrt(t), sqrt(t));
+			}
+		}
+	} else {
+		double t;
+		double delta = b * b - 4 * a * c;
+		if (delta < 0) {
+			printf("Vo nghiem");
+		} else if (delta == 0) {
+			t = -b / 2 * a;
+			if (t < 0) {
+				printf("Vo nghiem");
+			} else {
+				printf("%0.2lf %0.2lf", -sqrt(t), sqrt(t));
+			}
+		} else {
+			double t1 = (-b + sqrt(delta)) / 2 * a;
+			double t2 = (-b - sqrt(delta)) / 2 * a;
+			if (t1 < 0 && t2 < 0) {
+				printf("Vo nghiem");
+			} else if (t1 >= 0 && t2 >= 0) {
+				printf("%0.2lf %0.2lf %0.2lf %0.2lf", -sqrt(t2), -sqrt(t1), sqrt(t2), sqrt(t1));
+			} else if (t1 < 0 && t2 >= 0) {
+				printf("%0.2lf %0.2lf", -sqrt(t2), sqrt(t2));
+			} else if (t1 >= 0 && t2 < 0) {
+				printf("%0.2lf %0.2lf", -sqrt(t1), sqrt(t1));
+			}
+		}
+	}
+}
+
+int main() {
+	double a, b, c;
+	scanf("%lf %lf %lf", &a, &b, &c);
+	phuongtrinhbac4(a, b, c);
+	return 0;
+}
