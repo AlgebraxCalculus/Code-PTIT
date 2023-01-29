@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+int value[] = {1, 5, 10, 50, 100, 500, 1000};
+char s[] = {"IVXLCDM"};
+
+int vitri (char c) {
+	for (int i = 0; i < 7; i++) {
+		if (s[i] == c) {
+			return i;
+		}
+	}
+}
+
+int solve (char c[]) {
+	int n = strlen(c);
+	int res = value[vitri(c[n - 1])];
+	for (int i = n - 1; i > 0; i--) {
+		int pos1 = vitri(c[i]);
+		int pos2 = vitri(c[i - 1]);
+		if (value[pos1] <= value[pos2]) {
+			res += value[pos2];
+		} else {
+			res -= value[pos2];
+		}
+	}
+	return res;
+}
+
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		char c[1000];
+		scanf("%s", c);
+		printf("%d\n", solve(c));
+	}
+	return 0;
+}
