@@ -1,0 +1,60 @@
+//Số nguyên tố + tổng chữ số thuộc dãy fibonacci
+#include <stdio.h>
+#include <math.h>
+
+int snt (int n) {
+	if (n < 2) {
+		return 0;
+	}
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int fibonacci (int n) {
+	int f2 = 0, f1 = 1;
+	for (int i = 3; i <= 12; i++) {
+		int fn = f2 + f1;
+		if (fn == n) {
+			return 1;
+		}
+		f2 = f1;
+		f1 = fn;
+	}
+	return 0;
+}
+
+int tongchuso (int n) {
+	int sum = 0;
+	while (n > 0) {
+		sum += n % 10;
+		n /= 10;
+	}
+	return fibonacci(sum);
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int a, b;
+		scanf("%d %d", &a, &b);
+		int count = 0, check = 0;
+		for (int i = a; i <= b; i++) {
+			if (snt(i) && tongchuso(i)) {
+				check = 1;
+				count++;
+			}
+		}
+		if (check == 0) {
+			printf("-1");
+		} else {
+			printf("%d", count);
+		}
+		printf("\n");
+	}
+	return 0;
+}
