@@ -1,4 +1,4 @@
-//Số nguyên tố + tổng chữ số thuộc dãy fibonacci
+//Đếm xem có bao nhiêu số đẹp thỏa mãn là số nguyên tố + tổng chữ số thuộc dãy fibonacci, nếu không có in ra -1
 #include <stdio.h>
 #include <math.h>
 
