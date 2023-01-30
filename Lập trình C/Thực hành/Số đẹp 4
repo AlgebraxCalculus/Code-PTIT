@@ -1,0 +1,59 @@
+//Đếm xem có bao nhiêu số đẹp thỏa mãn là số thuận nghịch có ít nhất 3 ước số nguyên tố
+#include <stdio.h>
+#include <math.h>
+
+int thuannghich (int n) {
+	int dao = 0, temp = n;
+	while (temp > 0) {
+		dao = dao * 10 + temp % 10;
+		temp /= 10;
+	}
+	if (dao == n) {
+		return 1;
+	}
+	return 0;
+}
+
+int check (int n) {
+	int ans = 0;
+	for (int i = 2; i <= sqrt(n); i++) {
+		int count = 0;
+		while (n % i == 0) {
+			count++;
+			n /= i;
+		}
+		if (count != 0) {
+			ans++;
+		}
+	}
+	if (n != 1) {
+		ans++;
+	}
+	if (ans >= 3) {
+		return 1;
+	}
+	return 0;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int a, b;
+		scanf("%d %d", &a, &b);
+		int count = 0, ok = 0;
+		for (int i = a; i <= b; i++) {
+			if (thuannghich(i) && check(i)) {
+				ok = 1;
+				count++;
+			}
+		}
+		if (ok == 0) {
+			printf("-1");
+		} else {
+			printf("%d", count);
+		}
+		printf("\n");
+	}
+	return 0;
+}
