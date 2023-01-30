@@ -1,0 +1,40 @@
+//Số có n chữ số thỏa mãn tổng của lũy thừa bậc n của từng chữ số bằng chính nó
+#include <stdio.h>
+#include <math.h>
+
+long long giaithua (int n) {
+	long long gt = 1;
+	for (int i = 1; i <= n; i++) {
+		gt *= i;
+	}
+	return gt;
+}
+
+int sochuso (int n) {
+	return log10((double)abs(n)) + 1;
+}
+
+int amstrong (int n) {
+	int sum = 0;
+	int temp = n;
+	int mu = sochuso(n);
+	while (n > 0) {
+		sum += (int) pow(n % 10, mu);
+		n /= 10;
+	}
+	if (sum == temp) {
+		return 1;
+	}
+	return 0;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n;
+		scanf("%d", &n);
+		printf("%d\n", amstrong(n));
+	}
+	return 0;
+}
