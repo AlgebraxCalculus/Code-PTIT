@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int cmp(const void *a, const void *b) {
+	char *x = (char*) a;
+	char *y = (char*) b;
+	return *x - *y;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		char s[1005];
+		scanf("%s", s);
+		qsort(s, strlen(s), sizeof(char), cmp);
+		printf("%s\n", s);
+	}
+	return 0;
+}
