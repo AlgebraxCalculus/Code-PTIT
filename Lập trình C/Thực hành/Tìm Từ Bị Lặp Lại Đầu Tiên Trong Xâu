@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		scanf("\n");
+		char s[100];
+		gets(s);
+		char a[50][50];
+		char *token = strtok(s, " ");
+		int n = 0;
+		while (token != NULL) {
+			strcpy(a[n++], token);
+			token = strtok(NULL, " ");
+		}
+		int count = 0;
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = i + 1; j < n; j++) {
+				if (strcmp(a[i], a[j]) == 0) {
+					printf("%s", a[i]);
+					count++;
+				}
+			}
+			if (count == 1) {
+				break;
+			}
+		}
+		if (count == 0) {
+			printf("-1");
+		}
+		printf("\n");
+	}
+	return 0;
+}
