@@ -1,3 +1,4 @@
+//Tính tổng các phần tử trong đoạn từ vị trí L đến vị trí R trong mảng
 #include <stdio.h>
 
 int main() {
