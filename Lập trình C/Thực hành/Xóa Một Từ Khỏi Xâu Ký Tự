@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int check (char a[], char b[]) {
+	int n1 = strlen(a);
+	int n2 = strlen(b);
+	if (n1 != n2) {
+		return 0;
+	}
+	for (int i = 0; i < n1; i++) {
+		if (tolower(a[i]) != tolower(b[i])) {
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		scanf("\n");
+		char s[100];
+		gets(s);
+		char w[100];
+		gets(w);
+		char a[50][50];
+		char *token = strtok(s, " ");
+		int n = 0;
+		while (token != NULL) {
+			if (check(token, w) == 0) {
+				printf("%s ", token);
+			}
+			token = strtok(NULL, " ");
+		}
+		printf("\n");
+	}
+}
