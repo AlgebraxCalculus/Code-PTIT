@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		scanf("\n");
+		char s[100];
+		gets(s);
+		for (int i = 0; i < strlen(s); i++) {
+			s[i] = tolower(s[i]);
+		}
+		char a[50][50];
+		char *token = strtok(s, " ");
+		int n = 0;
+		while (token != NULL) {
+			strcpy(a[n++], token);
+			token = strtok(NULL, " ");
+		}
+		int b[100] = {};
+		for (int i = 0; i < n; i++) {
+			if (b[i] == 0) {
+				int count = 1;
+				for (int j = i + 1; j < n; j++) {
+					if (strcmp(a[i], a[j]) == 0) {
+						count++;
+						b[j] = 1;
+					}
+				}
+				printf("%s %d\n", a[i], count);
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}
