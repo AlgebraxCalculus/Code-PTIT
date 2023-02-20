@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	long long sum = 0, fractals = 1;
+	for (int i = 1; i <= n; i++) {
+		fractals *= i;
+		sum += fractals;
+	}
+	cout << sum;
+	return 0;
+}
