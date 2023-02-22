@@ -29,7 +29,7 @@ int main() {
 				}
 			}
 		}
-		double diem = ((cau * 1.0) / 15) * 10;
+		float diem = ((cau * 1.0) / 15) * 10;
 		cout << fixed << setprecision(2) << diem << endl;
 	}
 	return 0;
