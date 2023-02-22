@@ -1,0 +1,36 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+	char de1[15] = {'A', 'B', 'B', 'A', 'D', 'C', 'C', 'A', 'B', 'D', 'C', 'C', 'A', 'B', 'D'};
+	char de2[15] = {'A', 'C', 'C', 'A', 'B', 'C', 'D', 'D', 'B', 'B', 'C', 'D', 'D', 'B', 'B'};
+	int t;
+	cin >> t;
+	while (t--) {
+		int de;
+		cin >> de;
+		char bl[15];
+		for (int i = 0; i < 15; i++) {
+			cin >> bl[i];
+		}
+		int cau = 0;
+		if (de == 101) {
+			for (int i = 0; i < 15; i++) {
+				if (bl[i] == de1[i]) {
+					cau++;
+				}
+			}
+		} else {
+			for (int i = 0; i < 15; i++) {
+				if (bl[i] == de2[i]) {
+					cau++;
+				}
+			}
+		}
+		double diem = ((cau * 1.0) / 15) * 10;
+		cout << fixed << setprecision(2) << diem << endl;
+	}
+	return 0;
+}
