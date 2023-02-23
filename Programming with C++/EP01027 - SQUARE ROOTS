@@ -1,0 +1,20 @@
+#include <iostream>
+#include <math.h>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		double result = 0;
+		for (int i = 1; i <= n; i++) {
+			result = sqrt(result + i);
+		}
+		cout << fixed << setprecision(5) << result << endl;
+	}
+	return 0;
+}
