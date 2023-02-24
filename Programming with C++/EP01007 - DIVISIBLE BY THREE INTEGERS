@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+long long lcm (long long a, long long b) {
+	long long x = a * b;
+	while (b != 0) {
+		long long r = a % b;
+		a = b;
+		b = r;
+	}
+	return x / a;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		long long x, y, z, n;
+		cin >> x >> y >> z >> n;
+		long long a = pow(10, (n - 1));
+		long long b = lcm(x, lcm(y, z));
+		long long result = (a + b - 1) / b * b;
+		if (result < pow(10, n)) {
+			cout << result << endl;
+		} else {
+			cout << -1 << endl;
+		}
+	}
+	return 0;
+}
