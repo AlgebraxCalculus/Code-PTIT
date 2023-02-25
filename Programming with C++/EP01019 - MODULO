@@ -1,0 +1,15 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	long long a, b, c, d;
+	cin >> a >> b >> c >> d;
+	long long x = abs(a - b), y = abs(b - c), z = abs(c - d);
+	long long h = __gcd(x, y);
+	long long e = __gcd(h, z);
+	cout << e; 
+	return 0;
+}
