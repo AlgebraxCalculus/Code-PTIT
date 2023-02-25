@@ -1,0 +1,28 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+const int MOD = 1000000007;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, x;
+		cin >> n >> x;
+		int a[n + 5];
+		for (int i = 0; i < n; i++) {
+			cin >> a[i];
+		}
+		long long luythua = 1, result = 0;
+		for (int i = n - 1; i >= 0; i--) {
+			result += a[i] * luythua;
+			result %= MOD;
+			luythua *= x;
+			luythua %= MOD;
+		}
+		cout << result << endl;
+	}
+	return 0;
+}
