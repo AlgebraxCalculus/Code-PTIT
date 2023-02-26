@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+#include <cmath>
+
+using namespace std;
+
+int prime[1000001];
+
+int main() {
+	int l, r;
+	cin >> l >> r;
+	for (int i = 1; i <= r; i++) {
+		for (int j = 2 * i; j <= r; j += i) {
+			prime[j] += i;
+		}
+	}
+	int count = 0;
+	for (int i = l; i <= r; i++) {
+		if (prime[i] > i) {
+			count++;
+		}
+	}
+	cout << count;
+	return 0;
+}
