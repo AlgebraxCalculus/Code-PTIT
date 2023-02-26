@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int x, y;
+		cin >> x >> y;
+		int ucln = __gcd(x, y);
+		int x1 = x / ucln, y1 = y / ucln;
+		while (x1 % 2 == 0) {
+			x1 /= 2;
+		} 
+		while (x1 % 3 == 0) {
+			x1 /= 3;
+		}
+		while (y1 % 2 == 0) {
+			y1 /= 2;
+		} 
+		while (y1 % 3 == 0) {
+			y1 /= 3;
+		}
+		if (x1 == y1) {
+			cout << "YES" << endl;
+		} else {
+			cout << "NO" << endl;
+		}
+	}
+	return 0;
+}
