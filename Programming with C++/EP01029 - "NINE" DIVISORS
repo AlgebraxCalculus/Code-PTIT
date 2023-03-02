@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int snt (int n) {
+	if (n < 2) {
+		return 0;
+	}
+	for (int i = 2; i * i <= n; i++) {
+		if (n % i == 0) {
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	int a[6] = {256, 6561, 390625, 5764801, 214358881, 815730721};
+	int count = 0;
+	for (int i = 0; i < 6; i++) {
+		if (a[i] < n) {
+			count++;
+		}
+	}
+	int count1 = 0;
+	for (int i = 2; i * i <= n; i++) {
+		if (snt(i)) {
+			for (int j = 2; j * j <= n / (i * i); j++) {
+				if (snt(j)) {
+					if (i != j) {
+						count1++;
+					}
+				}
+			}
+		}
+	}
+	cout << count + (count1 / 2);
+	return 0;
+}
