@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void swap(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void sapxep (int a[][105], int n, int index) {
+    for (int i = 1; i <= n - 1; i++) {
+        for (int j = i + 1; j <= n; j++) {
+            if(a[i][index] > a[j][index]) {
+                swap(a[i][index], a[j][index]);
+            }
+        }
+    }
+}
+
+int main() {
+    int m, n, i;
+    cin >> m >> n >> i;
+    int a[105][105];
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            cin >> a[i][j];
+        }
+    }
+    sapxep(a, m, i);
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
