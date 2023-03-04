@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, m, k;
+		cin >> n >> m >> k;
+		int a[n + 5][m + 5];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				cin >> a[i][j];
+			}
+		}
+		vector<int> v;
+		int hang1 = 0, cot1 = 0, hang = n - 1, cot = m - 1;
+		while (hang1 <= hang && cot1 <= cot) {
+			for (int i = cot1; i <= cot; i++) {
+				v.push_back(a[hang1][i]);
+			}
+			hang1++;
+			for (int i = hang1; i <= hang; i++) {
+				v.push_back(a[i][cot]);
+			}
+			cot--;
+			if (hang1 <= hang) {
+				for (int i = cot; i >= cot1; i--) {
+					v.push_back(a[hang][i]);
+				}
+				hang--;
+			}
+			if (cot1 <= cot) {
+				for (int i = hang; i >= hang1; i--) {
+					v.push_back(a[i][cot1]);
+				}
+				cot1++;
+			}
+		}
+		cout << v[k - 1] << endl;
+	}
+	return 0;
+}
