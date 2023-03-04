@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+        int a[n + 5][m + 5];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cin >> a[i][j];
+            }
+        }
+        int hang1 = 0, cot1 = 0, hang = n - 1, cot = m - 1;
+        while (hang1 < hang && cot1 < cot) {
+            int pre = a[hang1 + 1][cot1];
+            for (int i = cot1; i <= cot; i++) {
+                int cur = a[hang1][i];
+                a[hang1][i] = pre;
+                pre = cur;
+            }
+            hang1++;
+            for (int i = hang1; i <= hang; i++) {
+                int cur = a[i][cot];
+                a[i][cot] = pre;
+                pre = cur;
+            }
+            cot--;
+            if (hang1 <= hang) {
+                for (int i = cot; i >= cot1; i--) {
+                    int cur =  a[hang][i];
+                    a[hang][i] = pre;
+                    pre = cur;
+                }
+                hang--;
+            }
+            if (cot1 <= cot) {
+                for (int i = hang; i >= hang1; i--) {
+                    int cur = a[i][cot1];
+                    a[i][cot1] = pre;
+                    pre = cur;
+                }
+                cot1++;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cout << a[i][j] << ' ';
+            }
+        }
+        cout << endl;
+    }
+    return 0;
+}
