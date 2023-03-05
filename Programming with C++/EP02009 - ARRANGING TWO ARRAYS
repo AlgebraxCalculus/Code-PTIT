@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, m;
+		cin >> n >> m;
+		int a[n], b[m];
+		vector<int> v;
+		map<int, int> mp1, mp2;
+		for (int i = 0; i < n; i++) {
+			cin >> a[i];
+			mp1[a[i]]++;
+		}
+		for (int i = 0; i < m; i++) {
+			cin >> b[i];
+			mp2[b[i]]++;
+		}
+		for (int i = 0; i < n; i++) {
+			if (mp2[a[i]] == 0) {
+				v.push_back(a[i]);
+			}
+		}
+		for (int i = 0; i < m; i++) {
+			for (int j = 1; j <= mp1[b[i]]; j++) {
+				cout << b[i] << ' ';
+			}
+			mp1[b[i]] = 0;
+		}
+		sort(v.begin(), v.end());
+		for (auto x : v) {
+			cout << x << ' ';
+		}
+		cout << endl;
+	}
+	return 0;
+}
