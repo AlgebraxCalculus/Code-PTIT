@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <string.h>
-
 int kiemtra (char s[]) {
-    if (s[11] > s[10] && s[10] > s[8] && s[8] > s[7] && s[7] > s[6]) {
+    if (s[10] > s[9] && s[9] > s[7] && s[7] > s[6] && s[6] > s[5]) {
         return 1;
     }
-    if (s[11] == s[10] && s[10] == s[8] && s[8] == s[7] && s[7] == s[6]) {
+    if (s[10] == s[9] && s[9] == s[7] && s[7] == s[6] && s[6] == s[5]) {
         return 1;
     }
-    if (s[11] == s[10] && s[8] == s[7] && s[7] == s[6]) {
+    if (s[10] == s[9] && s[7] == s[6] && s[6] == s[5]) {
         return 1;
     }
-    for (int i = 6; i <= 11; i++) {
-        if (i != 9) {
+    for (int i = 5; i <= 10; i++) {
+        if (i != 8) {
             if (s[i] != '6' && s[i] != '8') {
                 return 0;
             }
