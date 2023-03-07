@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        int a[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cin >> a[i][j];
+            }
+        }
+        int hang[n] = {}, cot[n] = {};
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                hang[i] += a[i][j];
+                cot[j] += a[i][j];
+            }
+        }
+        int sum_max = max(*max_element(hang, hang + n), *max_element(cot, cot + n));
+        int result = 0;
+        int i = 0, j = 0;
+        while (i < n && j < n) {
+            int r = min(sum_max - hang[i], sum_max - cot[j]);
+            a[i][j] += r;
+            hang[i] += r;
+            cot[i] += r;
+            result += r;
+            if (hang[i] == sum_max) {
+                i++;
+            }
+            if (cot[j] == sum_max) {
+                j++;
+            }
+        }
+        cout << result << endl;
+    }
+    return 0;
+}
