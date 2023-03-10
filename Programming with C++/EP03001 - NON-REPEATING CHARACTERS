@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+#include <map>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		scanf("\n");
+		string s;
+		getline(cin, s);
+		map<char, int> mp;
+		for (char x : s) {
+			mp[x]++;
+		}
+		for (char x : s) {
+			if (mp[x] == 1) {
+				cout << x;
+			}
+		}
+		cout << endl;
+	}
+	return 0;
+}
