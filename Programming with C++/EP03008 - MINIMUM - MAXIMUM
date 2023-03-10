@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int m, s;
+	cin >> m >> s;
+	if (s > 9 * m || (s == 0 && m > 1)) {
+		cout << -1 << ' ' << -1 << endl;
+	} else {
+		int lon[m] = {}, be[m] = {};
+		int temp = s;
+		for (int i = 0; i < m; i++) {
+			if (s >= 9) {
+				lon[i] = 9;
+				s -= 9;
+			} else if (s != 0) {
+				lon[i] = s;
+				s = 0;
+			} else {
+				break;
+			}
+		}
+		temp--; //Để dành 1 đơn vị cho chữ số đầu tiên
+		for (int i = m - 1; i > 0; i--) {
+			if (temp >= 9) {
+				be[i] = 9;
+				temp -= 9;
+			} else if (temp != 0) {
+				be[i] = temp;
+				temp = 0;
+			} else {
+				break;
+			}
+		}
+		be[0] = temp + 1;
+		for (int i = 0; i < m; i++) {
+			cout << be[i];
+		}
+		cout << " ";
+		for (int i = 0; i < m; i++) {
+			cout << lon[i];
+		}
+	}
+	return 0;
+}
