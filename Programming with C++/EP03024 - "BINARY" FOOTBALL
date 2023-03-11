@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	string s;
+	cin >> s;
+	char ok = s[0];
+	int count = 1;
+	for (int i = 1; i < s.size(); i++) {
+		if (ok == s[i]) {
+			count++;
+		} else {
+			count = 1;
+			ok = s[i];
+		}
+		if (count >= 7) {
+		cout << "YES";
+		return 0;
+		}
+	}
+	cout << "NO";
+	return 0;
+}
