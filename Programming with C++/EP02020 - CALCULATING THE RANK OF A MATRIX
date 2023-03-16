@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m;
+int a[105][105];
+
+void swap (int hang1, int hang2, int cot) {
+	for (int i = 0; i < cot; i++) {
+		int temp = a[hang1][i];
+		a[hang1][i] = a[hang2][i];
+		a[hang2][i] = temp;
+	}
+} 
+
+int hangmatran () {
+	int rank = m; 
+	for (int hang = 0; hang < rank; hang++) {
+		if (a[hang][hang]) {
+			for (int cot = 0; cot < n; cot++) {
+				if (cot != hang) {
+					double mult = (double) (a[cot][hang] / a[hang][hang]);
+					for (int i = 0; i < rank; i++) {
+						a[cot][i] -= mult * a[hang][i];
+					}
+				}
+			}
+		} else {
+			bool ok = true;
+			for (int i = hang + 1; i < n; i++) {
+				if (a[i][hang]) {
+					swap(hang, i, rank);
+					ok = false;
+					break;
+				}
+			}
+			if (ok) {
+				rank--;
+				for (int i = 0; i < n; i++) {
+					a[i][hang] = a[i][rank];
+				}
+			}
+			hang--;
+		}
+	}
+	return rank;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				cin >> a[i][j];
+			}
+		}
+		cout << hangmatran() << endl;
+	}
+	return 0;
+}
