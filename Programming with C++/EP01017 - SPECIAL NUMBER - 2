@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int mod = 1e9 + 7;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, k; 
+		cin >> n >> k;
+		long long ans = 0, temp = 1;
+		while (k > 0) {
+    //Kiểm tra xem k có phải số lẻ không
+			if (k & 1) {
+				ans = (ans % mod + temp % mod) % mod;
+			}
+      //Chia k cho 2
+			k >>= 1;
+			temp = (temp * n) % mod;
+		}
+		cout << ans % mod << endl;
+	}
+	return 0;
+}
