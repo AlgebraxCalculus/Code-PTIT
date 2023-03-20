@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string hieu (string a, string b) {
+	string hieu = "";
+	int n = max(a.size(), b.size());
+	while (a.size() < n) {
+		a = "0" + a;
+	}
+	while (b.size() < n) {
+		b = "0" + b;
+	}
+	if (a < b) {
+		swap(a, b);
+	}
+	int carry = 0;
+	for (int i = n - 1; i >= 0; i--) {
+		int sub = (a[i] - '0') - (b[i] - '0') - carry;
+		if (sub < 0) {
+			carry = 1;
+			sub += 10;
+		} else {
+			carry = 0;
+		}
+		hieu = (char) (sub + '0') + hieu;
+	}
+	return hieu;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		string a, b;
+		cin >> a >> b;
+		cout << hieu(a, b) << endl;
+	}
+	return 0;
+}
