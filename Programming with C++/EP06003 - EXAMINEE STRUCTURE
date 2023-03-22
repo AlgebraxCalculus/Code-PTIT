@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Examinee {
+	string name, dob;
+	float diem1, diem2, diem3;
+};
+
+void input (Examinee &A) {
+	getline(cin, A.name);
+	cin >> A.dob;
+	cin >> A.diem1 >> A.diem2 >> A.diem3;
+}
+
+void print (Examinee A) {
+	cout << A.name << ' ' << A.dob << ' ' << fixed << setprecision(1) << A.diem1 + A.diem2 + A.diem3 << endl;
+}
+
+int main(){
+    struct Examinee A;
+    input(A);
+    print(A);
+    return 0;
+}
