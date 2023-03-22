@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Student {
+	string ma, ten, lop, dob;
+	float gpa;
+};
+
+void input (Student &a) {
+	getline(cin, a.ten);
+	cin >> a.lop >> a.dob >> a.gpa;
+	a.ma = "B20DCCN001";
+	if (a.dob[1] == '/') {
+		a.dob = "0" + a.dob;
+	}
+	if (a.dob[4] == '/') {
+		a.dob.insert(3, "0");
+	}
+}
+
+void print (Student a) {
+	cout << a.ma << ' ' << a.ten << ' ' << a.lop << ' ' << a.dob << ' ' << fixed << setprecision(2) << a.gpa << endl;
+}
+
+int main(){
+    struct Student a;
+    input(a);
+    print(a);
+    return 0;
+}
