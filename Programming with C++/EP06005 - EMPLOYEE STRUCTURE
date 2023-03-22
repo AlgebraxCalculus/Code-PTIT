@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Employee {
+	string ID = "00001";
+	string name, gender, dob, address, tax, contract;
+};
+
+void input (Employee &a) {
+	getline(cin, a.name);
+	cin >> a.gender >> a.dob;
+	scanf("\n");
+	getline(cin, a.address);
+	cin >> a.tax >> a.contract;
+}
+
+void print (Employee a) {
+	cout << a.ID << ' ' << a.name << ' ' << a.gender << ' ' << a.dob << ' ' << a.address << ' ' << a.tax << ' ' << a.contract << endl;
+}
+
+int main(){
+    struct Employee a;
+    input(a);
+    print(a);
+    return 0;
+}
