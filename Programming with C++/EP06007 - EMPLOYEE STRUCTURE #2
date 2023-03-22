@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Employee {
+	string ID;
+	string name, gender, dob, address, tax, contract;
+};
+
+void input (Employee &a) {
+	while (a.ID.size() < 6) {
+		a.ID += "0";
+	}
+	scanf("\n");
+	getline(cin, a.name);
+	cin >> a.gender >> a.dob;
+	scanf("\n");
+	getline(cin, a.address);
+	cin >> a.tax >> a.contract;
+}
+
+void printlist (Employee a[], int n) {
+	for (int i = 0; i < n; i++) {
+		string s = to_string(i + 1);
+		while (s.size() < 5) {
+			s = "0" + s;
+		}
+		cout << s << ' ' << a[i].name << ' ' << a[i].gender << ' ' << a[i].dob << ' ' << a[i].address << ' ' << a[i].tax << ' ' << a[i].contract << endl;
+	}
+}
+
+int main() {
+	struct Employee lst[50];
+	int N, i;
+	cin >> N;
+	for (i = 0; i < N; i++) {
+		input(lst[i]);
+	}
+	printlist(lst, N);
+	return 0;
+}
