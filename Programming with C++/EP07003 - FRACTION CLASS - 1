@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Fraction {
+	public:
+		long long tu, mau;
+		Fraction(long long tu, long long mau);
+		friend ostream& operator << (ostream&, Fraction);
+		friend istream& operator >> (istream&, Fraction&);
+		void simplify();
+};
+
+Fraction::Fraction(long long tu, long long mau) {
+	this->tu = tu;
+	this->mau = mau;
+}
+ostream& operator << (ostream& out, Fraction a) {
+	out << a.tu << '/' << a.mau << endl;
+	return out;
+}
+istream& operator >> (istream& in, Fraction& a) {
+	in >> a.tu >> a.mau;
+	return in;
+}
+
+void Fraction::simplify() {
+	long long uocchung = __gcd(tu, mau);
+	tu /= uocchung;
+	mau /= uocchung;
+}
+
+int main() {
+	Fraction p(1, 1);
+	cin >> p;
+	p.simplify();
+	cout << p;
+	return 0;
+}
