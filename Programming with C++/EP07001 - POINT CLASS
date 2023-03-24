@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Point {
+	public:
+		double x, y;
+		Point(double x, double y);
+		friend istream& operator >> (istream&, Point&);
+};
+
+Point::Point(double x, double y) {
+	this->x = x;
+	this->y = y;
+}
+
+double distance (Point a, Point b) {
+	return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+}
+
+istream& operator >> (istream& in, Point &a) {
+	in >> a.x >> a.y;
+	return in;
+}
+
+int main() {
+	Point p(1, 1), q(1, 1);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> p >> q;
+		cout << fixed << setprecision(4) << distance(p, q) << endl;
+	}
+	return 0;
+}
