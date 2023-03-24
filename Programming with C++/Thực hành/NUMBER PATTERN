@@ -1,0 +1,28 @@
+Output: 
+1 2 3 4
+2 4 6 8
+3 6 9 12
+4 8 12 16
+5 10 15 20
+6 12 18 24
+7 14 21 28
+8 16 24 32
+9 18 27 36
+10 20 30 40
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int n, m;
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		int count = i;
+		for (int j = 1; j <= m; j++) {
+			cout << count * j << ' ';
+		}
+		cout << endl;
+	}
+	return 0;
+}
