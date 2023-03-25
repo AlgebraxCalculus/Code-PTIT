@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct timestamp {
+	int s, p, h;
+};
+
+bool cmp (timestamp a, timestamp b) {
+	int h1 = a.h, p1 = a.p, s1 = a.s;
+	int h2 = b.h, p2 = b.p, s2 = b.s;
+	if (h1 != h2) {
+		return h1 < h2;
+	} else if (p1 != p2) {
+		return p1 < p2;
+	}
+	return s1 < s2;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	timestamp a[n];
+	for (int i = 0; i < n; i++) {
+		cin >> a[i].h >> a[i].p >> a[i].s;
+	}
+	sort(a, a + n, cmp);
+	for (int i = 0; i < n; i++) {
+		cout << a[i].h << ' ' << a[i].p << ' ' << a[i].s << endl;
+	}
+	return 0;
+}
