@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class rectangle {
+	public:
+		int length, width;
+		string color;
+		rectangle(int length, int width, string color);
+		friend istream& operator >> (istream&, rectangle&);
+		void solve();
+};
+
+rectangle::rectangle(int length, int width, string color) {
+	this->length = length;
+	this->width = width;
+	this->color = color;
+}
+
+void rectangle::solve() {
+	if (length > 0 && width > 0) {
+		if (color[0] >= 'a' && color[0] <= 'z') {
+			color[0] -= 32;
+		}
+		for (int i = 1; i < color.size(); i++) {
+			if (color[i] >= 'A' && color[i] <= 'Z') {
+				color[i] += 32;
+			}
+		}
+		cout << (length + width) * 2 << ' ' << length * width << ' ' << color << endl;
+	} else {
+		cout << "INVALID" << endl;
+	}
+}
+
+istream& operator >> (istream& in, rectangle& a) {
+	in >> a.length >> a.width >> a.color;
+	return in;
+}
+
+int main() {
+	rectangle p(1, 1, "");
+	cin >> p;
+	p.solve();
+	return 0;
+}
