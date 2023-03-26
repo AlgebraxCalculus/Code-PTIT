@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct data {
+	string id, name, lop;
+	float diem1, diem2, diem3;
+};
+
+bool cmp (data a, data b) {
+	return a.name < b.name;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	data a[n];
+	for (int i = 0; i < n; i++) {
+		cin.ignore();
+		getline(cin, a[i].id);
+		getline(cin, a[i].name);
+		getline(cin, a[i].lop);
+		cin >> a[i].diem1 >> a[i].diem2 >> a[i].diem3;
+	}
+	sort(a, a + n, cmp);
+	for (int i = 0; i < n; i++) {
+		cout << i + 1 << ' ' << a[i].id << ' ' << a[i].name << ' ' << a[i].lop << ' ' << fixed << setprecision(1) << a[i].diem1 << ' ' << fixed << setprecision(1) << a[i].diem2 << ' ' << fixed << setprecision(1) << a[i].diem3 << endl;
+	}
+	return 0;
+}
