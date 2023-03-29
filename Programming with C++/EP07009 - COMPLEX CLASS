@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Complex {
+	public:
+		int thuc, ao;
+		Complex(int thuc, int ao) {
+			this->thuc = thuc;
+			this->ao = ao;
+		}
+		Complex operator +(const Complex& other) const {
+			return Complex(thuc + other.thuc, ao + other.ao);
+		}
+		Complex operator *(const Complex& other) const {
+			return Complex(thuc * other.thuc - ao * other.ao, thuc * other.ao + ao * other.thuc);
+		}
+		friend ostream& operator << (ostream&, const Complex&);
+		friend istream& operator >> (istream&, Complex&);
+};
+
+ostream& operator << (ostream& out, const Complex& a) {
+	if (a.ao < 0) {
+		out << a.thuc << ' ' << "-" << ' ' << abs(a.ao) << "i";
+	} else {
+		out << a.thuc << ' ' << "+" << ' ' << a.ao << "i";
+	}
+	return out;
+}
+
+istream& operator >> (istream& in, Complex& a) {
+	in >> a.thuc >> a.ao;
+	return in;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		Complex a(1, 1), b(1, 1);
+		cin >> a >> b;
+		Complex c = (a + b) * a;
+		Complex d = (a + b) * (a + b);
+		cout << c << ", " << d << endl;
+	}
+	return 0;
+}
