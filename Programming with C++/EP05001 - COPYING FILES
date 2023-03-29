@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	string s;
+	ifstream input("PTIT.in");
+	ofstream output("PTIT.out");
+	while (getline(input, s)) {
+		output << s << endl;
+	}
+	input.close();
+	output.close();
+	return 0;
+}
