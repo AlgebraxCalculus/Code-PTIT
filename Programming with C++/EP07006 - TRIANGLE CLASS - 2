@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Point {
+public:
+    double x, y;
+    Point(double x, double y) : x(x), y(y) {};
+};
+
+class Triangle {
+public:
+    Point a, b, c;
+    Triangle(Point a, Point b, Point c) : a(a), b(b), c(c) {};
+    double dai(Point a, Point b) {
+        return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+    }
+    void chuvi() {
+        double canh1 = dai(a, b), canh2 = dai(b, c), canh3 = dai(a, c);
+        if (canh1 + canh2 <= canh3 || canh1 + canh3 <= canh2 || canh2 + canh3 <= canh1) {
+            cout << "INVALID" << endl;
+        } else {
+            double p = canh1 + canh2 + canh3;
+            cout << fixed << setprecision(2) << sqrt(p * (p - 2 * canh1) * (p - 2 * canh2) * (p - 2 * canh3)) / 4 << endl;
+        }
+    }
+};
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        double x1, y1, x2, y2, x3, y3;
+        cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+        Point a(x1, y1), b(x2, y2), c(x3, y3);
+        Triangle n(a, b, c);
+        n.chuvi();
+    }
+    return 0;
+}
