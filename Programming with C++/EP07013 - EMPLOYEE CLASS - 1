@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Employee {
+	private:
+		string id, name, gt, dob, dc, tax, contract;
+	public:
+		Employee();
+		friend ostream& operator << (ostream&, Employee);
+		friend istream& operator >> (istream&, Employee&);
+};
+
+Employee::Employee() {
+	id = name = gt = dob = dc = tax = contract = "";
+}
+
+ostream& operator << (ostream& out, Employee a) {
+	out << a.id << ' ' << a.name << ' ' << a.gt << ' ' << a.dob << ' ' << a.dc << ' ' << a.tax << ' ' << a.contract << endl;
+	return out;
+}
+
+istream& operator >> (istream& in, Employee &a) {
+	a.id = "00001";
+	getline(in, a.name);
+	in >> a.gt >> a.dob;
+	scanf("\n");
+	getline(in, a.dc);
+	in >> a.tax >> a.contract;
+	return in;
+}
+
+int main() {
+	Employee a;
+	cin >> a;
+	cout << a;
+	return 0;
+}
