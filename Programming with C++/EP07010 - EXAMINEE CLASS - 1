@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Examinee {
+	private:
+		string name, dob;
+		float diem1, diem2, diem3, tongdiem;
+	public:
+		Examinee(){
+			name = dob = "";
+			diem1 = diem2 = diem3 = tongdiem = 0;
+		}
+		friend ostream& operator << (ostream&, Examinee);
+		friend istream& operator >> (istream&, Examinee&);
+};
+
+ostream& operator << (ostream& out, Examinee a) {
+	out << a.name << " " << a.dob << " " << fixed << setprecision(1) << a.tongdiem << endl;
+	return out;
+}
+
+istream& operator >> (istream& in, Examinee& a) {
+	getline(in, a.name);
+	in >> a.dob >> a.diem1 >> a.diem2 >> a.diem3;
+	if (a.dob[1] == '/') {
+		a.dob = "0" + a.dob;
+	} 
+	if (a.dob[4] == '/') {
+		a.dob.insert(3, "0");
+	}
+	a.tongdiem = a.diem1 + a.diem2 + a.diem3;
+	return in;
+}
+
+int main() {
+	Examinee a;
+	cin >> a;
+	cout << a;
+	return 0;
+}
