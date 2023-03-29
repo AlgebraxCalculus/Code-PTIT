@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Student {
+	private:
+		string id, name, lop, dob;
+		double gpa;
+	public:
+		Student(){
+			id = name = lop = dob = "";
+			gpa = 0; 
+		}
+		Student(string id, string name, string lop, string dob, double gpa){
+			this->id = id;
+			this->name = name;
+			this->lop = lop;
+			this->dob = dob;
+			this->gpa = gpa;
+		}
+		friend ostream& operator << (ostream&, Student);
+		friend istream& operator >> (istream&, Student&);
+};
+
+ostream& operator << (ostream& out, Student a) {
+	out << a.id << " " << a.name << " " << a.lop << " " << a.dob << " " << fixed << setprecision(2) << a.gpa << endl; 
+	return out;
+}
+
+istream& operator >> (istream& in, Student& a) {
+	a.id = "B20DCCN001";
+	getline(in, a.name);
+	in >> a.lop >> a.dob >> a.gpa;
+	if (a.dob[1] == '/') {
+		a.dob = "0" + a.dob;
+	} 
+	if (a.dob[4] == '/') {
+		a.dob.insert(3, "0");
+	}
+	return in;
+}
+
+int main() {
+	Student a;
+	cin >> a;
+	cout << a;
+	return 0;
+}
