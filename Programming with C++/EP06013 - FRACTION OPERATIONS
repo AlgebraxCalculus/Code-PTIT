@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Fraction {
+	long long tu, mau;
+};
+
+void read_input(Fraction &a) {
+	cin >> a.tu >> a.mau;
+}
+
+long long lcm (long long a, long long b) {
+	return (a * b) / __gcd(a, b);
+}
+
+void process(Fraction a, Fraction b) {
+	long long mauchung = lcm(a.mau, b.mau);
+	long long tongtu = (mauchung / a.mau * a.tu) + (mauchung / b.mau * b.tu);
+	long long tongmau = mauchung;
+	long long uocchung = __gcd(tongmau, tongtu);
+	tongtu /= uocchung;
+	tongmau /= uocchung;
+	tongtu *= tongtu;
+	tongmau *= tongmau;
+	cout << tongtu << '/' << tongmau << ' ';
+	long long mau = a.mau * b.mau * tongmau;
+	long long tu = a.tu * b.tu * tongtu;
+	long long uocchung2 = __gcd(mau, tu);
+	tu /= uocchung2;
+	mau /= uocchung2;
+	cout << tu << '/' << mau << endl;
+}
+
+int T;
+
+int main() {
+	int t;
+	cin >> T;
+	while (T--) {
+		Fraction A;
+		Fraction B;
+		read_input(A);
+		read_input(B);
+		process(A, B);
+	}
+}
