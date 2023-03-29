@@ -11,13 +11,6 @@ class Student {
 			id = name = lop = dob = "";
 			gpa = 0; 
 		}
-		Student(string id, string name, string lop, string dob, double gpa){
-			this->id = id;
-			this->name = name;
-			this->lop = lop;
-			this->dob = dob;
-			this->gpa = gpa;
-		}
 		friend ostream& operator << (ostream&, Student);
 		friend istream& operator >> (istream&, Student&);
 };
