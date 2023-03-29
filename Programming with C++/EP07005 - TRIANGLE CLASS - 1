@@ -19,9 +19,8 @@ public:
         if (canh1 + canh2 <= canh3 || canh1 + canh3 <= canh2 || canh2 + canh3 <= canh1) {
             cout << "INVALID" << endl;
         } else {
-            cout << fixed << setprecision(3) << (canh1 + canh2 + canh3);
+            cout << fixed << setprecision(3) << (canh1 + canh2 + canh3) << endl;
         }
-        cout << endl;
     }
 };
 
