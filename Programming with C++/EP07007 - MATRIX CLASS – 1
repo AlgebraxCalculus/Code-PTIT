@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Matrix {
+private:
+    int n, m, a[105][105];
+
+public:
+    Matrix() {}
+    Matrix(int n, int m, int a[][105]) {
+        this->n = n;
+        this->m = m;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                this->a[i][j] = a[i][j];
+            }
+        }
+    }
+    void input() {
+        cin >> n >> m;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cin >> a[i][j];
+            }
+        }
+    }
+    void output() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cout << a[i][j] << ' ';
+            }
+            cout << endl;
+        }
+    }
+    Matrix transpose() {
+        Matrix c;
+        c.n = m;
+        c.m = n;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                c.a[i][j] = a[j][i];
+            }
+        }
+        return c;
+    }
+    Matrix product(Matrix b) {
+        Matrix c;
+        c.n = n;
+        c.m = b.m;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < b.m; j++) {
+                int kq = 0;
+                for (int k = 0; k < m; k++) {
+                    kq += (a[i][k] * b.a[k][j]);
+                }
+                c.a[i][j] = kq;
+            }
+        }
+        return c;
+    }
+};
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m;
+        Matrix A;
+        A.input();
+        Matrix B = A.transpose();
+        Matrix C = A.product(B);
+        C.output();
+    }
+    return 0;
+}
