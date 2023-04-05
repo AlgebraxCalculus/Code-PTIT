@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		scanf("\n");
+		string s;
+		getline(cin, s);
+		vector<string> v;
+		stringstream ss(s);
+		string token;
+		string ans = "";
+		while (ss >> token) {
+			reverse(token.begin(), token.end());
+			v.push_back(token);
+		}
+		for (int i = 0; i < v.size() - 1; i++) {
+			ans += v[i];
+			ans += " ";
+		}
+		ans += v[v.size() - 1];
+		cout << ans << endl;
+	}
+	return 0;
+}
