@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define endl "\n"
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0); 
+	cout.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		int a[n];
+		for (int i = 0; i < n; i++) {
+			cin >> a[i];
+		}
+		long long res = LLONG_MIN;
+		stack<int> st;
+		int i = 0;
+		while (i < n) {
+			if (st.empty() || a[i] >= a[st.top()]) {
+				st.push(i);
+				i++;
+			} else {
+				int index = st.top();
+				st.pop();
+				if (st.empty()) {
+					res = max(res, (long long) a[index] * i);
+				} else {
+					res = max(res, (long long) a[index] * (i - st.top() - 1));
+				}
+			}
+		}
+		while (!st.empty()) {
+			int index = st.top();
+			st.pop();
+			if (st.empty()) {
+				res = max(res, (long long) a[index] * i);
+			} else {
+				res = max(res, (long long) a[index] * (i - st.top() - 1));
+			}
+		}
+		cout << res << endl;
+	}
+	return 0;
+}
