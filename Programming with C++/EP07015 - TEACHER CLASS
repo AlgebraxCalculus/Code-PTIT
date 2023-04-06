@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Teacher {
+	public:
+	    string id, name;
+	    long long salary, lv, fund;
+	    Teacher() {
+	        id = name = "";
+	        salary = lv = fund = 0;
+	    }
+	    friend ostream& operator << (ostream&, const Teacher& a);
+	    friend istream& operator >> (istream&, Teacher& a);
+};
+
+ostream& operator << (ostream& out, const Teacher& a) {
+    out << a.id << ' ' << a.name << ' ' << a.lv << ' ' << a.fund << ' ' << a.salary * a.lv + a.fund << endl;
+    return out;
+}
+
+istream& operator >> (istream& in, Teacher& a) {
+    getline(in, a.id);
+    getline(in, a.name);
+    in >> a.salary;
+    string tmp1 = "", tmp2 = "";
+    tmp1.push_back(a.id[0]);
+    tmp1.push_back(a.id[1]);
+    tmp2.push_back(a.id[2]);
+    tmp2.push_back(a.id[3]);
+    a.lv = stoll(tmp2);
+    if (tmp1 == "HT") {
+        a.fund = 2000000;
+    } else if (tmp1 == "HP") {
+        a.fund = 900000;
+    } else {
+        a.fund = 500000;
+    }
+    return in;
+}
+
+int main() {
+    Teacher A;
+    cin >> A;
+    cout << A;
+    return 0;
+}
