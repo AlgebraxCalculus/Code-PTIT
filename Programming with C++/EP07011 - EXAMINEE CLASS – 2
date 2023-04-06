@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Examinee {
+	public:
+	    string id, name;
+	    float diem1, diem2, diem3, bonus;
+	    Examinee() {
+	        id = name = "";
+	        diem1 = diem2 = diem3 = bonus = 0;
+	    }
+	    friend ostream& operator << (ostream&, const Examinee& a);
+	    friend istream& operator >> (istream&, Examinee& a);
+};
+
+ostream& operator << (ostream& out, const Examinee& a) {
+    out << a.id << ' ' << a.name << ' ' << a.bonus << ' ' << a.diem1 * 2 + a.diem2 + a.diem3 << ' ';
+    if (a.diem1 * 2 + a.diem2 + a.diem3 + a.bonus < 24) {
+    	out << "FAILED" << endl;
+	} else {
+		out << "PASSED" << endl;
+	}
+    return out;
+}
+
+istream& operator >> (istream& in, Examinee& a) {
+    getline(in, a.id);
+    getline(in, a.name);
+    in >> a.diem1 >> a.diem2 >> a.diem3;
+    string tmp1 = "";
+    tmp1.push_back(a.id[0]);
+    tmp1.push_back(a.id[1]);
+    tmp1.push_back(a.id[2]);
+    if (tmp1 == "KV1") {
+        a.bonus = 0.5;
+    } else if (tmp1 == "KV2") {
+        a.bonus = 1;
+    } else {
+        a.bonus = 2.5;
+    }
+    return in;
+}
+
+int main() {
+    Examinee A;
+    cin >> A;
+    cout << A;
+    return 0;
+}
