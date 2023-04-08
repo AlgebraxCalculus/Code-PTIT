@@ -29,7 +29,7 @@ int main() {
             int r = min(sum_max - hang[i], sum_max - cot[j]);
             a[i][j] += r;
             hang[i] += r;
-            cot[i] += r;
+            cot[j] += r;
             result += r;
             if (hang[i] == sum_max) {
                 i++;
