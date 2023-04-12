@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Employee {
+	public:
+		string id, name, pos;
+		long long luong, day, bonus, fund;
+		Employee() {
+			id = name = pos = "";
+			luong = day = bonus = fund = 0;
+		}
+		friend ostream& operator << (ostream&, Employee a);
+		friend istream& operator >> (istream&, Employee& a);
+};
+
+ostream& operator << (ostream& out, Employee a) {
+	out << a.id << ' ' << a.name << ' ' << a.luong * a.day << ' ' << a.bonus << ' ' << a.fund << ' ' << a.luong * a.day + a.bonus + a.fund << endl;
+	return out;
+} 
+ 
+istream& operator >> (istream& in, Employee& a) {
+	a.id = "NV01";
+	getline(in, a.name);
+	in >> a.luong >> a.day >> a.pos;
+	if (a.day >= 25) {
+		a.bonus = (a.luong * a.day) * 20 / 100;
+	} else if (a.day >= 22 && a.day < 25) {
+		a.bonus = (a.luong * a.day) * 10 / 100;
+	} 
+	if (a.pos == "GD") {
+		a.fund = 250000;
+	} else if (a.pos == "PGD") {
+		a.fund = 200000;
+	} else if (a.pos == "TP") {
+		a.fund = 180000;
+	} else {
+		a.fund = 150000;
+	}
+	return in;
+}
+
+int main() {
+	Employee A;
+	cin >> A;
+	cout << A;
+	return 0;
+}
