@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int tinhtong (string s) {
+	if (s.size() > 9) {
+		return 0;
+	}
+	long long n = 0;
+	for (int i = 0; i < s.size(); i++) {
+		if (!isdigit(s[i])) {
+			return 0;
+		}
+		n = n * 10 + (s[i] - '0');
+	}
+	if (n <= INT_MAX) {
+		return (int) n;
+	}
+	return 0;
+}
+int main() {
+	ifstream input("DATA.in");
+	string s;
+	long long sum = 0;
+	while (input >> s) {
+		sum += tinhtong(s);
+	}
+	cout << sum;
+	return 0;
+}
