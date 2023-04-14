@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool cmp(pair<string, int> a, pair<string, int> b) {
+    if (a.second != b.second) {
+        return a.second > b.second;
+    } else {
+        return a.first < b.first;
+    }
+}
+
+int main() {
+    freopen("DOCUMENT.in", "r", stdin);
+    int n;
+    cin >> n;
+    string delimit = ",.?!:;-/()–";
+    map<string, int> mp;
+    while (n--) {
+        string s;
+        getline(cin >> ws, s);
+        for (int i = 0; i < s.size(); i++) {
+			s[i] = tolower(s[i]);
+		}
+		for (int i = 0; i < delimit.size(); i++) {
+			replace(s.begin(), s.end(), delimit[i], ' ');
+		}
+		string str = s;
+		stringstream ss(str);
+		string token;
+		while (ss >> token) {
+			mp[token]++;
+		}
+    }
+    vector<pair<string, int>> v(mp.begin(), mp.end());
+    sort(v.begin(), v.end(), cmp);
+    for (auto x : v) {
+        cout << x.first << ' ' << x.second << endl;
+    }
+    return 0;
+}
