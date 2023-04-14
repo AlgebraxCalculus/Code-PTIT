@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ifstream input("DATA.in");
+	map<int, int> mp;
+	int n;
+	while (input >> n) {
+		mp[n]++;
+	}
+	for (auto x : mp) {
+		cout << x.first << ' ' << x.second << endl;
+	}
+	return 0;
+}
