@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ifstream input("DATA.in");
+	vector<string> ans;
+	string token;
+	while (input >> token) {
+		int ok = 0, n;
+		try {
+			n = stoi(token);
+			ok = 1
+		}
+		catch (...) {
+			ok = 0;
+		}
+		if (!ok) {
+			ans.push_back(token);
+		}
+	}
+	sort(ans.begin(), ans.end());
+	for (auto x : ans) {
+		cout << x << ' ';
+	}
+	return 0;
+}
