@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string tong (string a, string b) {
+	string sum = "";
+	if (a.size() < b.size()) {
+		a.insert(0, b.size() - a.size(), '0');
+	} else {
+		b.insert(0, a.size() - b.size(), '0');
+	}
+	int temp = 0;
+	for (int i = a.size() - 1; i >= 0; i--) {
+		temp = (a[i] - '0') + (b[i] - '0') + temp;
+		sum.insert(0, 1, temp % 10 + '0');
+		temp /= 10;
+	}
+	if (temp > 0) {
+		sum.insert(0, 1, temp + '0');
+	}
+	return sum;
+}
+
+int main() {
+	freopen("DATA.in", "r", stdin);
+	string s;
+	cin >> s;
+	while (s.size() > 1) {
+		int n = s.size();
+		string a = s.substr(0, n / 2);
+		string b = s.substr(n / 2, n - (n / 2));
+		s = tong(a, b);
+		cout << s << endl;
+	}
+	return 0;
+}
