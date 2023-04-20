@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ifstream input1("DATA1.in");
+	ifstream input2("DATA2.in");
+	string line;
+	set<string> s1, s2, diff1, diff2;
+	while (getline(input1, line)) {
+		stringstream ss(line);
+		string token;
+		while (ss >> token) {
+			transform(token.begin(), token.end(), token.begin(), ::tolower);
+			s1.insert(token);
+		} 
+	}
+	while (getline(input2, line)) {
+		stringstream ss(line);
+		string token;
+		while (ss >> token) {
+			transform(token.begin(), token.end(), token.begin(), ::tolower);
+			s2.insert(token);
+		}
+	}
+	set_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), inserter(diff1, diff1.begin()));
+	set_difference(s2.begin(), s2.end(), s1.begin(), s1.end(), inserter(diff2, diff2.begin()));
+	for (auto x : diff1) {
+		cout << x << ' ';
+	}
+	cout << endl;
+	for (auto x : diff2) {
+		cout << x << ' ';
+	}
+	return 0;
+}
