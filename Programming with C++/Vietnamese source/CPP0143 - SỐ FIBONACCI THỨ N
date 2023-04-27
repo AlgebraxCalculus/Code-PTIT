@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long fibo[92];
+
+int main() {
+	fibo[0] = fibo[1] = 1;
+	for (int i = 2; i <= 92; i++) {
+		fibo[i] = fibo[i - 2] + fibo[i - 1];
+	}
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		cout << fibo[n - 1] << endl;
+	}
+	return 0;
+}
