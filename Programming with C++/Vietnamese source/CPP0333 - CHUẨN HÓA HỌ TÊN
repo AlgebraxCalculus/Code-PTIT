@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	string s;
+	getline(cin, s);
+	vector<string> v;
+	for (int i = 0; i < s.size(); i++) {
+		s[i] = tolower(s[i]);
+	}
+	stringstream ss(s);
+	string temp;
+	while (ss >> temp) {
+		v.push_back(temp);
+	}
+	for (int i = 0; i < v.size() - 1; i++) {
+		v[i][0] = toupper(v[i][0]);
+	}
+	transform(v.back().begin(), v.back().end(), v.back().begin(), ::toupper);
+	for (int i = 0; i < v.size(); i++) {
+		cout << v[i];
+		if (i == v.size() - 2) {
+			cout << ", ";
+		} else {
+			cout << ' ';
+		}
+	}
+	return 0;
+}
