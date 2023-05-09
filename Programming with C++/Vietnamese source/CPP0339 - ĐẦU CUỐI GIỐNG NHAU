@@ -12,7 +12,7 @@ int main() {
 		for (char x : s) {
 			mp[x]++;
 		}
-		long long ans = s.size();
+		long long ans = s.size(); //Xâu con co 1 kí tự
 		for (auto x : mp) {
 			ans += (x.second * (x.second - 1)) / 2;
 		}
