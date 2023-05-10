@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		int number[10] = {};
+		cin.ignore();
+		for (int i = 0; i < n; i++) {
+			string s;
+			cin >> s;
+			for (char x : s) {
+				number[(x - '0')] = 1;
+			}
+		}
+		for (int i = 0; i < 10; i++) {
+			if (number[i]) {
+				cout << i << ' ';
+			}
+		}
+		cout << endl;
+	}
+	return 0;
+}
