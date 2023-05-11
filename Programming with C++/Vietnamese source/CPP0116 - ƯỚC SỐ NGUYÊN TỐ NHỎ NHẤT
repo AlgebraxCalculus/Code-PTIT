@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> prime(10001, 0);
+
+void sang () {
+	prime[1] = 1;
+	for (int i = 2; i <= sqrt(10000); i++) {
+		if (!prime[i]) {
+			for (int j = i; j <= 10000; j += i) {
+				if (!prime[j]) {
+					prime[j] = i;
+				}
+			}
+		}
+	}
+	for (int i = 2; i <= 10000; i++) {
+		if (!prime[i]) {
+			prime[i] = i;
+		}
+	}
+} 
+
+int main() {
+	int t;
+	cin >> t;
+	sang();
+	while (t--) {
+		int n;
+		cin >> n;
+		for (int i = 1; i <= n; i++) {
+			cout << prime[i] << ' ';
+		}
+		cout << endl;
+	}
+	return 0;
+}
