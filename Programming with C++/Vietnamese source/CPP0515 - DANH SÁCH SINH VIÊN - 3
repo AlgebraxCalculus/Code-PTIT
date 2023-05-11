@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct SinhVien {
+	string id, name, lop, dob;
+	float gpa;
+};
+
+string chuanhoa (string s) {
+	string res = "";
+	for (int i = 0; i < s.size(); i++) {
+		s[i] = tolower(s[i]);
+	}
+	stringstream ss(s);
+	string temp;
+	vector<string> v;
+	while (ss >> temp) {
+		v.push_back(temp);
+	}
+	for (int i = 0; i < v.size(); i++) {
+		v[i][0] = toupper(v[i][0]);
+	}
+	for (int i = 0; i < v.size(); i++) {
+		res += (v[i] + ' ');
+	}
+	res.pop_back();
+	return res;
+}
+
+void nhap (SinhVien a[], int n) {
+	for (int i = 0; i < n; i++) {
+		scanf("\n");
+		getline(cin, a[i].name);
+		cin >> a[i].lop >> a[i].dob >> a[i].gpa;
+		a[i].name = chuanhoa(a[i].name);
+		if (a[i].dob[2] != '/') {
+			a[i].dob = "0" + a[i].dob;
+		}	 
+		if (a[i].dob[5] != '/') {
+			a[i].dob.insert(3, 1, '0');
+		}
+		if (i < 9) {
+			a[i].id = "B20DCCN00";
+		} else {
+			a[i].id = "B20DCCN0";
+		}
+		a[i].id += to_string(i + 1);
+	}
+}
+
+bool cmp (SinhVien a, SinhVien b) {
+	return a.gpa > b.gpa;
+}
+
+void sapxep (SinhVien a[], int n) {
+	sort(a, a + n, cmp);
+}
+
+void in (SinhVien a[], int n) {
+	for (int i = 0; i < n; i++) {
+		cout << a[i].id << ' ' << a[i].name << ' ' << a[i].lop << ' ' << a[i].dob << ' ' << fixed << setprecision(2) << a[i].gpa << endl; 
+	}
+}
+
+int main(){
+    struct SinhVien ds[50];
+    int N;
+    cin >> N;
+    nhap(ds, N);
+    sapxep(ds,N);
+    in(ds, N);
+    return 0;
+}
