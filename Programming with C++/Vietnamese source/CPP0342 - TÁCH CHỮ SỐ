@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		vector<char> v1, v2;
+		for (char x : s) {
+			if (x >= 'A' && x <= 'Z') {
+				v1.push_back(x);
+			} else {
+				v2.push_back(x);
+			}
+		}
+		sort(v1.begin(), v1.end());
+		int sum = 0;
+		for (int i = 0; i < v2.size(); i++) {
+			sum += (v2[i] - '0');
+		}
+		for (auto x : v1) {
+			cout << x;
+		}
+		cout << sum << endl;
+	}
+	return 0;
+}
