@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void chuanhoa1 (string s) {
+	for (int i = 0; i < s.size(); i++) {
+		s[i] = tolower(s[i]);
+	}
+	stringstream ss(s);
+	string temp;
+	vector<string> v;
+	while (ss >> temp) {
+		v.push_back(temp);
+	}
+	for (int i = 0; i < v.size(); i++) {
+		v[i][0] = toupper(v[i][0]);
+	}
+	cout << v[v.size() - 1] << ' ';
+	for (int i = 0; i < v.size() - 1; i++) {
+		cout << v[i] << ' ';
+		if (i == v.size() - 2) {
+			break;
+		}
+	}
+}
+
+void chuanhoa2 (string s) {
+	for (int i = 0; i < s.size(); i++) {
+		s[i] = tolower(s[i]);
+	}
+	stringstream ss(s);
+	string temp;
+	vector<string> v;
+	while (ss >> temp) {
+		v.push_back(temp);
+	}
+	for (int i = 0; i < v.size(); i++) {
+		v[i][0] = toupper(v[i][0]);
+	}
+	for (int i = 1; i < v.size(); i++) {
+		cout << v[i] << ' ';
+	}
+	cout << v[0];
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		string s;
+		scanf("\n");
+		getline(cin, s);
+		if (n == 1) {
+			chuanhoa1(s);
+		} else {
+			chuanhoa2(s);
+		}
+		cout << endl;
+	}
+	return 0;
+}
