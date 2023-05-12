@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Fee {
+	string bien, xe, tt, time;
+	int seat;
+};
+
+int main() {
+	int n;
+	cin >> n;
+	Fee a[n];
+	map<string, long long> mp;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i].bien >> a[i].xe >> a[i].seat >> a[i].tt >> a[i].time;
+		if (a[i].tt == "IN") {
+			if (a[i].xe == "Car" && a[i].seat == 5) {
+				mp[a[i].time] += 10000;
+			} else if (a[i].xe == "Car" && a[i].seat == 7) {
+				mp[a[i].time] += 15000;
+			} else if (a[i].xe == "Truck" && a[i].seat == 2) {
+				mp[a[i].time] += 20000;
+			} else if (a[i].xe == "Bus" && a[i].seat == 29) {
+				mp[a[i].time] += 50000;
+			} else if (a[i].xe == "Bus" && a[i].seat == 45) {
+				mp[a[i].time] += 70000;
+			}
+		}
+	}
+	for (auto x : mp) {
+		cout << x.first << ": " << x.second << endl;
+	}
+	return 0;
+}
