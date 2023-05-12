@@ -40,7 +40,7 @@ void nhap (SinhVien a[], int n) {
 		if (a[i].dob[5] != '/') {
 			a[i].dob.insert(3, 1, '0');
 		}
-		if (i < 9) {
+		if (i < 10) {
 			a[i].id = "B20DCCN00";
 		} else {
 			a[i].id = "B20DCCN0";
