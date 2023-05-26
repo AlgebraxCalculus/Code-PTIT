@@ -2,6 +2,27 @@
 
 using namespace std;
 
+string chuanhoa (string s) {
+	for (int i = 0; i < s.size(); i++) {
+		s[i] = tolower(s[i]);
+	}
+	stringstream ss(s);
+	string temp;
+	string a = "";
+	vector<string> v;
+	while (ss >> temp) {
+		v.push_back(temp);
+	}
+	for (int i = 0; i < v.size(); i++) {
+		v[i][0] = toupper(v[i][0]);
+	}
+	for (int i = 0; i < v.size(); i++) {
+		a += v[i] + " ";
+	}
+	a.pop_back();
+	return a;
+}
+
 class SinhVien {
 	public:
 		string id, name, lop, dob;
@@ -18,10 +39,11 @@ class SinhVien {
 			a.id = "B20DCCN" + temp;
 			scanf("\n");
 			getline(in, a.name);
+			a.name = chuanhoa(a.name);
 			in >> a.lop >> a.dob >> a.gpa;
 			if (a.dob[2] != '/') {
 				a.dob = "0" + a.dob;
-			}
+			} 
 			if (a.dob[5] != '/') {
 				a.dob.insert(3, "0");
 			}
@@ -31,15 +53,24 @@ class SinhVien {
 
 int SinhVien::count = 0;
 
+bool cmp (SinhVien a, SinhVien b) {
+	return a.gpa > b.gpa;
+}
+
+void sapxep (SinhVien ds[], int n) {
+	sort(ds, ds + n, cmp);
+}
+
 int main() {
-	SinhVien ds[50];
-	int N, i;
-	cin >> N;
-	for (i = 0; i < N; i++) {
-		cin >> ds[i];
-	}
-	for (i = 0; i < N; i++) {
-		cout << ds[i];
-	}
-	return 0;
+    SinhVien ds[50];
+    int N, i;
+    cin >> N;
+    for (i = 0; i < N; i++) {
+        cin >> ds[i];
+    }
+    sapxep(ds, N);
+    for (i = 0; i < N; i++) {
+        cout << ds[i];
+    }
+    return 0;
 }
