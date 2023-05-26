@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class SinhVien {
+	public:
+		string id, name, lop, dob;
+		float gpa;
+		static int count;
+		friend ostream& operator << (ostream& out, SinhVien a) {
+			out << a.id << ' ' << a.name << ' ' << a.lop << ' ' << a.dob << ' ' << fixed << setprecision(2) << a.gpa << endl;
+			return out;
+		}
+		friend istream& operator >> (istream& in, SinhVien& a) {
+			count++;
+			string temp = to_string(count);
+			temp = string(3 - temp.size(), '0') + temp;
+			a.id = "B20DCCN" + temp;
+			scanf("\n");
+			getline(in, a.name);
+			in >> a.lop >> a.dob >> a.gpa;
+			if (a.dob[2] != '/') {
+				a.dob = "0" + a.dob;
+			}
+			if (a.dob[5] != '/') {
+				a.dob.insert(3, "0");
+			}
+			return in;
+		}
+};
+
+int SinhVien::count = 0;
+
+int main() {
+	SinhVien ds[50];
+	int N, i;
+	cin >> N;
+	for (i = 0; i < N; i++) {
+		cin >> ds[i];
+	}
+	for (i = 0; i < N; i++) {
+		cout << ds[i];
+	}
+	return 0;
+}
