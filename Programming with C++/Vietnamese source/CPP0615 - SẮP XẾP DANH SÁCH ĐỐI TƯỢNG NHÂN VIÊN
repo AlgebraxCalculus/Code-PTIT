@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class NhanVien
+{
+public:
+	string id, name, gt, dob, dc, msv, hd;
+	static int count;
+	NhanVien()
+	{
+		id = name = gt = dob = dc = msv = hd = "";
+	}
+	friend ostream &operator<<(ostream &out, NhanVien a)
+	{
+		out << a.id << ' ' << a.name << ' ' << a.gt << ' ' << a.dob << ' ' << a.dc << ' ' << a.msv << ' ' << a.hd << endl;
+		return out;
+	}
+	friend istream &operator>>(istream &in, NhanVien &a)
+	{
+		count++;
+		string temp = to_string(count);
+		while (temp.size() < 5)
+		{
+			temp = "0" + temp;
+		}
+		a.id = temp;
+		scanf("\n");
+		getline(in, a.name);
+		in >> a.gt >> a.dob;
+		scanf("\n");
+		getline(in, a.dc);
+		in >> a.msv >> a.hd;
+		return in;
+	}
+};
+
+int NhanVien::count = 0;
+
+bool cmp (NhanVien a, NhanVien b) {
+	string s = a.dob, t = b.dob;
+	int t1 = (s[0] - '0') * 10 + (s[1] - '0'), n1 = (s[3] - '0') * 10 + (s[4] - '0'), na1 = stoi(s.substr(6, 4));
+	int t2 = (t[0] - '0') * 10 + (t[1] - '0'), n2 = (t[3] - '0') * 10 + (t[4] - '0'), na2 = stoi(t.substr(6, 4));
+	if (na1 != na2) {
+		return na1 < na2;
+	} else if (t1 != t2) {
+		return t1 < t2;
+	} else {
+		return n1 < n2;
+	}
+}
+
+void sapxep (NhanVien ds[], int n) {
+	sort(ds, ds + n, cmp);
+}
+
+int main(){
+    NhanVien ds[50];
+    int N,i;
+    cin >> N;
+    for(i = 0;i < N;i++) cin >> ds[i];
+    sapxep(ds, N);
+    for(i = 0;i < N;i++) cout << ds[i];
+    return 0;
+}
