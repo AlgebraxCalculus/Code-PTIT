@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class SinhVien {
+	public:
+		string id, name, lop, email;
+		SinhVien() {
+			id = name = lop = email = "";
+		}
+		friend ostream& operator << (ostream& out, SinhVien a) {
+			out << a.id << ' ' << a.name << ' ' << a.lop << ' ' << a.email << endl;
+			return out;
+		}
+		friend istream& operator >> (istream& in, SinhVien& a) {
+			in >> a.id;
+			scanf("\n");
+			getline(in, a.name);
+			in >> a.lop >> a.email;
+			return in;
+		}
+};
+
+int main() {
+    int n;
+    cin >> n;
+    SinhVien a[n];
+    for (int i = 0; i < n; i++) {
+    	cin >> a[i];
+	}
+	int q;
+	cin >> q;
+	for (int i = 0; i < q; i++) {
+		string x;
+		cin >> x;
+		cout << "DANH SACH SINH VIEN KHOA " << x << ":" << endl;
+		for (int i = 0; i < n; i++) {
+			if (a[i].lop[1] == x[2] && a[i].lop[2] == x[3]) {
+				cout << a[i];
+			}
+		}
+	}
+    return 0;
+}
