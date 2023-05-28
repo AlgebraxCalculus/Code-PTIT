@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	map<string, pair<string, bool>> mp;
+	for (int i = 0; i < n; i++) {
+		string s;
+		scanf("\n");
+		getline(cin, s);
+		stringstream ss(s);
+		string temp;
+		vector<string> v;
+		while (ss >> temp) {
+			v.push_back(temp); 
+		}
+		string msv = v[0];
+		string hoten = "";
+		for (int i = 1; i < v.size(); i++) {
+			hoten += v[i] + " ";
+		}
+		hoten.pop_back();
+		mp[msv].first = hoten;
+		mp[msv].second = true;
+	}
+	int m;
+	cin >> m;
+	set<string> duthi;
+	for (int i = 0; i < m; i++) {
+		string x, y, z, t;
+		cin >> x >> y >> z >> t;
+		if (t != "code.ptit.edu.vn") {
+			mp[z].second = false;
+		} else if (t == "code.ptit.edu.vn") {
+			duthi.insert(z);
+		}
+	}
+	for (auto x : mp) {
+		cout << x.first << ' ' << x.second.first << ' ';
+		if (x.second.second == false || duthi.count(x.first) == 0) {
+			cout << "FAIL" << endl;
+		} else {
+			cout << "OK" << endl;
+		}
+	}
+	return 0;
+}
