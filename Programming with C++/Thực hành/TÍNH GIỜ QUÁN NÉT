@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Gamer {
+	public: 
+		string username, password, name, vao, ra;
+		int min, h, m;
+		Gamer () {
+			username = password = name = vao = ra = "";
+			min = h = m = 0;
+		}
+		friend istream& operator >> (istream& in, Gamer& a) {
+			scanf("\n");
+			getline(in, a.username);
+			getline(in, a.password);
+			getline(in, a.name);
+			getline(in, a.vao);
+			getline(in, a.ra);
+			int h1 = stoi(a.vao.substr(0, 2));
+			int m1 = stoi(a.vao.substr(3, 2));
+			int h2 = stoi(a.ra.substr(0, 2));
+			int m2 = stoi(a.ra.substr(3, 2));
+			a.min = (h2 * 60 + m2) - (h1 * 60 + m1);
+			a.h = a.min / 60;
+			a.m = a.min % 60;
+			return in;
+		}
+		friend ostream& operator << (ostream& out, Gamer a) {
+			out << a.username << ' ' << a.password << ' ' << a.name << ' ' << a.h << " gio " << a.m << " phut" << endl;
+			return out; 
+		}
+};
+
+bool cmp (Gamer a, Gamer b) {
+	if (a.min != b.min) {
+		return a.min > b.min;
+	}
+	return a.username < b.username;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	Gamer a[n];
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	sort(a, a + n, cmp);
+	for (int i = 0; i < n; i++) {
+		cout << a[i];
+	}
+	return 0;
+}
