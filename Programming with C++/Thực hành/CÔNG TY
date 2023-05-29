@@ -8,8 +8,8 @@ private:
 	int so_ngay_cong, luong_co_ban;
 
 public:
-	friend istream &operator >>(istream &in, NhanVien &a);
-	friend ostream &operator <<(ostream &out, NhanVien a);
+	friend istream &operator >> (istream &in, NhanVien &a);
+	friend ostream &operator << (ostream &out, NhanVien a);
 	string get_maNV() {
 		return this->maNV;
 	}
