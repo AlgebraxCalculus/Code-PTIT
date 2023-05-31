@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class BangDiem {
+    public:
+        string id, name;
+        double diem1, diem2, diem3, diem4, diem5, diem6, diem7, diem8, diem9, diem10, tb;
+        static int count;
+        BangDiem() {
+            id = name = "";
+            diem1 = diem2 = diem3 = diem4 = diem5 = diem6 = diem7 = diem8 = diem9 = diem10 = tb = 0;
+        }
+        friend ostream& operator << (ostream& out, BangDiem a) {
+            out << a.id << ' ' << a.name << ' ' << fixed << setprecision(1) << a.tb << ' ';
+            if (a.tb >= 9.0) {
+                out << "XUAT SAC" << endl;
+            } else if (a.tb >= 8.0) {
+                out << "GIOI" << endl;
+            } else if (a.tb >= 7.0) {
+                out << "KHA" << endl;
+            } else if (a.tb >= 5.0) {
+                out << "TB" << endl;
+            } else {
+                out << "YEU" << endl;
+            }
+            return out;
+        }
+        friend istream& operator >> (istream& in, BangDiem& a) {
+            count++;
+            string tmp = to_string(count);
+            while (tmp.size() < 2) {
+                tmp = "0" + tmp;
+            }
+            a.id = "HS" + tmp;
+            scanf("\n");
+            getline(in, a.name);
+            in >> a.diem1 >> a.diem2 >> a.diem3 >> a.diem4 >> a.diem5 >> a.diem6 >> a.diem7 >> a.diem8 >> a.diem9 >> a.diem10;
+            a.tb = (a.diem1 + a.diem2 + a.diem3 + a.diem4 + a.diem5 + a.diem6 + a.diem7 + a.diem8 + a.diem9 + a.diem10) / 10;
+            scanf("\n");
+            return in;
+        }
+};
+
+int BangDiem::count = 0;
+
+
+bool cmp (BangDiem a, BangDiem b) {
+    if (a.tb != b.tb) {
+        return a.tb > b.tb;
+    }
+    return a.id < b.id;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    BangDiem a[n];
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    sort(a, a + n, cmp);
+    for (int i = 0; i < n; i++) {
+        cout << a[i];
+    }
+    return 0;
+}
