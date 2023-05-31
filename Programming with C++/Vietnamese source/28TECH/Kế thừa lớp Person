@@ -1,0 +1,97 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Person {
+    protected:
+        string ten, ns, dc;
+    public:
+        Person() {
+        }
+        Person(string ten, string ns, string dc) {
+            this->ten = ten;
+            this->ns = ns;
+            this->dc = dc;
+            chuanhoaten();
+            chuanhoadob();
+        }
+        void chuanhoatu (string &s) {
+            for (int i = 0; i < s.size(); i++) {
+                s[i] = tolower(s[i]);
+            }
+            s[0] = toupper(s[0]);
+        }
+        void chuanhoaten() {
+            stringstream ss(this->ten);
+            string res = "", tmp;
+            while (ss >> tmp) {
+                chuanhoatu(tmp);
+                res += tmp + " ";
+            }
+            res.pop_back();
+            this->ten = res;
+        }
+        void chuanhoadob() {
+            if (this->ns[2] != '/') {
+                this->ns = "0" + this->ns;
+            }
+            if (this->ns[5] != '/') {
+                this->ns.insert(3, "0");
+            }
+        }
+        void in() {
+            cout << this->ten << ' ' << this->ns << ' ' << this->dc;
+        }
+};
+
+class Student : public Person {
+    private:
+        string msv, lop;
+        double gpa;
+    public:
+        Student() : Person() {
+        }
+        Student(int stt, string ten, string ns, string dc, string lop, double gpa) : Person(ten, ns, dc) {
+            this->msv = string(4 - to_string(stt).size(), '0') + to_string(stt);
+            this->lop = lop;
+            this->gpa = gpa;
+        }
+        void in() {
+            cout << this->msv << ' ';
+            Person::in();
+            cout << ' ' << this->lop << ' ';
+            cout << fixed << setprecision(2) << this->gpa << endl;
+        }
+};
+
+int find (string tmp) {
+    for (int i = tmp.size() - 1; i >= 0; i--) {
+        if (isdigit(tmp[i])) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    Student a[n];
+    for (int i = 0; i < n; i++) {
+        string ten, tmp, ns, dc, lop;
+        double gpa;
+        scanf("\n");
+        getline(cin, ten);
+        getline(cin, tmp);
+        cin >> lop >> gpa;
+        int t = find(tmp);
+        ns = tmp.substr(0, t + 1);
+        dc = tmp.substr(t + 1);
+        Student x = Student(i + 1, ten, ns, dc, lop, gpa);
+        a[i] = x;
+    }
+    for (Student x : a) {
+        x.in();
+    }
+    return 0;
+}
