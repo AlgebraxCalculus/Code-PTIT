@@ -1,0 +1,116 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Person {
+    protected:
+        string ten, ns, dc;
+    public:
+        Person() {
+        }
+        Person(string ten, string ns, string dc) {
+            this->ten = ten;
+            this->ns = ns;
+            this->dc = dc;
+            chuanhoaten();
+            chuanhoadob();
+        }
+        void chuanhoatu (string &s) {
+            for (int i = 0; i < s.size(); i++) {
+                s[i] = tolower(s[i]);
+            }
+            s[0] = toupper(s[0]);
+        }
+        void chuanhoaten() {
+            stringstream ss(this->ten);
+            string res = "", tmp;
+            while (ss >> tmp) {
+                chuanhoatu(tmp);
+                res += tmp + " ";
+            }
+            res.pop_back();
+            this->ten = res;
+        }
+        void chuanhoadob() {
+            if (this->ns[2] != '/') {
+                this->ns = "0" + this->ns;
+            }
+            if (this->ns[5] != '/') {
+                this->ns.insert(3, "0");
+            }
+        }
+        void in() {
+            cout << this->ten << ' ' << this->ns << ' ' << this->dc;
+        }
+        string getTen() {
+        	return this->ten;
+		}
+};
+
+class Student : public Person {
+    private:
+        string msv, lop;
+        double gpa;
+    public:
+        Student() : Person() {
+        }
+        Student(int stt, string ten, string ns, string dc, string lop, double gpa) : Person(ten, ns, dc) {
+            this->msv = string(4 - to_string(stt).size(), '0') + to_string(stt);
+            this->lop = lop;
+            this->gpa = gpa;
+        }
+        void in() {
+            cout << this->msv << ' ';
+            Person::in();
+            cout << ' ' << this->lop << ' ';
+            cout << fixed << setprecision(2) << this->gpa << endl;
+        }
+        string getMa() {
+        	return this->msv;
+		}
+};
+
+string getCompareName (string s) {
+	stringstream ss(s);
+	string tmp, res = "";
+	vector<string> v;
+	while (ss >> tmp) {
+		v.push_back(tmp);
+	}
+	res = v[v.size() - 1] + " ";
+	for (int i = 0; i < v.size() - 1; i++) {
+		res += v[i] + " ";
+	}
+	return res;
+}
+
+bool cmp (Student a, Student b) {
+	string name1 = getCompareName(a.getTen()), name2 = getCompareName(b.getTen());
+	if (name1 != name2) {
+		return name1 < name2;
+	}
+	return a.getMa() < b.getMa();
+}
+
+int main() {
+    int n;
+    cin >> n;
+    Student a[n];
+    for (int i = 0; i < n; i++) {
+        string ten, ns, dc, lop;
+        double gpa;
+        scanf("\n");
+        getline(cin, ten);
+        cin >> ns;
+        scanf("\n");
+        getline(cin, dc);
+        cin >> lop >> gpa;
+        Student x = Student(i + 1, ten, ns, dc, lop, gpa);
+        a[i] = x;
+    }
+    sort(a, a + n, cmp);
+    for (Student x : a) {
+        x.in();
+    }
+    return 0;
+}
