@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ifstream input1, input2;
+	input1.open("DATA1.in");
+	input2.open("DATA2.in");
+	string s;
+	set<string> se1, se2;
+	map<string, int> mp;
+	while (input1 >> s) {
+		transform(s.begin(), s.end(), s.begin(), ::tolower);
+		se1.insert(s);
+	}
+	input1.close();
+	while (input2 >> s) {
+		transform(s.begin(), s.end(), s.begin(), ::tolower);
+		se2.insert(s);
+	}
+	input2.close();
+	for (auto x : se1) {
+		mp[x]++;
+	}
+	for (auto x : se2) {
+		mp[x]++;
+	}
+	for (auto x : mp) {
+		cout << x.first << ' ';
+	}
+	cout << endl;
+	for (auto x : mp) {
+		if (x.second > 1) {
+			cout << x.first << ' ';
+		}
+	}
+	return 0;
+}
