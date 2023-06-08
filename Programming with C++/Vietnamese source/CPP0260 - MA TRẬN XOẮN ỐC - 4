@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	int a[n * n], b[n][n];
+	for (int i = 0; i < n * n; i++) {
+		cin >> a[i];
+	}
+	sort(a, a + n * n);
+	int hang1 = 0, cot1 = 0, hang = n - 1, cot = n - 1, id = 0;
+	while (hang1 <= hang && cot1 <= cot) {
+		for (int i = cot1; i <= cot; i++) {
+			b[hang1][i] = a[id++];
+		}
+		hang1++;
+		for (int i = hang1; i <= hang; i++) {
+			b[i][cot] = a[id++];
+		}
+		cot--;
+		if (hang1 <= hang) {
+			for (int i = cot; i >= cot1; i--) {
+				b[hang][i] = a[id++];
+			}
+			hang--;
+		}
+		if (cot1 <= cot) {
+			for (int i = hang; i >= hang1; i--) {
+				b[i][cot1] = a[id++]; 
+			}
+			cot1++;
+		}
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			cout << b[i][j] << ' ';
+		}
+		cout << endl;
+	}
+	return 0;
+}
