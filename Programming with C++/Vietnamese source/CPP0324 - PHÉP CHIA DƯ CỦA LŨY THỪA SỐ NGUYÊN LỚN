@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long du (string s, long long m) {
+	long long du = 0;
+	for (char x : s) {
+		du = du * 10 + (x - '0');
+		du %= m;
+	}
+	return du;
+}
+
+long long binpow (long long a, long long b, long long m) {
+	long long res = 1;
+	while (b != 0) {
+		if (b % 2 == 1) {
+			res *= a;
+			res %= m;
+		}
+		a *= a;
+		a %= m;
+		b /= 2;
+	}
+	return res;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		string a;
+		long long b, m;
+		cin >> a >> b >> m;
+		long long r = du(a, m);
+		cout << binpow(r, b, m) << endl;
+	}
+	return 0;
+}
