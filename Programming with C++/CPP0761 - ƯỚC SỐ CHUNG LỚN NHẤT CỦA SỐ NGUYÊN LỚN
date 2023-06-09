@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long du (string s, long long m) {
+	long long du = 0;
+	for (char x : s) {
+		du = du * 10 + (x - '0');
+		du %= m;
+	}
+	return du;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		long long a;
+		string b;
+		cin >> a >> b;
+		long long r = du(b, a);
+		cout << __gcd(a, r) << endl;
+	}
+	return 0;
+}
