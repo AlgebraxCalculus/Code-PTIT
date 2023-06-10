@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string cong (string a, string b) {
+	string sum = "";
+	if (a.size() < b.size()) {
+		a.insert(0, b.size() - a.size(), '0');
+	}
+	else {
+		b.insert(0, a.size() - b.size(), '0');
+	}
+	int temp = 0;
+	for (int i = a.size() - 1; i >= 0; i--) {
+		temp = (a[i] - '0') + (b[i] - '0') + temp;
+		sum.insert(0, 1, temp % 10 + '0');
+		temp /= 10;
+	}
+	if (temp > 0) {
+		sum.insert(0, 1, temp + '0');
+	}
+	return sum;
+}
+
+bool check (string s, int left, int len1, int len2) {
+	string s1 = s.substr(left, len1);
+	string s2 = s.substr(left + len1, len2);
+	string s3 = cong(s1, s2);
+	if (s3.size() > s.size() - s1.size() - s2.size()) {
+		return 0;
+	}
+	if (s.substr(left + len1 + len2, s3.size()) == s3) {
+		if (left + len1 + len2 + s3.size() == s.size()) {
+			return 1;
+		}
+		return check(s, left + len1, len2, s3.size());
+	}
+	return 0;
+}
+
+void solve() {
+	string s;
+	cin >> s;
+	bool ok = 0;
+	for (int i = 1; i < s.size(); i++) {
+		for (int j = 1; j < s.size() - i; j++) {
+			if (check(s, 0, i, j)) {
+				cout << "Yes" << endl;
+				return;
+			} 
+		}
+	}
+	cout << "No" << endl;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		solve();
+	}
+	return 0;
+}
