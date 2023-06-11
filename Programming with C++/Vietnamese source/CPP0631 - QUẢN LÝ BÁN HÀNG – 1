@@ -1,0 +1,105 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int cnt = 0, cnt1 = 0, cnt2 = 0;
+
+class KhachHang;
+class MatHang;
+class HoaDon;
+
+map<string, KhachHang> mp1;
+map<string, MatHang> mp2;
+
+class KhachHang {
+public:
+    string id, name, gt, dob, dc;
+    KhachHang() {
+        id = name = gt = dob = dc = "";
+    }
+    friend class HoaDon;
+    friend istream& operator >> (istream& in, KhachHang& a) {
+        cnt++;
+        string tmp = to_string(cnt);
+        while (tmp.size() < 3) {
+            tmp.insert(0, "0");
+        }
+        a.id = "KH" + tmp;
+        scanf("\n");
+        getline(in, a.name);
+        in >> a.gt >> a.dob;
+        scanf("\n");
+        getline(in, a.dc);
+        mp1[a.id] = a;
+        return in;
+    }
+};
+
+class MatHang {
+public:
+    string id1, name1, dv;
+    int mua, ban;
+    MatHang() {
+        id1 = name1 = dv = "";
+        mua = ban = 0;
+    }
+    friend class HoaDon;
+    friend istream& operator >> (istream& in, MatHang& a) {
+        cnt1++;
+        string tmp = to_string(cnt1);
+        while (tmp.size() < 3) {
+            tmp.insert(0, "0");
+        }
+        a.id1 = "MH" + tmp;
+       	scanf("\n");
+        getline(in, a.name1);
+        in >> a.dv >> a.mua >> a.ban;
+        mp2[a.id1] = a;
+        return in;
+    }
+};
+
+class HoaDon {
+public:
+    string idkh, idmh, idhd;
+    int sl;
+    HoaDon() {
+        idkh = idmh = idhd = "";
+        sl = 0;
+    }
+    friend istream& operator >> (istream& in, HoaDon& a) {
+        cnt2++;
+        string tmp = to_string(cnt2);
+        while (tmp.size() < 3) {
+            tmp.insert(0, "0");
+        }
+        a.idhd = "HD" + tmp;
+        scanf("\n");
+        in >> a.idkh >> a.idmh >> a.sl;
+        return in;
+    }
+    friend ostream& operator << (ostream& out, HoaDon a) {
+        out << a.idhd << ' ' << mp1[a.idkh].name << ' ' << mp1[a.idkh].dc << ' ' << mp2[a.idmh].name1 << ' ' << mp2[a.idmh].dv << ' ' << mp2[a.idmh].mua << ' ' << mp2[a.idmh].ban << ' ' << a.sl << ' ' << mp2[a.idmh].ban * a.sl << endl;
+        return out;
+    }
+};
+
+int main() {
+    KhachHang dskh[25];
+    MatHang dsmh[45];
+    HoaDon dshd[105];
+    int N, M, K, i;
+    cin >> N;
+    for (i = 0; i < N; i++)
+        cin >> dskh[i];
+    cin >> M;
+    for (i = 0; i < M; i++)
+        cin >> dsmh[i];
+    cin >> K;
+    for (i = 0; i < K; i++)
+        cin >> dshd[i];
+
+    for (i = 0; i < K; i++)
+        cout << dshd[i];
+    return 0;
+}
