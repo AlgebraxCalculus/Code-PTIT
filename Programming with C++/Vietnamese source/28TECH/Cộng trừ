@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	int a[n], b[n - 1];
+	for (int &x : a) {
+		cin >> x;
+	}
+	for (int &x : b) {
+		cin >> x;
+	}
+	int i = 1, j = 0;
+	long long sum = a[0];
+	while (i < n && j < n - 1) {
+		if (b[j] == 1) {
+			sum += a[i];
+		} else {
+			sum -= a[i];
+		}
+		i++;
+		j++;
+	}
+	cout << sum;
+	return 0;
+}
