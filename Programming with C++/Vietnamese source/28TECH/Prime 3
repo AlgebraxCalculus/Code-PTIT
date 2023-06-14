@@ -1,0 +1,44 @@
+//Cho số nguyên dương N, hãy tính tích các số nguyên tố trong đoạn từ 0 đến N.
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long prime[1000001], f[1000001];
+const int mod = 1e9 + 7;
+
+void sang() {
+	for (int i = 0; i <= 1e6; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 1;
+	for (int i = 2; i <= sqrt(1000000); i++) {
+		if (prime[i]) {
+			for (int j = i * i; j <= 1e6; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+	f[0] = f[1] = 0;
+	f[2] = 2;
+	for (int i = 3; i <= 1e6; i++) {
+		if (prime[i]) {
+			f[i] = f[i - 1] * i;
+			f[i] %= mod;
+		} else {
+			f[i] = f[i - 1];
+		}
+	}
+}
+
+int main() {
+	sang();
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		cout << f[n] << endl;
+	}
+	return 0;
+}
