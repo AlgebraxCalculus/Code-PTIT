@@ -1,0 +1,47 @@
+/* Cho 2 số nguyên L, R, hãy đếm xem trong đoạn từ L tới R có bao nhiêu số nguyên tố.
+Bước 1 : Sàng số nguyên tố
+Bước 2 : Gọi F[i] là số các nguyên tố từ 0 tới i, khi đó số các số nguyên tố từ L tới R là F[R] - F[L - 1] */
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long prime[1000001], f[1000001];
+
+void sang() {
+	for (int i = 0; i <= 1e6; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 1;
+	for (int i = 2; i <= sqrt(1000000); i++) {
+		if (prime[i]) {
+			for (int j = i * i; j <= 1e6; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+	f[0] = f[1] = 0;
+	for (int i = 2; i <= 1e6; i++) {
+		if (prime[i]) {
+			f[i] = f[i - 1] + 1;
+		} else {
+			f[i] = f[i - 1];
+		}
+	}
+}
+
+int main() {
+	sang();
+	int t;
+	cin >> t;
+	while (t--) {
+		int l, r;
+		cin >> l >> r;
+		if (l == 0) {
+			cout << f[r] << endl;
+		} else {
+			cout << f[r] - f[l - 1] << endl;
+		}
+	}
+	return 0;
+}
