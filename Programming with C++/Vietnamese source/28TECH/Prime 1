@@ -1,0 +1,43 @@
+/*Cho số nguyên dương N, hãy đếm xem trong đoạn từ 0 tới N có bao nhiêu số nguyên tố. Hướng dẫn :
+Bước 1 : Sàng số nguyên tố
+Bước 2 : Gọi F[i] là số lượng các số nguyên tố từ 0 tới i, xây dựng mảng F[i] sau khi sàng */
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long prime[1000001], f[1000001];
+
+void sang() {
+	for (int i = 0; i <= 1e6; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 1;
+	for (int i = 2; i <= sqrt(1000000); i++) {
+		if (prime[i]) {
+			for (int j = i * i; j <= 1e6; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+	f[0] = f[1] = 0;
+	for (int i = 2; i <= 1e6; i++) {
+		if (prime[i]) {
+			f[i] = f[i - 1] + 1;
+		} else {
+			f[i] = f[i - 1];
+		}
+	}
+}
+
+int main() {
+	sang();
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		cout << f[n] << endl;
+	}
+	return 0;
+}
