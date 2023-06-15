@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    long long dem = 1, tong = a[0], max_len = 1, max_tong = a[0];
+    int start = 0;
+    for (int i = 1; i < n; i++) {
+        if (a[i] != a[i - 1]) {
+            dem++;
+            tong += a[i];
+        } else {
+            if (dem > max_len) {
+                max_len = dem;
+                max_tong = tong;
+                start = i - max_len;
+            } else if (dem == max_len) {
+                if (tong > max_tong) {
+                    max_tong = tong;
+                    start = i - max_len;
+                }
+            }
+            dem = 1;
+            tong = a[i];
+        }
+    }
+    if (dem > max_len) {
+        max_len = dem;
+        max_tong = tong;
+        start = n - max_len;
+    } else if (dem == max_len) {
+        if (tong > max_tong) {
+            max_tong = tong;
+            start = n - max_len;
+        }
+    }
+    cout << max_len << endl;
+    for (int i = 0; i < max_len; i++) {
+        cout << a[i + start] << ' ';
+    }
+    return 0;
+}
