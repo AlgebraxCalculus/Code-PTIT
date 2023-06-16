@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+map<int, int> mp;
+
+bool cmp (int a, int b) {
+    if (mp[a] != mp[b]) {
+        return mp[a] > mp[b];
+    }
+    return a < b;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int a[n];
+    for (int &x : a) {
+        cin >> x;
+        mp[x]++;
+    }
+    sort(a, a + n, cmp);
+    cout << a[0] << ' ' << mp[a[0]];
+    return 0;
+}
