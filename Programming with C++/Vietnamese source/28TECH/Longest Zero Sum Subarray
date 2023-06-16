@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    long long sum = 0;
+    int index = -1, ans = INT_MIN;
+    map<int, int> mp;
+    mp[0] = -1;
+    for (int i = 0; i < n; i++) {
+        sum += a[i];
+        if (mp.find(sum) != mp.end()) {
+            if (i - mp[sum] > ans) {
+                ans = i - mp[sum];
+                index = i;
+            } 
+        } else {
+            mp[sum] = i;
+        }
+    }
+    if (index == -1) {
+        cout << "NOT FOUND";
+    } else {
+        for (int i = index - ans + 1; i <= index; i++) {
+            cout << a[i] << ' ';
+        }
+    }
+    return 0;
+}
