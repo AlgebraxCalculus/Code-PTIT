@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+    int a[n];
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    long long sum = 0;
+    int ans = INT_MIN;
+    map<int, int> mp;
+    mp[0] = -1;
+    for (int i = 0; i < n; i++) {
+        sum += a[i];
+        sum = (sum % k + k) % k;
+        if (mp.find(sum) != mp.end()) {
+            ans = max(ans, i - mp[sum]);
+        } else {
+            mp[sum] = i;
+        }
+    }
+    if (ans == INT_MIN) {
+        cout << -1;
+    } else {
+        cout << ans;
+    }
+    return 0;
+}
