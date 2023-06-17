@@ -1,24 +1,27 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-int main(){
+int main() {
     freopen("DOCUMENT.txt", "r", stdin);
     freopen("TABLEOFCONTENTS.txt", "w", stdout);
     string s;
-    int i =1;
-    while (getline(cin,s)){
+    int i = 1;
+    while (getline(cin, s)) {
         string leve = "Level";
         string pag = "Page";
-        if (s.find(pag) == 0){
-            i = s[s.size()-1] - '0';
+        if (s.find(pag) == 0) {
+            i = s[s.size() - 1] - '0';
         }
         if (s.find(leve) == 0) {
-            for (int j = 0; j< s.size(); j++){
-                    if (s[j] == ' '){
-                        int x = s[j-2] - '0';
-                        for (int p = 1; p <=x; p++) cout << ">";
-                        for (int k = j+1; k < s.size(); k++) cout << s[k];
-                        cout << "--- " << i<< endl;
+            for (int j = 0; j < s.size(); j++) {
+                if (s[j] == ' ') {
+                    int x = s[j - 2] - '0';
+                    for (int p = 1; p <= x; p++)
+                        cout << ">";
+                    for (int k = j + 1; k < s.size(); k++)
+                        cout << s[k];
+                    cout << "--- " << i << endl;
                     break;
                 }
             }
