@@ -1,3 +1,4 @@
+//Cách 1:
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -25,4 +26,30 @@ int main() {
 		cout << endl;
 	}
 	return 0;
+}
+//Cách 2: 
+#include <bits/stdc++.h>
+
+using namespace std;
+ 
+int main() {
+    int n;
+    cin >> n;
+    int a[n];
+    for (int &x : a) {
+        cin >> x;
+    }
+    set<int> se;
+    for (int x : a) {
+        if (x == 0) {
+            se.insert(x);
+        } while (x != 0) {
+            se.insert(x % 10);
+            x /= 10;
+        }
+    }
+    for (auto x : se) {
+        cout << x << ' ';
+    }
+    return 0;
 }
