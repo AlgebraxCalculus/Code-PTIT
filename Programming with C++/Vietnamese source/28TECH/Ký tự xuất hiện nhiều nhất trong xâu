@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    map<char, int> mp;
+    for (char x : s) {
+        mp[x]++;
+    }
+    int max_val = INT_MIN, min_val = INT_MAX;
+    char s_max = s[0], s_min = s[0];
+    for (auto x : mp) {
+        if (x.second > max_val) {
+            max_val = x.second;
+            s_max = x.first;
+        } else if (max_val == x.second && x.first > s_max) {
+            s_max = x.first;
+        }
+        if (x.second < min_val) {
+            min_val = x.second;
+            s_min = x.first;
+        } else if (min_val == x.second && x.first > s_min) {
+            s_min = x.first;
+        }
+    }
+    cout << s_max << ' ' << max_val << endl << s_min << ' ' << min_val;
+    return 0;
+}
