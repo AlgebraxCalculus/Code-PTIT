@@ -1,0 +1,39 @@
+//Một số được coi là số đẹp nếu nó có các chữ số không giảm từ trái qua phải hoặc không tăng từ trái quá phải
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int check1 (string s) {
+    char Max = s[0];
+    for (char x : s) {
+        if (x < Max) {
+            return 0;
+        }
+        Max = x;
+    }
+    return 1;
+}
+
+int check2 (string s) {
+    char Min = s[0];
+    for (char x : s) {
+        if (x > Min) {
+            return 0;
+        }
+        Min = x;
+    }
+    return 1;
+}
+
+
+int main() {
+    string s;
+    cin >> s;
+    if (check1(s) || check2(s)) {
+        cout << "YES";
+    } else {
+        cout << "NO";
+    }
+    return 0;
+}
