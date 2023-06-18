@@ -1,0 +1,33 @@
+//Một số được coi là số đẹp nếu các chữ số ở vị trí chẵn của nó là số chẵn và các chữ số ở vị trí lẻ của nó là số lẻ.
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int check (long long n) {
+    if (n < 0) {
+        n = abs(n);
+    }
+    string s = to_string(n);
+    for (int i = 0; i < s.size(); i++) {
+        if ((i + 1) % 2 != (s[i] - '0') % 2) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        long long n;
+        cin >> n;
+        if (check(n)) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
+        }
+    }
+    return 0;
+}
