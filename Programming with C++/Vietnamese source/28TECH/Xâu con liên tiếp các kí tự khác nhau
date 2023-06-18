@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    string s_max = string(1, s[0]);
+    string res = "";
+    res += s[0];
+    int cnt = 1, tmp = 1;
+    for (int i = 1; i < s.size(); i++) {
+        if (s[i] != s[i - 1]) {
+            res += s[i];
+            cnt++;
+        } else {
+            res = s[i];
+            cnt = 1;
+        }
+        if (cnt > tmp) {
+            tmp = cnt;
+            s_max = res;
+        } else if (cnt == tmp) {
+            s_max = max(res, s_max);
+        }
+    }
+    cout << s_max << endl;
+    return 0;
+}
