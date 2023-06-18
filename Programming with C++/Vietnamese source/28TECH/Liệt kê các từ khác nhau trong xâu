@@ -1,0 +1,26 @@
+//Đầu tiên liệt kê các từ khác nhau theo thứ tự từ điển tăng dần, sau đó liệt kê các từ theo thứ tự xuất hiện trong xâu
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    string s;
+    vector<string> v;
+    map<string, int> mp;
+    while (cin >> s) {
+        v.push_back(s);
+        mp[s]++;
+    }
+    for (auto x : mp) {
+        cout << x.first << ' ';
+    }
+    cout << endl;
+    for (string x : v) {
+        if (mp[x] > 0) {
+            cout << x << ' ';
+            mp[x] = 0;
+        }
+    }
+    return 0;
+}
