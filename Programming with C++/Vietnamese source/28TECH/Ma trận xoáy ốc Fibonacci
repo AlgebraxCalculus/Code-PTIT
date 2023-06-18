@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long fibo[93];
+
+int main() {
+    int n;
+    cin >> n;
+    int a[n][n] = {};
+    fibo[1] = 0;
+    fibo[2] = 1;
+    for (int i = 3; i <= 92; i++) {
+        fibo[i] = fibo[i - 1] + fibo[i - 2];
+    }
+    int d = 1;
+    for (int vong = 0; vong < (n + 1) / 2; vong++) {
+        for (int j = vong; j <= n - vong - 1; j++) {
+            a[vong][j] = d++;
+        }
+        for (int i = vong + 1; i <= n - vong - 1; i++) {
+            a[i][n - 1 - vong] = d++;
+        }
+        for(int j = n - 2 - vong; j >= vong; j--) {
+            a[n - 1 - vong][j] = d++;
+        }
+        for (int i = n - 2 - vong; i >= vong + 1; i--) {
+            a[i][vong] = d++;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << fibo[a[i][j]] << ' ';
+        }
+        cout << endl;
+    }
+    return 0;
+}
