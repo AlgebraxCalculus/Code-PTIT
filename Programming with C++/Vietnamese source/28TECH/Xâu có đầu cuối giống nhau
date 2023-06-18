@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    vector<char> v;
+    map<char, int> mp;
+    set<char> se;
+    for (char x : s) {
+        mp[x]++;
+        se.insert(x);
+        v.push_back(x);
+    }
+    long long ans = 0;
+    ans += v.size();
+    for (auto x : se) {
+        if (mp[x] > 1) {
+            ans += 1ll * mp[x] * (mp[x] - 1) / 2;
+        }
+    }
+    cout << ans;
+    return 0;
+}
