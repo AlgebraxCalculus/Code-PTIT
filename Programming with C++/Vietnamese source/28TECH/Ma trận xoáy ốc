@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int a[n][n] = {};
+    int d = 1;
+    for (int vong = 0; vong < (n + 1) / 2; vong++) {
+        for (int j = vong; j <= n - vong - 1; j++) {
+            a[vong][j] = d++;
+        }
+        for (int i = vong + 1; i <= n - vong - 1; i++) {
+            a[i][n - 1 - vong] = d++;
+        }
+        for(int j = n - 2 - vong; j >= vong; j--) {
+            a[n - 1 - vong][j] = d++;
+        }
+        for (int i = n - 2 - vong; i >= vong + 1; i--) {
+            a[i][vong] = d++;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << a[i][j] << ' ';
+        }
+        cout << endl;
+    }
+    return 0;
+}
