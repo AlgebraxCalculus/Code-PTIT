@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    int lt = 1, sum = s.back() - '0';
+    for (int i = s.size() - 2; i >= 0; i--) {
+        lt *= 2;
+        lt %= 5;
+        sum += (s[i] - '0') * lt;
+        sum %= 5;
+    }
+    if (sum == 0) {
+        cout << "YES";
+    } else {
+        cout << "NO";
+    }
+    return 0;
+}
