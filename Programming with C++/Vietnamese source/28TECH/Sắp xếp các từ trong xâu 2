@@ -1,0 +1,38 @@
+//Sắp xếp các từ thuận nghịch khác nhau trong xâu theo thứ tự từ chiều dài tăng dần, nếu 2 từ thuận nghịch có cùng chiều dài thì từ nào xuất hiện trước sẽ được in ra trước.
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool thuannghich (string s) {
+    for (int i = 0; i < s.size() / 2; i++) {
+        if (s[i] != s[s.size() - i - 1]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+bool cmp (string a, string b) {
+    return a.size() < b.size();
+}
+
+int main() {
+    string s;
+    getline(cin, s);
+    vector<string> v;
+    set<string> se;
+    stringstream ss(s);
+    string tmp;
+    while (ss >> tmp) {
+        if (thuannghich(tmp) && !se.count(tmp)) {
+            v.push_back(tmp);
+            se.insert(tmp);
+        }
+    }
+    stable_sort(v.begin(), v.end(), cmp);
+    for (auto x : v) {
+        cout << x << ' ';
+    }
+    return 0;
+}
