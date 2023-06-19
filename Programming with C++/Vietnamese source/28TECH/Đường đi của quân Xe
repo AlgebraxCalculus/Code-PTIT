@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, s, t;
+int cnt = 0;
+int a[30][30];
+
+void DFS (int i, int j) {
+    a[i][j] = 1;
+    cnt++;
+    for (int j1 = j + 1; j1 <= n; j1++) {
+        if (a[i][j1] == 1) {
+            break;
+        } else {
+            DFS(i, j1);
+        }
+    }
+    for (int j1 = j - 1; j1 >= 1; j1--) {
+        if (a[i][j1] == 1) {
+            break;
+        } else {
+            DFS(i, j1);
+        }
+    }
+    for (int i1 = i + 1; i1 <= n; i1++) {
+        if (a[i1][j] == 1) {
+            break;
+        } else {
+            DFS(i1, j);
+        }
+    }
+    for (int i1 = i - 1; i1 >= 1; i1--) {
+        if (a[i1][j] == 1) {
+            break;
+        } else {
+            DFS(i1, j);
+        }
+    }
+}
+
+int main() {
+    cin >> n >> s >> t;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            cin >> a[i][j];
+        }
+    }
+    DFS(s, t);
+    cout << cnt;
+    return 0;
+}
