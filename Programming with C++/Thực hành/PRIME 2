@@ -1,0 +1,48 @@
+//Cho 2 số nguyên L, R, hãy đếm xem trong đoạn từ L tới R có bao nhiêu số nguyên tố.
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int prime[1000001], F[1000001];
+
+void sang() {
+    for (int i = 0; i <= 1e6; i++) {
+        prime[i] = 1;
+    }
+    prime[0] = prime[1] = 0;
+    for (int i = 2; i <= sqrt(1000000); i++) {
+        if (prime[i]) {
+            for (int j = i * i; j <= 1e6; j += i) {
+                prime[j] = 0;
+            }
+        }
+    }
+}
+
+void QHD() {
+    for (int i = 1; i <= 1e6; i++) {
+        if (prime[i]) {
+            F[i] = F[i - 1] + 1;
+        } else {
+            F[i] = F[i - 1];
+        }
+    }
+}
+
+int main() {
+    sang();
+    QHD();
+    int t;
+    cin >> t;
+    while (t--) {
+        int l, r;
+        cin >> l >> r;
+        if (l == 0) {
+            cout << F[r] << endl;
+        } else {
+            cout << F[r] - F[l - 1] << endl;
+        }
+    }
+    return 0;
+}
