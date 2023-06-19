@@ -1,0 +1,25 @@
+//Với mỗi phần tử A[i] trong mảng A hãy tìm ra phần tử lớn nhất cũng thuộc mảng A[] mà nhỏ hơn A[i], nếu có phần tử không tồn tại phần tử nhỏ hơn nó thì in ra dấu #
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int a[n];
+    for (int &x : a) {
+        cin >> x;
+    }
+    vector<int> v(a, a + n);
+    sort(v.begin(), v.end());
+    for (int i = 0; i < n; i++) {
+        auto it = lower_bound(v.begin(), v.end(), a[i]);
+        if (it == v.begin()) {
+            cout << "#" << ' ';
+        } else {
+            cout << *(--it) << ' ';
+        }
+    }
+    return 0;
+}
