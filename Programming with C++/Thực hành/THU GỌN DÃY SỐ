@@ -1,0 +1,26 @@
+//Thu gọn dãy số bằng cách loại bỏ các cặp phần tử kề nhau mà có tổng là chẵn.
+
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    stack<int> st;
+    st.push(a[0]);
+    for (int i = 1; i < n; i++) {
+        if (!st.empty() && (a[i] + st.top()) % 2 == 0) {
+            st.pop();
+        } else {
+            st.push(a[i]);
+        }
+    }
+    cout << st.size() << endl;
+    return 0;
+}
