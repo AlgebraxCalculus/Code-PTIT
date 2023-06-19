@@ -1,0 +1,39 @@
+/* Cho ma trận A có N hàng M cột, hàng được đánh số từ 1 đến N, cột được đánh số từ 1 tới M, có 2 loại truy vấn:
+Truy vấn 1 : Tính tổng các phần tử từ ở hàng x từ cột y tới cột z
+Truy vấn 2 : Tính tổng các phần tử ở cột u từ hàng v tới hàng t
+Cho Q truy vấn, bạn hãy tìm kết quả cho từng truy vấn một cách hiệu quả. */
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long F1[1005][1005], F2[1005][1005];
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    int a[n + 5][m + 5];
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            cin >> a[i][j];
+            F1[i][j] = F1[i][j - 1] + a[i][j];
+            F2[i][j] = F2[i - 1][j] + a[i][j];
+        }
+    }
+    int q;
+    cin >> q;
+    while (q--) {
+        int tt;
+        cin >> tt;
+        if (tt == 1) {
+            int x, y, z;
+            cin >> x >> y >> z;
+            cout << F1[x][z] - F1[x][y - 1] << endl;
+        } else {
+            int u, v, t;
+            cin >> u >> v >> t;
+            cout << F2[t][u] - F2[v - 1][u] << endl;
+        }
+    }
+    return 0;
+}
