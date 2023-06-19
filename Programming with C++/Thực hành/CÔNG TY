@@ -3,85 +3,72 @@
 using namespace std;
 
 class NhanVien {
-private:
-	string maNV, tenNV, ns;
-	int so_ngay_cong, luong_co_ban;
-
-public:
-	friend istream &operator >> (istream &in, NhanVien &a);
-	friend ostream &operator << (ostream &out, NhanVien a);
-	string get_maNV() {
-		return this->maNV;
-	}
-	void chuan_hoa_ngay_sinh() {
-		if (ns[1] == '/')
-			ns = "0" + ns;
-		if (ns[4] == '/')
-			ns.insert(3, "0");
-	}
-	string chuc_vu() {
-		string tmp = this->maNV.substr(0, 2);
-		if (tmp == "GD")
-			return "Giam doc";
-		if (tmp == "TP")
-			return "Truong phong";
-		if (tmp == "NV")
-			return "Nhan vien";
-		return "Pho giam doc";
-	}
-	int luong_cung() {
-		return this->so_ngay_cong * this->luong_co_ban;
-	}
-	int phu_cap() {
-		string chuc_vu = this->maNV.substr(0, 2);
-		if (chuc_vu == "GD")
-			return 2000000;
-		if (chuc_vu == "TP")
-			return 500000;
-		if (chuc_vu == "NV")
-			return 200000;
-		return 1000000;
-	}
-	int thuong() {
-		if (this->so_ngay_cong >= 27)
-			return this->luong_cung() * 0.2;
-		if (this->so_ngay_cong >= 25)
-			return this->luong_cung() * 0.1;
-		return 0;
-	}
-	int thu_nhap() {
-		return this->luong_cung() + this->phu_cap() + this->thuong();
-	}
-	bool operator < (NhanVien other);
+  public:
+    string id, cv, name, dob;
+    int snc, lcb, pc, thuong, lt, total;
+    NhanVien() {
+        id = cv = name = dob = "";
+        snc = lcb = pc = thuong = lt = total = 0;
+    }
+    friend istream& operator >> (istream& in, NhanVien& a) {
+        in >> a.id;
+        scanf("\n");
+        getline(in, a.name);
+        in >> a.dob >> a.snc >> a.lcb;
+        string tmp = a.id.substr(0, 2);
+        if (tmp == "GD") {
+            a.cv = "Giam doc";
+            a.pc = 2000000;
+        } else if (tmp == "TP") {
+            a.cv = "Truong phong";
+            a.pc = 500000;
+        } else if (tmp == "NV") {
+            a.cv = "Nhan vien";
+            a.pc = 200000;
+        } else {
+            a.cv = "Pho giam doc";
+            a.pc = 1000000;
+        }
+        if (a.dob[2] != '/') {
+            a.dob = "0" + a.dob;
+        }
+        if (a.dob[5] != '/') {
+            a.dob.insert(3, "0");
+        }
+        a.lt = a.snc * a.lcb;
+        if (a.snc >= 27) {
+            a.thuong = a.lt * 0.2;
+        } else if (a.snc >= 25) {
+            a.thuong = a.lt * 0.1;
+        } else {
+            a.thuong = 0;
+        }
+        a.total = a.lt + a.pc + a.thuong;
+        return in;
+    }
+    friend ostream& operator << (ostream& out, NhanVien a) {
+        out << a.id << ' ' << a.name << ' ' << a.cv << ' ' << a.dob << ' ' << a.snc << ' ' << a.lcb << ' ' << a.total << endl;
+        return out;
+    }
 };
 
-istream &operator >> (istream &in, NhanVien &a) {
-	in >> a.maNV;
-	scanf("\n");
-	getline(in, a.tenNV);
-	in >> a.ns >> a.so_ngay_cong >> a.luong_co_ban;
-	a.chuan_hoa_ngay_sinh();
-	return in;
-}
-ostream &operator << (ostream &out, NhanVien a) {
-	out << a.maNV << " " << a.tenNV << " " << a.chuc_vu() << " " << a.ns << " " << a.so_ngay_cong << " " << a.luong_co_ban << " " << a.thu_nhap();
-	return out;
-}
-bool NhanVien::operator < (NhanVien other) {
-	if (this->thu_nhap() != other.thu_nhap())
-		return this->thu_nhap() > other.thu_nhap();
-	return this->get_maNV() < other.get_maNV();
+bool cmp (NhanVien a, NhanVien b) {
+    if (a.total != b.total) {
+        return a.total > b.total;
+    }
+    return a.id < b.id;
 }
 
 int main() {
-	int n;
-	cin >> n;
-	NhanVien a[n];
-	for (int i = 0; i < n; i++)
-	{
-		cin >> a[i];
-	}
-	sort(a, a + n);
-	for (NhanVien x : a)
-		cout << x << endl;
+    int n;
+    cin >> n;
+    NhanVien a[n];
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    sort(a, a + n, cmp);
+    for (int i = 0; i < n; i++) {
+        cout << a[i];
+    }
+    return 0;
 }
