@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<long long> v;
+
+int check (int n) {
+    if (n < 2) {
+        return 0;
+    }
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void sinhHoanHao() {
+    for (int p = 1; p <= 32; p++) {
+        if (check(p)) {
+            long long tmp = pow(2, p) - 1;
+            if (check(tmp)) {
+                long long res = tmp * pow(2, p - 1);
+                v.push_back(res);
+            }
+        }
+    }
+}
+
+int main() {
+    sinhHoanHao();
+    long long n;
+    cin >> n;
+    for (auto x : v) {
+        if (x == n) {
+            cout << "YES";
+            return 0;
+        }
+    }
+    cout << "NO";
+    return 0;
+}
