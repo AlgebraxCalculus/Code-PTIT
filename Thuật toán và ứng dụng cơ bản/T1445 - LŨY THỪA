@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int mod = 1e9 + 7;
+
+long long Pow (long long a, long long b) {
+	if (b == 0) {
+		return 1;
+	}
+	if (b == 1) {
+		return a;
+	}
+	long long x = Pow(a, b / 2);
+	long long y = (x * x) % mod;
+	if (b & 1) {
+		return (y * a) % mod;
+	}
+	return y;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		long long n, k;
+		cin >> n >> k;
+		cout << Pow(n, k) << endl;
+	}
+	return 0;
+}
