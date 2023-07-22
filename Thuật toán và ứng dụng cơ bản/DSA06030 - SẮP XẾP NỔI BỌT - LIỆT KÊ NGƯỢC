@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		vector<int> a(n);
+		for (int i = 0; i < n; i++) {
+			cin >> a[i];
+		}
+		vector<vector<int>> v;
+		for (int i = 0; i < n; i++) {
+			bool check = true;
+			for (int j = 0; j < n - 1; j++) {
+				if (a[j] > a[j + 1]) {
+					check = false;
+					swap(a[j], a[j + 1]);
+				}
+			}
+			if (!check) {
+				v.push_back(a);
+			}
+		}
+		for (int i = v.size() - 1; i >= 0; i--) {
+			cout << "Buoc " << i + 1 << ": ";
+			for (auto x : v[i]) {
+				cout << x << ' ';
+			}
+			cout << endl;
+		}
+	}
+	return 0;
+}
