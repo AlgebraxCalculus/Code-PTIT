@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+ 
+int main() {
+	long long fibo[93];
+	fibo[1] = 1;
+	fibo[2] = 1;
+	for (int i = 3; i <= 92; i++) {
+		fibo[i] = fibo[i - 1] + fibo[i - 2];
+	}
+	int t;
+	cin >> t;
+	while (t--) {
+		long long n, k;
+		cin >> n >> k;
+		while (n > 2) {
+			if (k <= fibo[n - 2]) {
+				n -= 2;
+			} else {
+				k -= fibo[n - 2];
+				n -= 1;
+			}
+		}
+		if (n == 1) {
+			cout << 'A' << endl;
+		} else if (n == 2) {
+			cout << 'B' << endl;
+		}
+	}
+	return 0;
+}
