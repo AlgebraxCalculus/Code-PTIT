@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long f[2][2], d[2][2];
+int const mod = 1e9 + 7;
+
+void reset() {
+	f[0][0] = f[0][1] = f[1][0] = 1;
+	f[1][1] = 0;
+	d[0][0] = d[0][1] = d[1][0] = 1;
+	d[1][1] = 0;
+}
+
+void nhan (long long a[2][2], long long b[2][2]) {
+	long long x = (a[0][0] * b[0][0] % mod + a[0][1] * b[1][0] % mod) % mod;
+	long long y = (a[0][0] * b[0][1] % mod + a[0][1] * b[1][1] % mod) % mod;
+	long long z = (a[1][0] * b[0][0] % mod + a[1][1] * b[1][0] % mod) % mod;
+	long long t = (a[1][0] * b[0][1] % mod + a[1][1] * b[1][1] % mod) % mod;
+	f[0][0] = x;
+	f[0][1] = y;
+	f[1][0] = z;
+	f[1][1] = t;
+}
+
+void Pow (long long f[2][2], int n) {
+	if (n <= 1) {
+		return;
+	}
+	Pow(f, n / 2);
+	nhan(f, f);
+	if (n % 2 == 1) {
+		nhan(f, d);
+	}
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		reset();
+		int n;
+		cin >> n;
+		Pow(f, n - 1);
+		cout << f[0][0] << endl;
+	}
+	return 0;
+}
