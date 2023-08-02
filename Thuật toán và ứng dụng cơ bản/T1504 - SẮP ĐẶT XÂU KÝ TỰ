@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int d;
+		cin >> d;
+		string s;
+		cin >> s;
+		int n = s.size();
+		bool ok = 1;
+		unordered_map<char, int> cnt;
+		for (char x : s) {
+			cnt[x]++;
+		}
+		for (auto x : cnt) {
+			if (x.second > (n + 1) / d) {
+				ok = 0;
+			}
+		}
+		if (ok) {
+			cout << 1 << endl;
+		} else {
+			cout << -1 << endl;
+		}
+	}
+	return 0;
+}
