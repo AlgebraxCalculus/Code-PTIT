@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long doi (string s) {
+	long long k = 0;
+	long long p = 1;
+	for (int i = s.size() - 1; i >= 0; i--) {
+		k += int(s[i] - '0') * p;
+		p *= 2;
+	}
+	return k;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		string s1, s2;
+		cin >> s1 >> s2;
+		cout << doi(s1) * doi(s2) << endl;
+	}
+	return 0;
+}
