@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int k;
+		string s;
+		cin >> k >> s;
+		unordered_map<char, long long> mp;
+		for (char x : s) {
+			mp[x]++;
+		}
+		priority_queue<long long> q;
+		for (auto x : mp) {
+			q.push(x.second);
+		}
+		while (k--) {
+			long long tmp = q.top();
+			q.pop();
+			tmp--;
+			q.push(tmp);
+		}
+		long long res = 0;
+		while (!q.empty()) {
+			long long tmp = q.top();
+			q.pop();
+			res += (tmp * tmp);
+		}
+		cout << res << endl;
+	}
+	return 0;
+}
