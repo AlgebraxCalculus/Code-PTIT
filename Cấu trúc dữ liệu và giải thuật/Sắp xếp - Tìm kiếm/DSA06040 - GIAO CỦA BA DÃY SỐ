@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, m, k;
+		cin >> n >> m >> k;
+		long long a[n], b[m], c[k];
+		for (long long &x : a) {
+			cin >> x;
+		}
+		for (long long &x : b) {
+			cin >> x;
+		}
+		for (long long &x : c) {
+			cin >> x;
+		}
+		vector<long long> giao;
+		int i = 0, j = 0, l = 0;
+		while (i < n && j < m && l < k) {
+			if (a[i] == b[j] && b[j] == c[l]) {
+				giao.push_back(a[i]);
+				i++;
+				j++;
+				l++;
+			} else if (a[i] <= b[j] && a[i] <= c[l]) {
+				i++;
+			} else if (b[j] <= a[i] && b[j] <= c[l]) {
+				j++;
+			} else {
+				l++;
+			}
+		}
+		if (giao.size() == 0) {
+			cout << -1 << endl;
+		} else {
+			for (auto x : giao) {
+				cout << x << ' ';
+			}
+		}
+		cout << endl;
+	}
+	return 0;
+}
