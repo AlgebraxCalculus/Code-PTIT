@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, k, a[1005], ok;
+
+void khoitao() {
+	for (int i = 1; i <= n; i++) {
+		a[i] = 0;
+	}
+}
+
+void sinh() {
+	int i = n;
+	while (i >= 1 && a[i] == 1) {
+		a[i] = 0;
+		i--;
+	}
+	if (i == 0) {
+		ok = 0;
+	} else {
+		a[i] = 1;
+	}
+}
+
+int check() {
+	if (a[1] == 0 || a[n] == 1) {
+		return 0;
+	}
+	for (int i = 1; i <= n - 1; i++) {
+		if (a[i] == 1 && a[i + 1] == 1) {
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n;
+		khoitao();
+		ok = 1;
+		while (ok) {
+			if (check()) {
+				for (int i = 1; i <= n; i++) {
+					if (a[i] == 0) {
+						cout << 'A';
+					} else {
+						cout << 'H';
+					}
+				}
+				cout << endl;
+			}
+			sinh();
+		}
+	}
+	return 0;
+}
