@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		vector<char> v;
+		v.push_back(s[0]);
+		for (int i = 1; i < s.size(); i++) {
+			if (s[i] != v.back()) {
+				v.push_back('1');
+			} else {
+				v.push_back('0');
+			}
+		}
+		for (auto x : v) {
+			cout << x;
+		}
+		cout << endl;
+		v.clear();
+	}
+	return 0;
+}
