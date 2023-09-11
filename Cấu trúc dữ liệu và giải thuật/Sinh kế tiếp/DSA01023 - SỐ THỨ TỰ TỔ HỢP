@@ -47,7 +47,7 @@ int main() {
         }
         khoitao();
         ok = 1;
-        cnt = 1; // Initialize cnt to 1
+        cnt = 1;
         while (ok) {
             if (check()) {
                 break;
