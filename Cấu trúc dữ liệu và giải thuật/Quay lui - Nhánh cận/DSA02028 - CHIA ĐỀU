@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, k, s, d, cnt, a[1005];
+
+void Try (int i, int nhom, int sum) {
+	if (nhom > k) {
+		return;
+	}
+	if (i == n + 1) {
+		if (nhom == k) {
+			cnt++;
+		}
+		return;
+	}
+	for (int j = i; j <= n; j++) {
+		sum += a[j];
+		if (sum == d) {
+			Try(j + 1, nhom + 1, 0);
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n >> k;
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i];
+		s += a[i];
+	}
+	if (s % 2 != 0) {
+		cout << 0;
+	} else {
+		d = s / k;
+		cnt = 0;
+		Try(1, 0, 0);
+		cout << cnt;
+	}
+	return 0;
+}
