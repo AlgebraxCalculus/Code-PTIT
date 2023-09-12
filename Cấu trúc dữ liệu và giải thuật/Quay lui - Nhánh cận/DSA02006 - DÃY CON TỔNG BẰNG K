@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, s, a[1005], x[1005], ok;
+
+void Try (int i, int bd, int sum) {
+	for (int j = bd; j <= n; j++) {
+		if (sum + a[j] <= s) {
+			x[i] = a[j];
+			if (sum + a[j] == s) {
+				ok = 1;
+				cout << "[";
+				for (int k = 1; k <= i; k++) {
+					cout << x[k];
+					if (k != i) {
+						cout << ' ';
+					}
+				}
+				cout << "] ";
+			} else {
+				Try(i + 1, j + 1, sum + a[j]);
+			}
+		} else break;
+	}
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> s;
+		for (int i = 1; i <= n; i++) {
+			cin >> a[i];
+		}
+		sort(a + 1, a + n + 1);
+		ok = 0;
+		Try(1, 1, 0);
+		if (ok == 0) {
+			cout << -1;
+		}
+		cout << endl;
+	}
+	return 0;
+}
