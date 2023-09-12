@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, s, ans, a[1005], x[1005];
+
+void Try (int i, int bd, int sum) {
+	for (int j = bd; j <= n; j++) {
+		if (sum + a[j] <= s) {
+			x[i] = a[j];
+			if (sum + a[j] == s) {
+				ans = min(ans, i);
+			} else {
+				Try(i + 1, j + 1, sum + a[j]);
+			}
+		} 
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		memset(x, 0, sizeof(x));
+		cin >> n >> s;
+		for (int i = 1; i <= n; i++) {
+			cin >> a[i];
+		}
+		ans = 1e9;
+		Try(1, 1, 0);
+		if (ans == 1e9) {
+			cout << -1 << endl;
+		} else {
+			cout << ans << endl;
+		}
+	}
+	return 0;
+}
