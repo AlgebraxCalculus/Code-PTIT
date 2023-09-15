@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, s, ans, a[1005], x[1005];
+
+void Try (int i, int bd, int sum) {
+	for (int j = bd; j <= n; j++) {
+		if (sum + a[j] <= s) {
+			x[i] = a[j];
+			if (sum + a[j] == s) {
+				ans = min(ans, i);
+			} else {
+				Try(i + 1, j + 1, sum + a[j]);
+			}
+		} else break;
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n >> s;
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i];
+	}
+	ans = INT_MAX;
+	Try(1, 1, 0);
+	if (ans == INT_MAX) {
+		cout << -1;
+	} else {
+		cout << ans;
+	}
+	return 0;
+}
