@@ -30,7 +30,7 @@ int main() {
 		cin >> a[i];
 		s += a[i];
 	}
-	if (s % 2 != 0) {
+	if (s % k != 0) {
 		cout << 0;
 	} else {
 		d = s / k;
