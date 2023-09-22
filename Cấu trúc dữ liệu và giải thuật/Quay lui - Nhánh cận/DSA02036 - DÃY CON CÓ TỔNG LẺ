@@ -16,18 +16,6 @@ void Try (int i, int bd, int sum) {
 	}
 }
 
-
-bool cmp (vector<int> a, vector<int> b) {
-	int i = 0;
-	while (i < a.size() && i < b.size()) {
-		if (a[i] != b[i]) {
-			return a[i] < b[i];
-		}
-		i++;
-	}
-	return a.size() < b.size();
-}
-
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
@@ -41,7 +29,7 @@ int main() {
 		}
 		sort(a + 1, a + n + 1, greater<int>());
 		Try(1, 1, 0);
-		sort(v.begin(), v.end(), cmp);
+		sort(v.begin(), v.end());
 		for (auto res : v) {
 			for (int x : res) {
 				cout << x << ' ';
