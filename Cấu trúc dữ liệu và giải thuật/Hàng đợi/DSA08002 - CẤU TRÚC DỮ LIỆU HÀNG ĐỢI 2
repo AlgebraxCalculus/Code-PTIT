@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	queue<int> q;
+	while (t--) {
+		string s;
+		while (cin >> s) {
+			if (s == "PUSH") {
+				int tmp;
+				cin >> tmp;
+				q.push(tmp);
+			} else if (s == "PRINTFRONT") {
+				if (q.empty()) {
+					cout << "NONE" << endl;
+				} else {
+					cout << q.front() << endl;
+				}
+			} else {
+				if (!q.empty()) {
+					q.pop();
+				}
+			}
+		}
+	}
+	return 0;
+}
