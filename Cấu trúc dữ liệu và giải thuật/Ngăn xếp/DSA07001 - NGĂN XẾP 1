@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	string s;
+	stack<int> st;
+	while (cin >> s) {
+		if (s == "push") {
+			int tmp;
+			cin >> tmp;
+			st.push(tmp);
+		} else if (s == "pop") {
+			st.pop();
+		} else {
+			if (!st.empty()) {
+				stack<int> st1;
+				while (!st.empty()) {
+					//cout << st.top() << ' ';
+					st1.push(st.top());
+					st.pop();
+				}
+				while (!st1.empty()) {
+					cout << st1.top() << ' ';
+					st.push(st1.top());
+					st1.pop();
+				}
+				cout << endl;
+			} else {
+				cout << "empty" << endl;
+			}
+		}
+	}
+	return 0;
+}
