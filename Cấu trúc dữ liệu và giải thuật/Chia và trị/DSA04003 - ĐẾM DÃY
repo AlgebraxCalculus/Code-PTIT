@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int mod = 123456789;
+
+long long Pow (long long a, long long b) {
+	if (b == 0) {
+		return 1;
+	} 
+	if (b == 1) {
+		return a % mod;
+	}
+	long long x = Pow(a, b / 2);
+	long long y = (x * x) % mod;
+	if (b & 1) {
+		return (a * y) % mod;
+	}
+	return y;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		long long n;
+		cin >> n;
+		cout << Pow(2, n - 1) << endl;
+	}
+	return 0;
+}
