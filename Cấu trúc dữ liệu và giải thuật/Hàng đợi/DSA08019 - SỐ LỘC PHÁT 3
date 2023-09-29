@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		queue<string> q;
+		stack<string> st;
+		q.push("6");
+		q.push("8");
+		while (!q.empty()) {
+			string top = q.front();
+			q.pop();
+			if (top.size() > n) break;
+			st.push(top);
+			q.push(top + "6");
+			q.push(top + "8");
+		}
+		cout << st.size() << endl;
+		while (!st.empty()) {
+			cout << st.top() << ' ';
+			st.pop();
+		}
+		cout << endl;
+	}
+	return 0;
+}
