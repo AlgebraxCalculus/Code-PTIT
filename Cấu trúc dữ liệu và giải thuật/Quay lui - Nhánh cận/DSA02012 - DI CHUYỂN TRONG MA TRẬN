@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, cnt, a[105][105];
+bool used[105][105];
+
+void Try (int i, int j) {
+	if (i == n && j == m) {
+		cnt++;
+		return;
+	}
+	if (i < n && !used[i + 1][j]) {
+		Try(i + 1, j);
+	}
+	if (j < m && !used[i][j + 1]) {
+		Try(i, j + 1);
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m;
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= m; j++) {
+				cin >> a[i][j];
+			}
+		}
+		memset(used, 0, sizeof(used));
+		cnt = 0;
+		Try(1, 1);
+		cout << cnt << endl;
+	}
+	return 0;
+}
