@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, k;
+string s, ans;
+
+void Try (int cnt, string cur) {
+	if (cnt == k) {
+		return;
+	}
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if (cur[i] < cur[j]) {
+				swap(cur[i], cur[j]);
+				if (cur > ans) {
+					ans = cur;
+				}
+				Try(cnt + 1, cur);
+				swap(cur[i], cur[j]);
+			}
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> k >> s;
+		n = s.size();
+		ans = s;
+		Try(0, s);
+		cout << ans << endl;
+	}
+	return 0;
+}
