@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int n;
+	cin >> n;
+	unordered_set<int> se;
+	vector<int> v;
+	for (int i = 0; i < n; i++) {
+		int tmp;
+		cin >> tmp;
+		if (se.find(tmp) == se.end()) {
+			v.push_back(tmp);
+		}
+		se.insert(tmp);
+	}
+	for (int x : v) {
+		cout << x << ' ';
+	}
+	return 0;
+}
