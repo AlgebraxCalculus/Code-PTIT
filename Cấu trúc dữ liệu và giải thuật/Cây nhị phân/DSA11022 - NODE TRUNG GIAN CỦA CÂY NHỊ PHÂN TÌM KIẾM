@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct TreeNode {
+	int data;
+	TreeNode* left;
+	TreeNode* right;
+};
+
+typedef struct TreeNode* node;
+
+node makeNode (int x) {
+	node newNode = new TreeNode();
+	newNode->data = x;
+	newNode->left = newNode->right = NULL;
+	return newNode;
+}
+
+node buildTree (node root, int x) {
+	if (root == NULL) {
+		return makeNode(x);
+	}
+	if (x < root->data) {
+		root->left = buildTree(root->left, x);
+	}
+	if (x > root->data) {
+		root->right = buildTree(root->right, x);
+	}
+	return root;
+}
+
+int InternalNode (node root) {
+	queue<node> q;
+	q.push(root);
+	int cnt = 0;
+	while (!q.empty()) {
+		node top = q.front();
+		q.pop();
+		bool check = 0;
+		if (top->left != NULL) {
+			check = 1;
+			q.push(top->left);
+		}
+		if (top->right != NULL) {
+			check = 1;
+			q.push(top->right);
+		}
+		if (check) {
+			cnt++;
+		}
+	}
+	return cnt;
+} 
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		node root = NULL;
+		int n;
+		cin >> n;
+		for (int i = 0; i < n; i++) {
+			int x;
+			cin >> x;
+			root = buildTree(root, x);
+		}
+		cout << InternalNode(root) << endl;
+	}
+	return 0;
+}
