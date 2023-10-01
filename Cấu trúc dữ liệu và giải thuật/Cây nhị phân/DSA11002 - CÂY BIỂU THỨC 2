@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct TreeNode {
+	string data;
+	TreeNode* left;
+	TreeNode* right;
+};
+
+typedef struct TreeNode* node;
+
+node makeNode (string x) {
+	node newNode = new TreeNode();
+	newNode->data = x;
+	newNode->left = newNode->right = NULL;
+	return newNode;
+}
+
+bool isOperator (string c) {
+	return (c == "+") || (c == "-") || (c == "*") || (c == "/");
+}
+
+int calculate (node root) {
+	if (root == NULL) {
+		return 0;
+	}
+	if (!isOperator(root->data)) {
+		return stoi(root->data);
+	}
+	int left_value = calculate(root->left);
+	int right_value = calculate(root->right);
+	if (root->data == "+") {
+		return left_value + right_value;
+	} else if (root->data == "-") {
+		return left_value - right_value;
+	} else if (root->data == "*") {
+		return left_value * right_value;
+	} else {
+		return left_value / right_value;
+	}
+	return 0;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		vector<string> v(n);
+		for (int i = 0; i < n; i++) {
+			cin >> v[i];
+		}
+		queue<node> q;
+		int i = 0;
+		node root = makeNode(v[i++]);
+		q.push(root);
+		while (!q.empty()) {
+			node top = q.front();
+			q.pop();
+			if (isOperator(top->data)) {
+				top->left = makeNode(v[i++]);
+				top->right = makeNode(v[i++]);
+				q.push(top->left);
+				q.push(top->right);
+			}
+		}
+		cout << calculate(root) << endl;
+	}
+	return 0;
+}
