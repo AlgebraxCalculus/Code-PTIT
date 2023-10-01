@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct TreeNode {
+    int data;
+    TreeNode* left;
+    TreeNode* right;
+};
+
+typedef struct TreeNode* node;
+
+node makeNode(int x) {
+    node newNode = new TreeNode();
+    newNode->data = x;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+void buildTree(node root, int a, int b, char x) {
+    if (root == NULL) {
+        return;
+    }
+    if (root->data == a) {
+        if (x == 'L') {
+            root->left = makeNode(b);
+        } else if (x == 'R') {
+            root->right = makeNode(b);
+        }
+    }
+    buildTree(root->left, a, b, x);
+    buildTree(root->right, a, b, x);
+}
+
+void printLevelOrder(node root) {
+    if (root == NULL) {
+        return;
+    }
+    queue<node> q;
+    q.push(root);
+    while (!q.empty()) {
+        node top = q.front();
+        cout << top->data << ' ';
+        q.pop();
+        if (top->left != NULL) {
+            q.push(top->left);
+        }
+        if (top->right != NULL) {
+            q.push(top->right);
+        }
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        node root = NULL;
+        for (int i = 0; i < n; i++) {
+            int a, b;
+            char x;
+            cin >> a >> b >> x;
+            if (root == NULL) {
+            	root = makeNode(a);
+			}
+            buildTree(root, a, b, x);
+        }
+        printLevelOrder(root);
+        cout << endl;
+    }
+    return 0;
+}
