@@ -37,9 +37,9 @@ void Path (int s, int t) {
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	int t;
-	cin >> t;
-	while (t--) {
+	int test;
+	cin >> test;
+	while (test--) {
 		memset(adj, 0, sizeof(adj));
 		memset(visited, 0, sizeof(visited));
 		memset(parent, 0, sizeof(parent));
