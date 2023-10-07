@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, s, t;
+vector<int> adj[1001];
+bool visited[1001];
+int parent[1001];
+
+void input() {
+	cin >> n >> m >> s >> t;
+	for (int i = 1; i <= n; i++) {
+		adj[i].clear();
+	}
+	for (int i = 0; i < m; i++) {
+		int x, y;
+		cin >> x >> y;
+		adj[x].push_back(y);
+	}
+	memset(visited, 0, sizeof(visited));
+}
+
+void BFS (int u) {
+	queue<int> q;
+	q.push(u);
+	visited[u] = 1;
+	while (!q.empty()) {
+		int v = q.front();
+		q.pop();
+		for (int x : adj[v]) {
+			if (!visited[x]) {
+				q.push(x);
+				visited[x] = 1;
+				parent[x] = v;
+			}
+		}
+	}
+}
+
+void Path (int s, int t) {
+	BFS(s);
+	if (!visited[t]) {
+		cout << -1 << endl;
+	} else {
+		vector<int> path;
+		while (s != t) {
+			path.push_back(t);
+			t = parent[t];
+		}
+		path.push_back(s);
+		reverse(path.begin(), path.end());
+		for (int x : path) {
+			cout << x << ' ';
+		}
+		cout << endl;
+	}
+}
+
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+	int test;
+	cin >> test;
+	while (test--) {
+		input();
+		Path(s, t);
+	}
+	return 0;
+}
