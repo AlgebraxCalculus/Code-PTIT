@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int a[1005][1005];
+
+int check (int a[][1005], int n) {
+	int sum, dem1 = 0, dem2 = 0;
+	for (int u = 1; u <= n; u++) {
+		sum = 0;
+		for (int v = 1; v <= n; v++) {
+			sum += a[u][v];
+		}
+		if (sum % 2 == 0) {
+			dem1++;
+		} else {
+			dem2++;
+		}
+	}
+	if (dem1 == n) {
+		return 2;
+	} else if (dem2 == 2) {
+		return 1;
+	}
+	return 0;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, m;
+		cin >> n >> m;
+		memset(a, 0, sizeof(a));
+		for (int i = 0; i < m; i++) {
+			int x, y;
+			cin >> x >> y;
+			a[x][y] = a[y][x] = 1;
+		}
+		cout << check(a, n) << endl;
+	}
+	return 0;
+}
