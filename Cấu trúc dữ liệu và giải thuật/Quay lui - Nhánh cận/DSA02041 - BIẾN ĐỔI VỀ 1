@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, ans;
+
+void Try (int i, int cnt) {
+	if (i == 1) {
+		ans = min(ans, cnt);
+		return;
+	} 
+	if (cnt < ans) {
+		if (i % 3 == 0) {
+			Try(i / 3, cnt + 1);
+		}
+		if (i % 2 == 0) {
+			Try(i / 2, cnt + 1);
+		}
+		Try(i - 1, cnt + 1);
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n;
+		ans = INT_MAX;
+		Try(n, 0);
+		cout << ans << endl;
+	}
+	return 0;
+}
