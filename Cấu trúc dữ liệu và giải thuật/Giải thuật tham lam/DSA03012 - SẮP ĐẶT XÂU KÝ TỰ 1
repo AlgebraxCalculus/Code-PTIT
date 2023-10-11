@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        string s;
+        cin >> s;
+        int count[26] = {};
+        for (int i = 0; i < s.length(); i++) {
+            count[s[i] - 'a']++;
+        }
+        int max_val = *max_element(count, count + 26);
+        if (s.length() - max_val >= max_val - 1) {
+            cout << 1 << endl;
+        } else {
+            cout << -1 << endl;
+        }
+    }
+    return 0;
+}
