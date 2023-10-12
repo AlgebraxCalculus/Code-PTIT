@@ -54,8 +54,8 @@ int main() {
             cin >> c;
             if (root == NULL) {
             	root = buildTree(root, x);
-			} 
-			root = buildTree(root, y); 
+	    } 
+	    root = buildTree(root, y); 
         }
         printInOrder(root);
         cout << endl;
