@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, s, m;
+		cin >> n >> s >> m;
+		int max_day = s - (s / 7);
+		if (max_day * n < s * m) {
+			cout << -1 << endl;
+		} else {
+			for (int i = 1; i <= max_day; i++) {
+				if (i * n >= s * m) {
+					cout << i << endl;
+					break;
+				}
+			}
+		}
+	}
+	return 0;
+}
