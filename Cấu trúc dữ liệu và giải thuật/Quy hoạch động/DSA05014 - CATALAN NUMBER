@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string tong (string a, string b) {
+	string sum = "";
+	if (a.size() < b.size()) {
+		a.insert(0, b.size() - a.size(), '0');
+	} else if (b.size() < a.size()) {
+		b.insert(0, a.size() - b.size(), '0');
+	}
+	int tmp = 0;
+	for (int i = a.size() - 1; i >= 0; i--) {
+		tmp = (a[i] - '0') + (b[i] - '0') + tmp;
+		sum.insert(0, 1, tmp % 10 + '0');
+		tmp /= 10;
+	}
+	if (tmp > 0) {
+		sum.insert(0, 1, tmp + '0');
+	}
+	return sum;
+}
+
+string solve (char a, string b) {
+	string s = "";
+	int tmp = 0;
+	for (int i = b.size() - 1; i >= 0; i--) {
+		tmp = (a - '0') * (b[i] - '0') + tmp;
+		s.insert(0, 1, tmp % 10 + '0');
+		tmp /= 10;
+	}
+	if (tmp > 0) {
+		s.insert(0, 1, tmp + '0');
+	}
+	return s;
+}
+
+string nhan (string a, string b) {
+	string multiply, res = "";
+	for (int i = a.size() - 1; i >= 0; i--) {
+		multiply = solve(a[i], b);
+		multiply.insert(multiply.size(), a.size() - i - 1, '0');
+		res = tong(res, multiply);
+	}
+	return res;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		string catalan[101];
+		catalan[0] = catalan[1] = "1";
+		for (int i = 2; i <= 100; i++) {
+			catalan[i] = "0";
+			for (int j = 0; j < i; j++) {
+				catalan[i] = tong(catalan[i], nhan(catalan[j], catalan[i - j - 1]));
+			}
+		}
+		cout << catalan[n] << endl;
+	}
+	return 0;
+}
