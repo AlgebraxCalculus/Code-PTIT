@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Job {
+	int id, deadline, profit;
+};
+
+bool cmp (Job a, Job b) {
+	if (a.profit != b.profit) {
+		return a.profit > b.profit;
+	}
+	return a.deadline > b.deadline;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		Job a[n];
+		for (int i = 0; i < n; i++) {
+			cin >> a[i].id >> a[i].deadline >> a[i].profit;
+		}
+		sort(a, a + n, cmp);
+		int cnt = 0, used[1001];
+		long long ans = 0;
+		memset(used, 0, sizeof(used));
+		for (int i = 0; i < n; i++) {
+			int tmp = a[i].deadline;
+			for (int j = tmp - 1; j >= 0; j--) {
+				if (!used[j]) {
+					cnt++;
+					used[j] = 1;
+					ans += a[i].profit;
+					break;
+				}
+			}
+		}
+		cout << cnt << ' ' << ans << endl;
+	}
+	return 0;
+}
