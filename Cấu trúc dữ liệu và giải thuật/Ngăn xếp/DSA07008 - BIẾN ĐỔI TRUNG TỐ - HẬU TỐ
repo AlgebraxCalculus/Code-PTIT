@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool isOperator (char c) {
+	return (c == '+') || (c == '-') || (c == '*') || (c == '/') || (c == '^');
+}
+
+int degree (char c) {
+	if (c == '^') {
+		return 3;
+	} else if ((c == '*') || (c == '/')) {
+		return 2;
+	} else if ((c == '+') || (c == '-')) {
+		return 1;
+	}
+	return 0;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		stack<char> st;
+		string ans = "";
+		for (int i = 0; i < s.size(); i++) {
+			if (isalpha(s[i])) {
+				ans += s[i];
+			} else if (s[i] == '(') {
+				st.push(s[i]);
+			} else if (s[i] == ')') {
+				while (!st.empty() && st.top() != '(') {
+					ans += st.top();
+					st.pop();
+				}
+				st.pop();
+			} else if (isOperator(s[i])) {
+				while (!st.empty() && (degree(st.top()) >= degree(s[i]))) {
+					ans += st.top();
+					st.pop();
+				}
+				st.push(s[i]);
+			}
+		}
+		while (!st.empty()) {
+			if (st.top() != '(') {
+				ans += st.top();
+			}
+			st.pop();
+		}
+		cout << ans << endl;
+	}
+	return 0;
+}
