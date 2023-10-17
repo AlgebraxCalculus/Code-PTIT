@@ -1,0 +1,86 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int degree (char c) {
+	if ((c == '*') || (c == '/')) {
+		return 2;
+	} else if ((c == '+') || (c == '-')) {
+		return 1;
+	}
+	return 0;
+}
+
+long long calculate (long long a, long long b, char c) {
+	switch (c) {
+		case '+':
+			return a + b;
+		case '-':
+			return a - b;
+		case '*':
+			return a * b;
+		case '/':
+			return a / b;
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		stack<long long> val;
+		stack<char> op;
+		for (int i = 0; i < s.size(); i++) {
+			if (s[i] == '(') {
+				op.push(s[i]);
+			} else if (isdigit(s[i])) {
+				long long tmp = 0;
+				while (i < s.size() && isdigit(s[i])) {
+					tmp = (tmp * 10) + (s[i] - '0');
+					i++;
+				}
+				val.push(tmp);
+				i--;
+			} else if (s[i] == ')') {
+				while (!op.empty() && op.top() != '(') {
+					long long v2 = val.top();
+					val.pop();
+					long long v1 = val.top();
+					val.pop();
+					char x = op.top();
+					op.pop();
+					val.push(calculate(v1, v2, x));
+				}
+				if (!op.empty()) {
+					op.pop();
+				}
+			} else {
+				while (!op.empty() && (degree(op.top()) >= degree(s[i]))) {
+					long long v2 = val.top();
+					val.pop();
+					long long v1 = val.top();
+					val.pop();
+					char x = op.top();
+					op.pop();
+					val.push(calculate(v1, v2, x));
+				}
+				op.push(s[i]);
+			}
+		}
+		while (!op.empty()) {
+			long long v2 = val.top();
+			val.pop();
+			long long v1 = val.top();
+			val.pop();
+			char x = op.top();
+			op.pop();
+			val.push(calculate(v1, v2, x));
+		}
+		cout << val.top() << endl;
+	}
+	return 0;
+}
