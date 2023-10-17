@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		stack<int> st;
+		for (int i = s.size() - 1; i >= 0; i--) {
+			if (isdigit(s[i])) {
+				st.push(s[i] - '0');
+			} else {
+				int s1 = st.top();
+				st.pop();
+				int s2 = st.top();
+				st.pop();
+				switch (s[i]) {
+					case '+':
+						st.push(s1 + s2);
+						break;
+					case '-':
+						st.push(s1 - s2);
+						break;
+					case '*':
+						st.push(s1 * s2);
+						break;
+					case '/':
+						st.push(s1 / s2);
+						break;
+				}
+			}
+		}
+		cout << st.top() << endl;
+	}
+	return 0;
+}
