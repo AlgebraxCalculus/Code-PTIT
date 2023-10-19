@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, cnt, res;
+vector<int> adj[1001];
+int low[1001], num[1001], visited[1001];
+stack<int> st;
+
+void Tarjan(int u) {
+    low[u] = num[u] = ++cnt;
+    st.push(u);
+    visited[u] = 1;
+    for (auto v : adj[u]) {
+        if (!num[v]) {
+            Tarjan(v);
+            low[u] = min(low[u], low[v]);
+        } else if (visited[v]) {
+            low[u] = min(low[u], num[v]);
+        }
+    }
+    if (low[u] == num[u]) {
+        res++;
+        while (true) {
+            int tmp = st.top();
+            st.pop();
+            visited[tmp] = 0;
+            if (tmp == u) {
+                break;
+            }
+        }
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        cin >> n >> m;
+        for (int i = 1; i <= n; i++) {
+            adj[i].clear();
+            low[i] = num[i] = visited[i] = 0;
+        }
+        cnt = res = 0;
+        while (!st.empty()) {
+            st.pop();
+        }
+        for (int i = 0; i < m; i++) {
+            int x, y;
+            cin >> x >> y;
+            adj[x].push_back(y);
+        }
+        for (int i = 1; i <= n; i++) {
+            if (!num[i]) {
+                Tarjan(i);
+            }
+        }
+        if (res == 1) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
+        }
+    }
+    return 0;
+}
