@@ -7,7 +7,7 @@ vector<int> adj[1001];
 int low[1001], num[1001], visited[1001];
 stack<int> st;
 
-void Tarjan(int u) {
+void Tarjan (int u) {
     low[u] = num[u] = ++cnt;
     st.push(u);
     visited[u] = 1;
