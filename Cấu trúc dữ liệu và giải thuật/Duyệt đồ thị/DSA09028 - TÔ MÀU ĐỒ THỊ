@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int v, e, m;
+int a[1001][1001];
+int color[1001];
+
+bool check (int u, int clr) {
+	for (int i = 1; i <= v; i++) {
+		if (a[u][i] && clr == color[i]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool Try (int u) {
+	if (u == v + 1) {
+		return true;
+	}
+	for (int clr = 1; clr <= m; clr++) {
+		if (check(u, clr)) {
+			color[u] = clr;
+			if (Try(u + 1)) {
+				return true;
+			}
+			color[u] = 0;
+		}
+	}
+	return false;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> v >> e >> m;
+		memset(a, 0, sizeof(a));
+		memset(color, 0, sizeof(color));
+		for (int i = 0; i < e; i++) {
+			int x, y;
+			cin >> x >> y;
+			a[x][y] = a[y][x] = 1;
+		}
+		if (Try(1)) {
+			cout << "YES" << endl;
+		} else {
+			cout << "NO" << endl;
+		}
+	}
+	return 0;
+}
