@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, k, m;
+set<pair<pair<int, int>, pair<int, int>>> se;
+vector<pair<int, int>> v;
+bool visited[101][101];
+int dx[4] = {-1, 0, 0, 1};
+int dy[4] = {0, -1, 1, 0};
+
+void DFS (pair<int, int> p) {
+    int i = p.first, j = p.second;
+    visited[i][j] = true;
+    for (int l = 0; l < 4; l++) {
+        int i1 = i + dx[l];
+        int j1 = j + dy[l];
+        if (i1 >= 1 && i1 <= n && j1 >= 1 && j1 <= n && !visited[i1][j1] && se.count({{i, j}, {i1, j1}}) == 0) {
+            DFS({i1, j1});
+        }
+    }
+}
+
+int main() {
+    cin >> n >> k >> m;
+    for (int i = 0; i < m; i++) {
+        int u, v, x, y;
+        cin >> u >> v >> x >> y;
+        se.insert({{u, v}, {x, y}});
+        se.insert({{x, y}, {u, v}});
+    }
+    for (int i = 0; i < k; i++) {
+        int a, b;
+        cin >> a >> b;
+        v.push_back({a, b});
+    }
+    int cnt = 0;
+    for (auto it : v) {
+    	memset(visited, false, sizeof(visited));
+        DFS(it);
+        for (auto x : v) {
+	        if (!visited[x.first][x.second]) {
+	            cnt++;
+	        }
+	    }
+    }
+    cout << cnt / 2;
+    return 0;
+}
