@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m;
+vector<int> adj[100001];
+
+void solve() {
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		adj[i].clear();
+	}
+	for (int i = 0; i < m; i++) {
+		int x, y;
+		cin >> x >> y;
+		adj[x].push_back(y);
+		adj[y].push_back(x);
+	}
+	for (int u = 1; u <= n; u++) {
+		for (int v : adj[u]) {
+			if (adj[v].size() != adj[u].size()) {
+				cout << "NO" << endl;
+				return;
+			}
+		}
+	}
+	cout << "YES" << endl;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		solve();
+	}
+	return 0;
+}
