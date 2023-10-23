@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int mod = 1e9 + 7;
+
+struct Matrix {
+	long long a[20][20];
+	int n;
+	Matrix operator * (Matrix other) {
+		Matrix res;
+		res.n = other.n;
+		for (int i = 0; i < res.n; i++) {
+			for (int j = 0; j < res.n; j++) {
+				res.a[i][j] = 0;
+				for (int k = 0; k < res.n; k++) {
+					res.a[i][j] += (a[i][k] * other.a[k][j]);
+					res.a[i][j] %= mod;
+				}
+			}
+		}
+		return res;
+	}
+};
+
+Matrix binPow (Matrix a, int n) {
+	if (n == 1) {
+		return a;
+	}
+	Matrix X = binPow(a, n / 2);
+	if (n & 1) {
+		return X * X * a;
+	} else {
+		return X * X;
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		Matrix X;
+		int k;
+		cin >> X.n >> k;
+		for (int i = 0; i < X.n; i++) {
+			for (int j = 0; j < X.n; j++) {
+				cin >> X.a[i][j];
+			}
+		}
+		Matrix res = binPow(X, k);
+		for (int i = 0; i < res.n; i++) {
+			for (int j = 0; j < res.n; j++) {
+				cout << res.a[i][j] << ' ';
+			}
+			cout << endl;
+		}
+	}
+	return 0;
+}
