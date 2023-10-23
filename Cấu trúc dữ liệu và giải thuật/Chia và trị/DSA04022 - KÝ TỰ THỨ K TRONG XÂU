@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+char solve (int n, long long k) {
+	if (k == (long long) (pow(2, n - 1))) {
+		return (char(n - 1 + 'A'));
+	} else if (k <= (long long) (pow(2, n - 1) - 1)) {
+		return solve(n - 1, k);
+	} else {
+		return solve(n - 1, k - (long long) (pow(2, n - 1)));
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		long long k;
+		cin >> n >> k;
+		cout << solve(n, k) << endl;
+	}
+	return 0;
+}
