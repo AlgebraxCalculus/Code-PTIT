@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct TreeNode {
+	int data;
+	TreeNode* left;
+	TreeNode* right;
+};
+
+typedef struct TreeNode* node;
+
+node makeNode (int x) {
+	node newNode = new TreeNode();
+	newNode->data = x;
+	newNode->left = newNode->right = NULL;
+	return newNode;
+}
+
+void buildTree (node root, int a, int b, char x) {
+	if (root == NULL) {
+		return;
+	}
+	if (root->data == a) {
+		if (x == 'L') {
+			root->left = makeNode(b);
+		} else if (x == 'R') {
+			root->right = makeNode(b);
+		}
+	}
+	buildTree(root->left, a, b, x);
+	buildTree(root->right, a, b, x);
+}
+
+bool check (node a, node b) {
+	if (a == NULL && b == NULL) {
+		return true;
+	}
+	if (a != NULL && b != NULL) {
+		return ((a->data == b->data) && (check(a->left, b->left)) && check(a->right, b->right));
+	}
+	return false;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, m;
+		cin >> n;
+		node root1 = NULL;
+		node root2 = NULL;
+		for (int i = 0; i < n; i++) {
+			int a, b;
+			char x;
+			cin >> a >> b >> x;
+			if (root1 == NULL) {
+				root1 = makeNode(a);
+			}
+			buildTree(root1, a, b, x);
+		}
+		cin >> m;
+		for (int i = 0; i < m; i++) {
+			int a, b;
+			char x;
+			cin >> a >> b >> x;
+			if (root2 == NULL) {
+				root2 = makeNode(a);
+			}
+			buildTree(root2, a, b, x);
+		}
+		cout << check(root1, root2) << endl;
+	}
+	return 0;
+}
