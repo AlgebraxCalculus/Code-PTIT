@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool check (string &s, int l, int r) {
+	while (l < r) {
+		if (s[l - 1] != s[r - 1]) {
+			return false;
+		}
+		l++;
+		r--;
+	}
+	return true;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	string s;
+	cin >> s;
+	int t;
+	cin >> t;
+	while (t--) {
+		char x;
+		cin >> x;
+		if (x == 'q') {
+			int l, r;
+			cin >> l >> r;
+			if (check(s, l, r)) {
+				cout << "YES" << endl;
+			} else {
+				cout << "NO" << endl;
+			}
+		} else {
+			int index;
+			char c;
+			cin >> index >> c;
+			s[index - 1] = c;
+		}
+	}
+	return 0;
+}
