@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> adj[1001];
+bool visited[1001];
+int parent[1001];
+
+void DFS (int u) {
+	visited[u] = 1;
+	for (int v : adj[u]) {
+		if (!visited[v]) {
+			parent[v] = u;
+			DFS(v);
+		}
+	}
+}
+
+int Node_Distance (int s, int t) {
+	memset(visited, 0, sizeof(visited));
+	memset(parent, 0, sizeof(parent));
+	vector<int> path;
+	DFS(s);
+	while (t != s) {
+		path.push_back(t);
+		t = parent[t];
+	}
+	path.push_back(s);
+	return path.size() - 1;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int test;
+	cin >> test;
+	while (test--) {
+		int n;
+		cin >> n;
+		for (int i = 1; i <= n; i++) {
+			adj[i].clear();
+		}
+		for (int i = 0; i < n - 1; i++) {
+			int x, y;
+			cin >> x >> y;
+			adj[x].push_back(y);
+			adj[y].push_back(x);
+		}
+		int q;
+		cin >> q;
+		while (q--) {
+			int s, t;
+			cin >> s >> t;
+			cout << Node_Distance(s, t) << endl;
+		}
+	}
+	return 0;
+}
