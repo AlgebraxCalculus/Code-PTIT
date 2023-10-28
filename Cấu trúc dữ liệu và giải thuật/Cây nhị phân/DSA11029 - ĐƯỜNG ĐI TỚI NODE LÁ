@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> adj[1001];
+bool visited[1001];
+int parent[1001];
+
+void DFS (int u) {
+	visited[u] = 1;
+	for (int v : adj[u]) {
+		if (!visited[v]) {
+			parent[v] = u;
+			DFS(v);
+		}
+	}
+}
+
+void Print_Path (int s, int t) {
+	vector<int> path;
+	DFS(s);
+	while (t != s) {
+		path.push_back(t);
+		t = parent[t];
+	}	
+	path.push_back(s);
+	reverse(path.begin(), path.end());
+	for (int x : path) {
+		cout << x << ' ';
+	}
+	cout << endl;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		for (int i = 1; i <= n; i++) {
+			adj[i].clear();
+		}
+		for (int i = 0; i < n - 1; i++) {
+			int x, y;
+			cin >> x >> y;
+			adj[x].push_back(y);
+		}
+		memset(visited, 0, sizeof(visited));
+		memset(parent, 0, sizeof(parent));
+		for (int i = 1; i <= n; i++) {
+			if (adj[i].size() == 0) {
+				Print_Path(1, i);
+			}
+		}
+	}
+	return 0;
+}
