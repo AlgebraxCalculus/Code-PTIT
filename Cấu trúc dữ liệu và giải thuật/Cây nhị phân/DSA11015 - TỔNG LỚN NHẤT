@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int res;
+
+struct TreeNode {
+	int data;
+	TreeNode* left;
+	TreeNode* right;
+};
+
+typedef struct TreeNode* node;
+
+node makeNode (int x) {
+	node newNode = new TreeNode();
+	newNode->data = x;
+	newNode->left = newNode->right = NULL;
+	return newNode;
+}
+
+void buildTree (node root, int a, int b, char x) {
+	if (root == NULL) {
+		return;
+	}
+	if (root->data == a) {
+		if (x == 'L') {
+			root->left = makeNode(b);
+		} else if (x == 'R') {
+			root->right = makeNode(b);
+		}
+	}
+	buildTree(root->left, a, b, x);
+	buildTree(root->right, a, b, x);
+}
+
+int maximum_sum (node root) {
+	if (root == NULL) {
+		return 0;
+	}
+	int left_sum = maximum_sum(root->left);
+	int right_sum = maximum_sum(root->right);
+	if (root->left == NULL && root->right == NULL) {
+		return root->data;
+	}
+	if (root->left == NULL) {
+		return root->data + right_sum;
+	}
+	if (root->right == NULL) {
+		return root->data + left_sum;
+	}
+	if (root->left != NULL && root->right != NULL) {
+		res = max(res, left_sum + right_sum + root->data);
+		return max(left_sum, right_sum) + root->data;
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		node root = NULL;
+		for (int i = 0; i < n; i++) {
+			int a, b;
+			char x;
+			cin >> a >> b >> x;
+			if (root == NULL) {
+				root = makeNode(a);
+			}
+			buildTree(root, a, b, x);
+		}
+		res = INT_MIN;
+		maximum_sum(root);
+		cout << res << endl;
+	}
+	return 0;
+}
