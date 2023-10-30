@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long Binary_To_Decimal (string s) {
+	long long ans = 0, tmp = 0;
+	for (int i = s.size() - 1; i >= 0; i--) {
+		ans += (s[i] - '0') * (long long) pow(2, tmp);
+		tmp++;
+	}
+	return ans;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		string s1, s2;
+		cin >> s1 >> s2;
+		cout << Binary_To_Decimal(s1) * Binary_To_Decimal(s2) << endl;
+	}
+	return 0;
+}
