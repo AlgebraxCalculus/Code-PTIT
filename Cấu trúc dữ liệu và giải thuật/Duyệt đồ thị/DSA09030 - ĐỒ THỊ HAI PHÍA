@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> adj[1001];
+int color[1001];
+
+bool BFS (int u) {
+	queue<int> q;
+	q.push(u);
+	color[u] = 0;
+	while (!q.empty()) {
+		int v = q.front();
+		q.pop();
+		for (int x : adj[v]) {
+			if (color[x] == -1) {
+				color[x] = 1 - color[v];
+				q.push(x);
+			} else {
+				if (color[x] == color[v]) {
+					return false;
+				}
+			}
+		}
+	}
+	return true;
+}
+
+void solve() {
+	int n, m;
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		adj[i].clear();
+	}
+	for (int i = 0; i < m; i++) {
+		int x, y;
+		cin >> x >> y;
+		adj[x].push_back(y);
+		adj[y].push_back(x);
+	}
+	memset(color, -1, sizeof(color));
+	for (int i = 1; i <= m; i++) {
+		if (color[i] == -1) {
+			if (!BFS(i)) {
+				cout << "NO" << endl;
+				return;
+			}
+		}
+	}
+	cout << "YES" << endl;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		solve();
+	}
+	return 0;
+}
