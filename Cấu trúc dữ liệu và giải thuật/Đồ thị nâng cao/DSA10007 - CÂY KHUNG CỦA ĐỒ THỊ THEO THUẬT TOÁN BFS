@@ -12,7 +12,7 @@ struct Edge {
 
 void BFS (int u) {
 	int sc = 0;
-	Edge T[1001]; //Mang canh
+	Edge T[1001];
 	queue<int> q;
 	q.push(u);
 	visited[u] = true;
