@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, u;
+vector<int> adj[1001];
+bool visited[1001];
+
+//Tao canh 
+struct Edge {
+	int dau, cuoi;
+};
+
+//Tao cay khung tu BFS
+void BFS (int u) {
+	int sc = 0;
+	Edge T[1001]; //Mang canh
+	queue<int> q;
+	q.push(u);
+	visited[u] = true;
+	while (!q.empty()) {
+		int v = q.front();
+		q.pop();
+		for (int x : adj[v]) {
+			if (!visited[x]) {
+				T[sc].dau = v;
+				T[sc].cuoi = x;
+				sc++;
+				visited[x] = true;
+				q.push(v);
+				q.push(x);
+			}
+		}
+	}
+	//Do thi khong lien thong => khong co cay khung
+	if (sc < n - 1) {
+		cout << -1 << endl;
+	} else {
+		for (int i = 0; i < sc; i++) {
+			cout << T[i].dau << ' ' << T[i].cuoi << endl;
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m >> u;
+		//Xoa du lieu testcase truoc
+		memset(visited, 0, sizeof(visited));
+		for (int i = 1; i <= n; i++) {
+			adj[i].clear();
+		}
+		//Tao danh sach ke
+		for (int i = 0; i < m; i++) {
+			int x, y;
+			cin >> x >> y;
+			adj[x].push_back(y);
+			adj[y].push_back(x);
+		}
+		BFS(u);
+	}
+	return 0;
+}
