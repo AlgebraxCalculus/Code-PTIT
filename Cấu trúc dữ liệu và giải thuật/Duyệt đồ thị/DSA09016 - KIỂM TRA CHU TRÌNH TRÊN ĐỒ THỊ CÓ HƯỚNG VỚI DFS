@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> adj[1001];
+int color[1001];
+
+bool DFS (int u) {
+	color[u] = 1;
+	for (int v : adj[u]) {
+		if (!color[v]) {
+			if (DFS(v)) return true;
+		} else if (color[v] == 1) return true;
+	}
+	color[u] = 2;
+	return false;
+}
+
+void solve() {
+	int n, m;
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		adj[i].clear();
+	}
+	for (int i = 0; i < m; i++) {
+		int x, y;
+		cin >> x >> y;
+		adj[x].push_back(y);
+	}
+	memset(color, 0, sizeof(color));
+	for (int i = 1; i <= n; i++) {
+		if (!color[i]) {
+			if (DFS(i)) {
+				cout << "YES" << endl;
+				return;	
+			}
+		}
+	}
+	cout << "NO" << endl;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		solve();
+	}
+	return 0;
+}
