@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<pair<int, int>> edge;
+int n, m, parent[1001], size[1001];
+
+void make_set() {
+	for (int i = 1; i <= n; i++) {
+		parent[i] = i;
+		size[i] = 1;
+	}
+}
+
+int find (int v) {
+	if (parent[v] == v) {
+		return v;
+	}
+	return parent[v] = find(parent[v]);
+}
+
+bool Union (int a, int b) {
+	a = find(a);
+	b = find(b);
+	if (a == b) {
+		return true;
+	}
+	if (a[size] < b[size]) {
+		swap(a, b);
+	}
+	parent[b] = a;
+	size[a] += size[b];
+	return false;
+}
+
+void solve() {
+	cin >> n >> m;
+	edge.clear();
+	memset(parent, 0, sizeof(parent));
+	memset(size, 0, sizeof(size));
+	for (int i = 0; i < m; i++) {
+		int x, y;
+		cin >> x >> y;
+		edge.push_back({x, y});
+	}
+	make_set();
+	for (int i = 0; i < m; i++) {
+		if (Union(edge[i].first, edge[i].second)) {
+			cout << "YES" << endl;
+			return;
+		}
+	}
+	cout << "NO" << endl;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		solve();
+	}
+	return 0;
+}
