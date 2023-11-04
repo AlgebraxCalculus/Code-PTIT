@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, cnt;
+int low[1001], num[1001];
+bool visited[1001], isAP[1001];
+vector<int> adj[1001];
+
+void Tarjan (int u, int parent) { 
+    int children = 0;
+    visited[u] = 1;
+    low[u] = num[u] = ++cnt;
+    for (int v : adj[u]) {
+        if (!visited[v]) {
+            children++; 
+            Tarjan(v, u); 
+            low[u] = min(low[u], low[v]);
+            if (parent != -1 && low[v] >= num[u]) {
+                isAP[u] = true; 
+            }
+        } else if (v != parent) {
+            low[u] = min(low[u], num[v]);
+        }
+    }
+    if (parent == -1 && children > 1) { 
+        isAP[u] = true; 
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        cin >> n >> m;
+        for (int i = 1; i <= n; i++) {
+            adj[i].clear();
+        }
+        for (int i = 0; i < m; i++) {
+            int x, y;
+            cin >> x >> y;
+            adj[x].push_back(y);
+            adj[y].push_back(x);
+        }
+        memset(low, 0, sizeof(low));
+        memset(num, 0, sizeof(num));
+        memset(visited, 0, sizeof(visited));
+        memset(isAP, 0, sizeof(isAP));
+        cnt = 0;
+        for (int i = 1; i <= n; i++) {
+            if (!visited[i]) {
+                Tarjan(i, -1);
+            }
+        }
+        for (int i = 1; i <= n; i++) {
+            if (isAP[i]) {
+                cout << i << ' ';
+            }
+        }
+        cout << endl;
+    }
+    return 0;
+}
