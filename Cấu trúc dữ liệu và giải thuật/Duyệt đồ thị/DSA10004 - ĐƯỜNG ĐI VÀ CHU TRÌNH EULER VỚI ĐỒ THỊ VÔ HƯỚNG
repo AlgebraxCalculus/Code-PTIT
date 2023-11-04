@@ -2,28 +2,7 @@
 
 using namespace std;
 
-int a[1005][1005];
-
-int check (int a[][1005], int n) {
-	int sum, dem1 = 0, dem2 = 0;
-	for (int u = 1; u <= n; u++) {
-		sum = 0;
-		for (int v = 1; v <= n; v++) {
-			sum += a[u][v];
-		}
-		if (sum % 2 == 0) {
-			dem1++;
-		} else {
-			dem2++;
-		}
-	}
-	if (dem1 == n) {
-		return 2;
-	} else if (dem2 == 2) {
-		return 1;
-	}
-	return 0;
-}
+vector<int> adj[1001];
 
 int main() {
 	ios_base::sync_with_stdio(0);
@@ -33,13 +12,30 @@ int main() {
 	while (t--) {
 		int n, m;
 		cin >> n >> m;
-		memset(a, 0, sizeof(a));
+		for (int i = 1; i <= n; i++) {
+			adj[i].clear();
+		}
 		for (int i = 0; i < m; i++) {
 			int x, y;
 			cin >> x >> y;
-			a[x][y] = a[y][x] = 1;
+			adj[x].push_back(y);
+			adj[y].push_back(x);
 		}
-		cout << check(a, n) << endl;
+		int even_degree = 0, odd_degree = 0;
+		for (int i = 1; i <= n; i++) {
+			if (adj[i].size() % 2 == 0) {
+				even_degree++;
+			} else {
+				odd_degree++;
+			}
+		}
+		if (even_degree == n) {
+			cout << 2 << endl;
+		} else if (odd_degree == 2) {
+			cout << 1 << endl;
+		} else {
+			cout << 0 << endl;
+		}
 	}
 	return 0;
 }
