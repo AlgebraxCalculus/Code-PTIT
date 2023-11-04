@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, cnt;
+int low[1001], num[1001];
+bool visited[1001];
+vector<int> adj[1001];
+set<pair<int, int>> bridge;
+
+void Tarjan (int u, int parent) {
+	low[u] = num[u] = ++cnt;
+	visited[u] = 1;
+	for (int v : adj[u]) {
+		if (v == parent) continue;
+		if (!visited[v]) {
+			Tarjan(v, u); 
+			low[u] = min(low[u], low[v]);
+			if (low[v] > num[u]) {
+				int x = u;
+				int y = v;
+				if (x > y) {
+					swap(x, y);
+				}
+				bridge.insert({x, y});
+			}
+		} else {
+			low[u] = min(low[u], num[v]);
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m;
+		for (int i = 1; i <= n; i++) {
+			adj[i].clear();
+		}
+		bridge.clear();
+		for (int i = 0; i < m; i++) {
+			int x, y;
+			cin >> x >> y;
+			adj[x].push_back(y);
+			adj[y].push_back(x);
+		}
+		cnt = 0;
+		memset(low, 0, sizeof(low));
+		memset(num, 0, sizeof(num));
+		memset(visited, 0, sizeof(visited));
+		for (int i = 1; i <= n; i++) {
+			if (!visited[i]) {
+				Tarjan(i, -1); 
+			}
+		}
+		for (auto it : bridge) {
+			cout << it.first << ' ' << it.second << ' ';
+		}
+		cout << endl;
+	}
+	return 0;
+}
