@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> adj[1001];
+bool visited[1001];
+
+void DFS (int u) {
+	visited[u] = 1;
+	for (int v : adj[u]) {
+		if (!visited[v]) {
+			DFS(v);
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, m;
+		cin >> n >> m;
+		for (int i = 1; i <= n; i++) {
+			adj[i].clear();
+		}
+		for (int i = 0; i < m; i++) {
+			int x, y;
+			cin >> x >> y;
+			adj[x].push_back(y);
+			adj[y].push_back(x);
+		}
+		int res = 0;
+		memset(visited, 0, sizeof(visited));
+		for (int i = 1; i <= n; i++) {
+			int tplt = 0;
+			memset(visited, 0, sizeof(visited));
+			visited[i] = 1;
+			for (int j = 1; j <= n; j++) {
+				if (!visited[j]) {
+					tplt++;
+					DFS(j);
+				}
+			}
+			if (tplt > 1) {
+				cout << i << ' ';
+			}
+		}
+		cout << endl;
+	}
+	return 0;
+}
