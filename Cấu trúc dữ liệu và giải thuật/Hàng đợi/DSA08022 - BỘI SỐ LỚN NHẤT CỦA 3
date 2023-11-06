@@ -1,0 +1,91 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int solve() {
+	int n;
+	cin >> n;
+	int a[n];
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	sort(a, a + n);
+	int sum = 0, top = 0;
+	vector<int> ans(n);
+	queue<int> q0, q1, q2;
+	for (int i = 0; i < n; i++) {
+		sum += a[i];
+		if (a[i] % 3 == 0) {
+			q0.push(a[i]);
+		} else if (a[i] % 3 == 1) {
+			q1.push(a[i]);
+		} else {
+			q2.push(a[i]);
+		}
+	}
+	if (sum % 3 == 1) {
+		if (!q1.empty()) {
+			q1.pop();
+		} else {
+			if (!q2.empty()) {
+				q2.pop();
+			} else {
+				return 0; 
+			}
+			if (!q2.empty()) {
+				q2.pop();
+			} else {
+				return 0; 
+			}
+		}
+	} else if (sum % 3 == 2) {
+		if (!q2.empty()) {
+			q2.pop();
+		} else {
+			if (!q1.empty()) {
+				q1.pop();
+			} else {
+				return 0; 
+			}
+			if (!q1.empty()) {
+				q1.pop();
+			} else {
+				return 0; 
+			}
+		}
+	}
+	while (!q0.empty()) {
+		ans[top++] = q0.front();
+		q0.pop();
+	}
+	while (!q1.empty()) {
+		ans[top++] = q1.front();
+		q1.pop();
+	}
+	while (!q2.empty()) {
+		ans[top++] = q2.front();
+		q2.pop();
+	}
+	sort(ans.begin(), ans.end(), greater<int>());
+	if (top == 0) {
+		return 0; 
+	}
+	for (int i = 0; i < top; i++) {
+		cout << ans[i];
+	}
+	cout << endl;
+	return 1; 
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		if (solve() == 0) {
+			cout << -1 << endl;
+		}
+	}
+	return 0;
+}
