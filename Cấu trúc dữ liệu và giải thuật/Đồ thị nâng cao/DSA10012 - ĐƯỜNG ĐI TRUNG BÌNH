@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, a[101][101];
+
+void Floyd() {
+	for (int k = 1; k <= n; k++) {
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				a[i][j] = min(a[i][j], a[i][k] + a[k][j]);
+			}
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m;
+		memset(a, 0, sizeof(a));
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				if (i == j) {
+					a[i][j] = 0;
+				} else {
+					a[i][j] = 1e9;
+				}
+			}
+		}
+		for (int i = 0; i < m; i++) {
+			int x, y;
+			cin >> x >> y;
+			a[x][y] = 1;
+		}
+		int sum = 0, edge = 0;
+		Floyd();
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				if (a[i][j] != 1e9 && a[i][j] != 0) {
+					edge++;
+					sum += a[i][j];
+				}
+			}
+		}
+		double ans = (1.0 * sum) / edge;
+		cout << fixed << setprecision(2) << ans << endl;
+	}
+	return 0;
+}
