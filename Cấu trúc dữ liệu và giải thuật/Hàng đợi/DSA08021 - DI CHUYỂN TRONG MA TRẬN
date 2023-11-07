@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, a[1001][1001];
+bool visited[1001][1001];
+
+int minStep (int a[][1001]) {
+	memset(visited, 0, sizeof(visited));
+	int ans = 0;
+	queue<pair<int, int>> q;
+	q.push({1, 1});
+	while (!q.empty()) {
+		int size = q.size();
+		while (size--) {
+			pair<int, int> top = q.front();
+			q.pop();
+			int i = top.first, j = top.second;
+			if (visited[i][j]) continue;
+			if (i == n && j == m) {
+				return ans;
+			}
+			visited[i][j] = 1;
+			if (i + a[i][j] <= n) {
+				q.push({i + a[i][j], j}); 
+			}
+			if (j + a[i][j] <= m) {
+				q.push({i, j + a[i][j]}); 
+			}
+		}
+		ans++;
+	}
+	return -1;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m;
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= m; j++) {
+				cin >> a[i][j];
+			}
+		}
+		cout << minStep(a) << endl;
+	}
+	return 0;
+}
