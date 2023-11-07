@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, a[501][501], b[501][501];
+
+int maximum_rectangle_matrix (int row[], int n) {
+	stack<int> st;
+	int res = -1e9;
+	int i = 0;
+	while (i < n) {
+		if (st.empty() || row[i] >= row[st.top()]) {
+			st.push(i++);
+		} else {
+			int top1 = st.top();
+			st.pop();
+			if (st.empty()) {
+				res = max(res, row[top1] * i); 
+			} else {
+				res = max(res, row[top1] * (i - st.top() - 1)); 
+			}
+		}
+	}
+	while (!st.empty()) {
+		int top2 = st.top();
+		st.pop();
+		if (st.empty()) {
+			res = max(res, row[top2] * i); 
+		} else {
+			res = max(res, row[top2] * (i - st.top() - 1)); 
+		}
+	}
+	return res;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				cin >> a[i][j];
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (i == 0) {
+					b[i][j] = a[i][j];
+				} else {
+					if (a[i][j]) {
+						b[i][j] = b[i - 1][j] + a[i][j];
+					} else {
+						b[i][j] = 0;
+					}
+				}
+			}
+		}
+		int ans = -1e9;
+		for (int i = 0; i < n; i++) {
+			ans = max(ans, maximum_rectangle_matrix(b[i], m));
+		}
+		cout << ans << endl;
+	}
+	return 0;
+}
