@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int prime[10001];
+
+void init() {
+	for (int i = 0; i <= 10000; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 0;
+	for (int i = 2; i <= sqrt(10000); i++) {
+		if (prime[i]) {
+			for (int j = i * i; j <= 10000; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+}
+
+int solve (int s, int t) {
+	queue<pair<int, int>> q;
+	set<int> se;
+	q.push({s, 0});
+	while (!q.empty()) {
+		pair<int, int> top = q.front();
+		q.pop();
+		if (top.first == t) {
+			return top.second;
+		}
+		for (int i = 0; i < 4; i++) {
+			string tmp = to_string(top.first);
+			for (int j = 0; j <= 9; j++) {
+				tmp[i] = j + '0';
+				if (prime[stoi(tmp)] && se.find(stoi(tmp)) == se.end() && stoi(tmp) > 1000) {
+					q.push({stoi(tmp), top.second + 1});
+					se.insert(stoi(tmp));
+				}
+			}
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int s, t;
+		cin >> s >> t;
+		init();
+		cout << solve(s, t) << endl;
+	}
+	return 0;
+}
