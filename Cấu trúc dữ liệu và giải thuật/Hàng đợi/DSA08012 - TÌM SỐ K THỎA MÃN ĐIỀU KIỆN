@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> v;
+
+bool check (string s) {
+	map<int, int> mp;
+	for (int i = 0; i < s.size(); i++) {
+		if (mp.find(s[i] - '0') != mp.end()) {
+			return false;
+		} else {
+			mp[s[i] - '0'] = 1;
+		}
+	}
+	return true;
+}
+
+void init() {
+	queue<string> q;
+	q.push("1");
+	q.push("2");
+	q.push("3");
+	q.push("4");
+	q.push("5");
+	v.push_back(0);
+	while (!q.empty()) {
+		string top = q.front();
+		q.pop();
+		if (top.size() == 6) continue;
+		if (check(top)) {
+			v.push_back(stoi(top));
+			for (int i = 0; i <= 5; i++) {
+				string x = to_string(i);
+				string tmp = top + x;
+				q.push(tmp);
+			}
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	init();
+	while (t--) {
+		int l, r;
+		cin >> l >> r;
+		int ans1 = lower_bound(v.begin(), v.end(), l) - v.begin();
+		int ans2 = upper_bound(v.begin(), v.end(), r) - v.begin() - 1;
+		cout << ans2 - ans1 + 1 << endl;
+	}
+	return 0;
+}
