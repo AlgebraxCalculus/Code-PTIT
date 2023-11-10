@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+set<string> se;
+
+int solve (string a, string b) {
+	queue<pair<string, int>> q;
+	q.push({a, 1});
+	se.erase(a);
+	while (!q.empty()) {
+		pair<string, int> top = q.front();
+		q.pop();
+		if (top.first == b) {
+		    return top.second;
+		}
+		for (int i = 0; i < a.size(); i++) {
+			string s = top.first;
+			for (char j = 'A'; j <= 'Z'; j++) {
+				s[i] = j;
+				if (se.find(s) != se.end()) {
+					q.push({s, top.second + 1});
+					se.erase(s);
+				}
+			}
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		string a, b;
+		cin >> n >> a >> b;
+		for (int i = 0; i < n; i++) {
+			string s;
+			cin >> s;
+			se.insert(s);
+		}
+		cout << solve(a, b) << endl;
+	}
+	return 0;
+}
