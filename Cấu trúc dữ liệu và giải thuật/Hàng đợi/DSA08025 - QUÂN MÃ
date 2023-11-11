@@ -18,8 +18,7 @@ int BFS (string a, string b) {
 			char x = top.first[0] + dx[k];
 			char y = top.first[1] + dy[k];
 			if (x >= 'a' && x <= 'h' && y >= '1' && y <= '8') {
-				string tmp = {x, y};
-				q.push({tmp, top.second + 1});
+				q.push({{x, y}, top.second + 1});
 			}
 		}
 	}
