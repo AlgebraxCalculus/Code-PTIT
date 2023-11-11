@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t; 
+	while (t--) {
+		string s;
+		cin >> s;
+		stack<char> st; 
+		for (int i = 0; i < s.size(); i++) {
+			if (s[i] == ']') {
+				string tmp;
+				while (!st.empty() && st.top() != '[') {
+					tmp = st.top() + tmp; 
+					st.pop();
+				}
+				st.pop(); 
+				string tmp_num;
+				while (!st.empty() && isdigit(st.top())) {
+					tmp_num = st.top() + tmp_num; 
+					st.pop();
+				}
+				int cnt = 0;
+				for (int j = 0; j < tmp_num.size(); j++) {
+					cnt = cnt * 10 + (tmp_num[j] - '0');
+				}
+				if (cnt == 0) {
+					cnt++;
+				}
+				string repeat; 
+				for (long long k = 0; k < cnt; k++) {
+					repeat += tmp;
+				}
+				for (char x : repeat) {
+					st.push(x); 
+				}
+			} else {
+				st.push(s[i]);
+			}
+		}
+		string res;
+		while (!st.empty()) {
+			res = st.top() + res;
+			st.pop();
+		}
+		cout << res << endl;
+	}
+	return 0;
+}
