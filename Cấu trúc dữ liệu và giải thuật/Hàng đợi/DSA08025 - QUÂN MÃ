@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int dx[8] = {2, 1, -1, -2, -2, -1, 1, 2};
+int dy[8] = {1, 2, 2, 1, -1, -2, -2, -1};
+
+int BFS (string a, string b) {
+	queue<pair<string, int>> q; 
+	q.push({a, 0}); 
+	while (!q.empty()) {
+		pair<string, int> top = q.front();
+		q.pop();
+		if (top.first == b) {
+			return top.second;
+		}
+		for (int k = 0; k < 8; k++) {
+			char x = top.first[0] + dx[k];
+			char y = top.first[1] + dy[k];
+			if (x >= 'a' && x <= 'h' && y >= '1' && y <= '8') {
+				string tmp = {x, y};
+				q.push({tmp, top.second + 1});
+			}
+		}
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		string a, b;
+		cin >> a >> b;
+		cout << BFS(a, b) << endl;
+	}
+	return 0;
+}
