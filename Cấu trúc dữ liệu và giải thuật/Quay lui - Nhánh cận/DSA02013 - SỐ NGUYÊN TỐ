@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> prime, subset;
+set<vector<int>> ans;
+
+bool isPrime (int n) {
+    if (n < 2) {
+        return false;
+    }
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void Display() {
+	cout << ans.size() << endl;
+    for (auto v : ans) {
+        for (int x : v) {
+            cout << x << ' ';
+        }
+        cout << endl;
+    }
+}
+
+void primeSum (int total, int n, int s, int index) {
+    if (total == s && subset.size() == n) {
+        ans.insert(subset);
+        return;
+    }
+    if (total > s || index == prime.size()) {
+        return;
+    }
+    subset.push_back(prime[index]);
+    primeSum(total + prime[index], n, s, index + 1);
+    subset.pop_back();
+    primeSum(total, n, s, index + 1);
+}
+
+void initPrime (int n, int s, int p) {
+    for (int i = p + 1; i <= s; i++) {
+        if (isPrime(i)) {
+            prime.push_back(i);
+        }
+    }
+    if (prime.size() < n) {
+        return;
+    }
+    primeSum(0, n, s, 0);
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, p, s;
+        cin >> n >> p >> s;
+        initPrime(n, s, p);
+        Display();
+        prime.clear();
+        subset.clear();
+        ans.clear();
+    }
+    return 0;
+}
