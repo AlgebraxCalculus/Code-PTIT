@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<string> ans;
+
+bool isValidString (string s) {
+    if (s.size() < 2) return false;
+    int cnt = 0;
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] == '(') {
+            cnt++;
+        } else if (s[i] == ')') {
+            cnt--;
+        }
+        if (cnt < 0) {
+            return false;
+        }
+    }
+    return cnt == 0;
+}
+
+void solve (string s) {
+    if (s.empty()) return;
+    unordered_set<string> se;
+    queue<string> q;
+    q.push(s);
+    se.insert(s);
+    bool flag = false;
+    ans.clear();
+    while (!q.empty()) {
+        string top = q.front();
+        q.pop();
+        if (isValidString(top)) {
+            ans.push_back(top);
+            flag = true;
+        }
+        if (flag) continue;
+        for (int i = 0; i < top.size(); i++) {
+            if (top[i] != '(' && top[i] != ')') continue;
+            string tmp = top.substr(0, i) + top.substr(i + 1);
+            if (se.find(tmp) == se.end()) {
+                q.push(tmp);
+                se.insert(tmp);
+            }
+        }
+    }
+
+    if (ans.size() == 0) {
+        cout << -1 << endl;
+    } else {
+    	sort(ans.begin(), ans.end());
+        for (string x : ans) {
+            cout << x << ' ';
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        string s;
+        cin >> s;
+        solve(s);
+    }
+    return 0;
+}
