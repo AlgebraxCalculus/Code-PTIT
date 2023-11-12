@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string s(8, '0');
+vector<string> v;
+
+void Try (int i) {
+	for (int j = 0; j <= 1; j++) {
+		if (j == 0) {
+			s[i] = '0';
+		} else {
+			s[i] = '2';
+		}
+		if (i == 7) {
+			int day = stoi(s.substr(0, 2));
+			int month = stoi(s.substr(2, 2));
+			int year = stoi(s.substr(4));
+			if ((day >= 1 && day <= 31) && (month >= 1 && month <= 12) && (year >= 2000)) {
+				string tmp = s;
+				tmp.insert(2, 1, '/');
+				tmp.insert(5, 1, '/');
+				v.push_back(tmp);
+			}
+		} else {
+			Try(i + 1);
+		}
+	}
+}
+
+int main() {
+	Try(0);
+	sort(v.begin(), v.end());
+	for (string x : v) {
+		cout << x << endl;
+	}
+	return 0;
+}
