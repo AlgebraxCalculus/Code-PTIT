@@ -18,7 +18,6 @@ int main() {
 			if (!st.empty()) {
 				stack<int> st1;
 				while (!st.empty()) {
-					//cout << st.top() << ' ';
 					st1.push(st.top());
 					st.pop();
 				}
