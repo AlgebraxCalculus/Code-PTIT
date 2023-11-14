@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int mod = 1e9 + 7;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, k;
+		cin >> n >> k;
+		long long a[n];
+		for (int i = 1; i <= n; i++) {
+			cin >> a[i];
+		}
+		long long F[k + 1] = {0}; 
+		F[0] = 1;
+		for (int i = 1; i <= k; i++) {
+			for (int j = 1; j <= n; j++) {
+				if (i >= a[j]) {
+					F[i] += F[i - a[j]];
+					F[i] %= mod;
+				}
+			}
+		}
+		cout << F[k] << endl;
+	}
+	return 0;
+}
