@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct TreeNode {
+	int data;
+	TreeNode* left;
+	TreeNode* right;
+};
+
+typedef struct TreeNode* node;
+
+node makeNode (int x) {
+	node newNode = new TreeNode();
+	newNode->data = x;
+	newNode->left = newNode->right = NULL;
+	return newNode;
+}
+
+void sum_right_leaf_nodes (node root, int &sum) {
+	if (root == NULL) {
+		return;
+	}
+	if (root->right != NULL) {
+		if (root->right->left == NULL && root->right->right == NULL) {
+			sum += root->right->data;
+		}
+	}
+	sum_right_leaf_nodes(root->left, sum);
+	sum_right_leaf_nodes(root->right, sum);
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        node root = NULL;
+        map<int, node> mp;
+        for (int i = 0; i < n; i++) {
+            int a, b;
+            char x;
+            cin >> a >> b >> x;
+            if (mp.find(a) == mp.end()) {
+            	root = makeNode(a);
+            	if (x == 'L') {
+            		root->left = makeNode(b);
+            		mp[b] = root->left;
+				} else if (x == 'R') {
+					root->right = makeNode(b);
+					mp[b] = root->right;
+				}
+				mp[a] = root;
+			} else {
+				if (x == 'L') {
+					mp[a]->left = makeNode(b);
+					mp[b] = mp[a]->left;
+				} else if (x == 'R') {
+					mp[a]->right = makeNode(b);
+					mp[b] = mp[a]->right;
+				}
+			}
+        }
+        int sum = 0;
+        sum_right_leaf_nodes(root, sum);
+        cout << sum << endl;
+    }
+    return 0;
+}
