@@ -10,23 +10,25 @@ int main() {
 	while (t--) {
 		int n, s;
 		cin >> n >> s;
-		int a[n];
-		for (int i = 0; i < n; i++) {
+		int a[n + 1];
+		for (int i = 1; i <= n; i++) {
 			cin >> a[i];
 		}
-		bool dp[s + 1];
-		for (int i = 0; i <= s; i++) {
-			dp[i] = false;
+		bool dp[n + 1][s + 1];
+		memset(dp, false, sizeof(dp));
+		for (int i = 0; i <= n; i++) {
+			dp[i][0] = true; 
 		}
-		dp[0] = true;
-		for (int i = 0; i < n; i++) {
-			for (int j = s; j >= a[i]; j--) {
-				if (dp[j - a[i]]) {
-					dp[j] = true;
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= s; j++) {
+				if (j >= a[i]) {
+					dp[i][j] = dp[i - 1][j] || dp[i - 1][j - a[i]];
+				} else {
+					dp[i][j] = dp[i - 1][j];
 				}
 			}
 		}
-		if (dp[s]) {
+		if (dp[n][s]) {
 			cout << "YES" << endl;
 		} else {
 			cout << "NO" << endl;
