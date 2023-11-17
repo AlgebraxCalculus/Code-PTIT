@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		int n = s.size();
+		s = "@" + s;
+		bool dp[n + 1][n + 1];
+		memset(dp, false, sizeof(dp));
+		for (int i = 1; i <= n; i++) {
+			dp[i][i] = true;
+		}
+		int ans = 1;
+		for (int length = 2; length <= n; length++) {
+			for (int i = 1; i <= n - length + 1; i++) {
+				int j = i + length - 1;
+				if (length == 2 && (s[i] == s[j])) {
+					dp[i][j] = true;
+				} else {
+					if (dp[i + 1][j - 1] && (s[i] == s[j])) {
+						dp[i][j] = true;
+					}
+				}
+				if (dp[i][j]) {
+					ans = max(ans, length);
+				}
+			}
+		}
+		cout << ans << endl;
+	}
+	return 0;
+}
