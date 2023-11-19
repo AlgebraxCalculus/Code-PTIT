@@ -32,7 +32,7 @@ int main() {
 					cnt++;
 				}
 				string repeat; 
-				for (long long k = 0; k < cnt; k++) {
+				for (int k = 0; k < cnt; k++) {
 					repeat += tmp;
 				}
 				for (char x : repeat) {
