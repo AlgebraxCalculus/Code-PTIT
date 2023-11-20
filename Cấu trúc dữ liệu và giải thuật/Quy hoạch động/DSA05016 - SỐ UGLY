@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        long long ugly[n];
+        int i2 = 0, i3 = 0, i5 = 0;
+        ugly[0] = 1;
+        int next_of_2 = 2, next_of_3 = 3, next_of_5 = 5;
+        for (int i = 1; i < n; i++) {
+            ugly[i] = min(next_of_2, min(next_of_3, next_of_5));
+            if (ugly[i] == next_of_2) {
+                next_of_2 = ugly[++i2] * 2;
+            }
+            if (ugly[i] == next_of_3) {
+                next_of_3 = ugly[++i3] * 3;
+            }
+            if (ugly[i] == next_of_5) {
+                next_of_5 = ugly[++i5] * 5;
+            }
+        }
+        cout << ugly[n - 1] << endl;
+    }
+    return 0;
+}
