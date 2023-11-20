@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int solve (string s, int n) {
+	int F[n + 1];
+	F[0] = 1;
+	F[1] = 1;
+	if (s[0] == '0') {
+		return 0;
+	} 
+	for (int i = 2; i <= n; i++) {
+		F[i] = 0;
+		if (s[i - 1] > '0') {
+			F[i] = F[i - 1];
+		} 
+		if (s[i - 2] == '1' || (s[i - 2] == '2' && s[i - 1] < '7')) {
+			F[i] += F[i - 2]; 
+		}
+	}
+	return F[n];
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		int n = s.size();
+		cout << solve(s, n) << endl;
+	}
+	return 0;
+}
