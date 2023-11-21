@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n;
+int c[20][20];
+int dp[1 << 20][20]; 
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				cin >> c[i][j];
+			}
+		}
+		int ans = 1e9;
+		for (int mask = 1; mask < (1 << n); mask++) {
+			for (int v = 0; v < n; v++) {
+				if (((mask >> v) & 1) == 0) {
+					int new_mask = mask | (1 << v);
+					dp[new_mask][v] = 1e9;
+					for (int u = 0; u < n; u++) {
+						if ((mask >> u) & 1) {
+							dp[new_mask][v] = min(dp[new_mask][v], dp[mask][u] + c[u][v]);
+						}
+					}
+				}
+				
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			ans = min(ans, dp[(1 << n) - 1][i]);
+		}
+		cout << ans << endl;
+	}
+	return 0;
+}
