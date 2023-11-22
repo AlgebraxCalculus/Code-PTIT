@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+int a[25][25];
+int dp[(1 << 20) + 5][21];
+
+int solve (int mask, int i) {
+    if (mask == 0) {
+        return 0;
+    }
+    if (dp[mask][i] != -1) {
+        return dp[mask][i];
+    }
+    int res = 0;
+    for (int j = 0; j < n; j++) {
+        if (mask & (1 << j)) {
+            int pre_mask = mask ^ (1 << j);
+            res = max(res, solve(pre_mask, i - 1) + a[i][j]);
+        }
+    }
+    return dp[mask][i] = res;
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        cin >> n;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cin >> a[i][j];
+            }
+        }
+        memset(dp, -1, sizeof(dp));
+        cout << solve((1 << n) - 1, n - 1) << endl;
+    }
+    return 0;
+}
