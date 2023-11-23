@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+set<pair<int, int>> dp[100001];
+
+bool check (int mid, int x, int y) {
+    auto it = dp[mid].lower_bound({x, INT_MIN});
+    if (it == dp[mid].begin()) {
+        return false;
+    }
+    it--;
+    return (*it).second < y;
+}
+
+void Add (int l, int x, int y) {
+    auto it = dp[l].lower_bound({x, INT_MIN});
+    auto tmp = it;
+    while (it != dp[l].end() && (*it).second > y) {
+        it++;
+    }
+    dp[l].erase(tmp, it);
+    dp[l].insert({x, y});
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int n;
+    cin >> n;
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        int x, y;
+        cin >> x >> y;
+        Add(0, INT_MIN, INT_MIN);
+        int l = 0, r = ans;
+        while (l <= r) {
+            int mid = (l + r) / 2;
+            if (check(mid, x, y)) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        if (ans == l - 1) {
+            ans = l;
+        }
+        Add(l, x, y);
+    }
+    cout << ans;
+    return 0;
+}
