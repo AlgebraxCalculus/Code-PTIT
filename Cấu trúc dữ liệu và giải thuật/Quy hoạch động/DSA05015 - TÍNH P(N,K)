@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int mod = 1e9 + 7;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, k;
+		cin >> n >> k;
+		long long res = 1;
+		if (k > n) {
+			res = 0;
+		} else if (k < n) {
+			for (int i = n - k + 1; i <= n; i++) {
+				res *= i;
+				res %= mod;
+			}
+		}
+		cout << res << endl;
+	}
+	return 0;
+}
