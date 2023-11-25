@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int mod = 1e9 + 7;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, k;
+		cin >> n >> k;
+		long long dp[n + 1][k + 1]; 
+		//Tao co so
+		memset(dp, 0, sizeof(dp));
+		for (int i = 1; i <= 9; i++) {
+			dp[1][i] = 1; 
+		}
+		for (int i = 1; i <= n; i++) {
+			for (int digit = 0; digit <= 9; digit++) {
+				for (int j = 0; j <= k; j++) {
+					if (j >= digit) {
+						dp[i][j] += dp[i - 1][j - digit]; 
+						dp[i][j] %= mod;
+					}
+					
+				}
+			}
+		}
+		cout << dp[n][k] << endl;
+	}
+	return 0;
+}
