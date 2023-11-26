@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, k;
+int a[1005];
+long long d[20][1005];
+vector<pair<int, int>> adj[1005];
+long long dp[(1 << 15) + 5][17];
+
+void Dijsktra (int s) {
+    for (int i = 1; i <= 1000; i++) {
+        d[s][i] = 1e18;
+    }
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    d[s][a[s]] = 0; 
+    pq.push({0, a[s]});
+    while (!pq.empty()) {
+        pair<int, int> top = pq.top();
+        pq.pop();
+        int kc = top.first, u = top.second;
+        if (kc > d[s][u]) continue;
+        for (auto it : adj[u]) {
+            int v = it.first, w = it.second;
+            if (d[s][u] + w < d[s][v]) {
+                d[s][v] = d[s][u] + w; 
+                pq.push({d[s][v], v});
+            }
+        }
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m >> k;
+    for (int i = 1; i <= k; i++) {
+        cin >> a[i];
+    }
+    for (int i = 0; i < m; i++) {
+        int x, y, w;
+        cin >> x >> y >> w;
+        adj[x].push_back({y, w});
+    }
+    a[0] = 1;
+    Dijsktra(0);
+    for (int i = 1; i <= k; i++) {
+        Dijsktra(i);
+    }
+    memset(dp, 0, sizeof(dp));
+    for (int i = 1; i <= k; i++) {
+    	  dp[(1 << (i - 1))][i - 1] = d[0][a[i]];
+	  }
+    long long ans = 1e18;
+    for (int mask = 1; mask < (1 << k); mask++) {
+        for (int v = 0; v < k; v++) {
+            if (((mask >> v) & 1) == 0) {
+                int new_mask = mask | (1 << v);
+                dp[new_mask][v] = 1e18;
+                for (int u = 0; u < k; u++) {
+                    if ((mask >> u) & 1) {
+                        dp[new_mask][v] = min(dp[new_mask][v], dp[mask][u] + d[u + 1][a[v + 1]]);
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < k; i++) {
+        ans = min(ans, dp[(1 << k) - 1][i] + d[i + 1][1]);
+    }
+    if (ans == 1e18) {
+        cout << -1;
+    } else {
+        cout << ans;
+    }
+    return 0;
+}
