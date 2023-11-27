@@ -15,7 +15,6 @@ int main() {
 			st.push(i + 1); 
 			if (i == s.size() || s[i] == 'I') { 
 				while (!st.empty()) {
-					//cout << st.top() << endl;
 					res += to_string(st.top());
 					st.pop();
 				}
