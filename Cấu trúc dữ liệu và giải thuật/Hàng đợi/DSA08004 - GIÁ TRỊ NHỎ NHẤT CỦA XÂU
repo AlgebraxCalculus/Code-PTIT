@@ -27,7 +27,7 @@ void solve() {
 	}
 	long long ans = 0;
 	while (!pq.empty()) {
-	  long long x = pq.top();
+	  	long long x = pq.top();
 		ans += x * x;
 		pq.pop();
 	}
