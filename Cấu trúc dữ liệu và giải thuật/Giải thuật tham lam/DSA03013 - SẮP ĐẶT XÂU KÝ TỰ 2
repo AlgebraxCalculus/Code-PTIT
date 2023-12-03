@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int d;
+		string s;
+		cin >> d >> s;
+		int cnt[256] = {0};
+		for (char x : s) {
+			cnt[x]++;
+		}
+		int max_fre = *max_element(cnt, cnt + 256);
+		if ((max_fre - 1) * (d - 1) > s.size() - max_fre) {
+			cout << -1 << endl;
+		} else {
+			cout << 1 << endl;
+		}
+	}
+	return 0;
+}
