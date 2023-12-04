@@ -1,0 +1,95 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m;
+bool visited[501][501];
+char path[501][501];
+pair<int, int> st, en;
+int dx[4] = {0, -1, 0, 1};
+int dy[4] = {-1, 0, 1, 0};
+
+void BFS (int a, int b, int x, int y) {
+	if (a == x && b == y) {
+		cout << "YES" << endl;
+		return;
+	}
+	queue<pair<pair<int, int>, int>> q;
+	q.push({{a, b}, 0});
+	while (!q.empty()) {
+		auto top = q.front();
+		q.pop();
+		int x1 = top.first.first;
+		int y1 = top.first.second;
+		int cnt = top.second;
+		if (cnt >= 3) break;
+		for (int i = x1; i < n; i++) {
+			if (path[i][y1] == '*') break;
+			if (!visited[i][y1]) {
+				if (i == x && y1 == y) {
+					cout << "YES" << endl;
+					return;
+				}
+				q.push({{i, y1}, cnt + 1});
+				visited[i][y1] = true;
+			}
+		}
+		for (int i = x1; i >= 0; i--) {
+			if (path[i][y1] == '*') break;
+			if (!visited[i][y1]) {
+				if (i == x && y1 == y) {
+					cout << "YES" << endl;
+					return;
+				}
+				q.push({{i, y1}, cnt + 1});
+				visited[i][y1] = true;
+			}
+		}
+		for (int j = y1; j < m; j++) {
+			if (path[x1][j] == '*') break;
+			if (!visited[x1][j]) {
+				if (x1 == x && j == y) {
+					cout << "YES" << endl;
+					return;
+				}
+				q.push({{x1, j}, cnt + 1});
+				visited[x1][j] = true;
+			}
+		}
+		for (int j = y1; j >= 0; j--) {
+			if (path[x1][j] == '*') break;
+			if (!visited[x1][j]) {
+				if (x1 == x && j == y) {
+					cout << "YES" << endl;
+					return;
+				}
+				q.push({{x1, j}, cnt + 1});
+				visited[x1][j] = true;
+			}
+		}
+	}
+	cout << "NO" << endl;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				cin >> path[i][j];
+				if (path[i][j] == 'S') {
+					st = {i, j};
+				} else if (path[i][j] == 'T') {
+					en = {i, j};
+				}
+			}
+		}
+		memset(visited, false, sizeof(visited));
+		BFS(st.first, st.second, en.first, en.second);
+	}
+	return 0;
+}
