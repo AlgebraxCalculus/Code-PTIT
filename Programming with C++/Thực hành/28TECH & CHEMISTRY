@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	map<string, int> mp;
+	for (int i = 1; i <= 10; i++) {
+		string x;
+		int n;
+		cin >> x >> n;
+		mp[x] = n;
+	}
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		int ans = 0, i = 0;
+		while (i < s.size()) {
+			string nguyen_to = "";
+			while (isalpha(s[i])) {
+				nguyen_to += s[i];
+				i++;
+			}
+			int frequency = 0;
+			while (isdigit(s[i])) {
+				frequency = frequency * 10 + (s[i] - '0');
+				i++;
+			}
+			ans += mp[nguyen_to] * frequency;
+		}
+		cout << ans << endl;
+	}
+	return 0;
+}
