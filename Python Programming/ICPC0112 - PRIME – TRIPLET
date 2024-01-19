@@ -1,0 +1,20 @@
+from math import *
+
+def prime_check(n):
+    if n < 2:
+        return 0
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return 0
+    return 1
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        n = int(input())
+        cnt = 0
+        for j in range(2, n - 5):
+            if prime_check(j) and prime_check(j + 6):
+                if prime_check(j + 2) or prime_check(j + 4):
+                    cnt += 1
+        print(cnt)
