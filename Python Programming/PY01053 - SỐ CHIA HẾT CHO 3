@@ -1,0 +1,15 @@
+def num_sum(n):
+    s = 0
+    while n != 0:
+        s += (n % 10)
+        n //= 10
+    return s
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        n = int(input())
+        if num_sum(n) % 3 == 0:
+            print('YES')
+        else:
+            print('NO')
