@@ -15,7 +15,7 @@ def num_sum(n):
         n //= 10
     return s
 
-if __name__ in '__main__':
+if __name__ == '__main__':
     t = int(input())
     for i in range(t):
         n = int(input())
