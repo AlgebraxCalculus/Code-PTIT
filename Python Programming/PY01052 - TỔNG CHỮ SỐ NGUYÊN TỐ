@@ -1,0 +1,25 @@
+from math import *
+
+def isprime(n):
+    if n < 2:
+        return 0
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return 0
+    return 1
+
+def num_sum(n):
+    s = 0
+    while n != 0:
+        s += n % 10
+        n //= 10
+    return s
+
+if __name__ in '__main__':
+    t = int(input())
+    for i in range(t):
+        n = int(input())
+        if (isprime(num_sum(n))):
+            print('YES')
+        else:
+            print('NO')
