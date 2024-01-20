@@ -1,0 +1,32 @@
+from math import *
+
+def isprime(n):
+    if n < 2:
+        return 0
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return 0
+    return 1
+
+def prime_num(n):
+    for i in n:
+        if i != '2' and i != '3' and i != '5' and i != '7':
+            return 0
+    return 1
+
+def num_sum(n):
+    s = 0
+    while n != 0:
+        s += (n % 10)
+        n //= 10
+    return isprime(s)
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        n = input()
+        s = n[::-1]
+        if isprime(int(n)) and isprime(int(s)) and prime_num(n) and num_sum(int(n)):
+            print('Yes')
+        else:
+            print('No')
