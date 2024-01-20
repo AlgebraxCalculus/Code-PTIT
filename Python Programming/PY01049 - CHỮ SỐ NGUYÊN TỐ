@@ -1,0 +1,25 @@
+from math import *
+
+def isprime(n):
+    if n < 2:
+        return 0
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return 0
+    return 1
+
+def check(n):
+    prime_num = 0
+    for i in n:
+        if i == '2' or i == '3' or i == '5' or i == '7':
+            prime_num += 1
+    return isprime(len(n)) and prime_num > len(n) - prime_num
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        n = input()
+        if check(n):
+            print('YES')
+        else:
+            print('NO')
