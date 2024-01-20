@@ -1,0 +1,14 @@
+def check(s):
+    for i in s:
+        if i != '4' and i != '7':
+            return 0
+    return 1
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        s = input()
+        if check(s):
+            print('YES')
+        else:
+            print('NO')
