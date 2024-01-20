@@ -1,0 +1,7 @@
+t = int(input())
+for i in range(t):
+    n, d = map(int, input().split())
+    a = list(map(int, input().split()))
+    for j in a[d:] + a[:d]:
+        print(j, end = ' ')
+    print()
