@@ -1,0 +1,14 @@
+def check(s):
+    for i in range(0, len(s) - 1):
+        if int(s[i]) > int(s[i + 1]):
+            return 0
+    return 1
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        s = input()
+        if check(s):
+            print('YES')
+        else:
+            print('NO')
