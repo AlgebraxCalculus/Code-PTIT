@@ -1,0 +1,20 @@
+from math import *
+
+def isprime(n):
+    if n < 2:
+        return 0
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return 0
+    return 1
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        n = input()
+        s1 = n[:3]
+        s2 = n[-3:]
+        if isprime(int(s1)) and isprime(int(s2)):
+            print('YES')
+        else:
+            print('NO')
