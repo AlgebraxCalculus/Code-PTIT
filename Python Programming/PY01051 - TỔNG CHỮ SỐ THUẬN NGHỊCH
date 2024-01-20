@@ -1,0 +1,16 @@
+def check(n):
+    s = 0
+    while n != 0:
+        s += (n % 10)
+        n //= 10
+    s = str(s)
+    return len(s) > 1 and s == s[::-1]
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        n = int(input())
+        if check(n):
+            print('YES')
+        else:
+            print('NO')
