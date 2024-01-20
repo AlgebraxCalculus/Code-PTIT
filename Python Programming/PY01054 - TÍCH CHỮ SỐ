@@ -1,0 +1,13 @@
+def num_mul(n):
+    res = 1
+    while n != 0:
+        res *= (n % 10)
+        n //= 10
+    return res
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        n = input()
+        n = n.replace('0', '1')
+        print(num_mul(int(n)))
