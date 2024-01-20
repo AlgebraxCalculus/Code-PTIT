@@ -1,0 +1,23 @@
+from math import *
+
+def check1(n):
+    s = 0
+    while n != 0:
+        s += (n % 10)
+        n //= 10
+    return s % 10 == 0
+
+def check2(s):
+    for i in range(0, len(s) - 1):
+        if abs(int(s[i]) - int(s[i + 1])) != 2:
+            return 0
+    return 1
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(t):
+        s = input()
+        if check1(int(s)) and check2(s):
+            print('YES')
+        else:
+            print('NO')
