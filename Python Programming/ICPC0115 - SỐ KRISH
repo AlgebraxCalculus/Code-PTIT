@@ -1,0 +1,22 @@
+def giaithua(n):
+    res = 1
+    for i in range(1, n + 1):
+        res *= i
+    return res
+
+def check(n):
+    m = n
+    s = 0
+    while n != 0:
+        s += giaithua(n % 10)
+        n //= 10
+    return s == m
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        if check(n):
+            print('Yes')
+        else:
+            print('No')
