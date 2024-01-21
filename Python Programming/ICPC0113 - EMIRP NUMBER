@@ -1,0 +1,21 @@
+from math import *
+
+prime = [1] * 1000001
+
+def sang():
+    prime[0] = prime[1] = 0
+    for i in range(2, 1000):
+        if prime[i]:
+            for j in range(i * i, 1000001, i):
+                prime[j] = 0
+
+if __name__ == '__main__':
+    sang()
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        for i in range(2, n):
+            dao = int(str(i)[::-1])
+            if dao > i and dao < n and prime[i] == 1 and prime[dao] == 1:
+                print(i, dao, end = ' ')
+        print()
