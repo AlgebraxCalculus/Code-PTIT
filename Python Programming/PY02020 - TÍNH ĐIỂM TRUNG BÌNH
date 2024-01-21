@@ -1,0 +1,13 @@
+n = int(input())
+a = list(map(float, input().split()))
+max_num = max(a)
+min_num = min(a)
+cnt1, cnt2, s = 0, 0, 0
+for i in a:
+    s += i
+    if i == max_num:
+        cnt1 += 1
+    if i == min_num:
+        cnt2 += 1
+tmp = s - (max_num * cnt1) - (min_num * cnt2)
+print('%.2f' % (tmp / (n - cnt1 - cnt2)))
