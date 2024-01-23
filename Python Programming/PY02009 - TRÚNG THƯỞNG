@@ -1,0 +1,18 @@
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = []
+    for i in range(n):
+        a.append(int(input()))
+    cnt = {}
+    max_fre, ans = 0, 1001
+    for i in range(len(a)):
+        if a[i] in cnt:
+            cnt[a[i]] += 1
+        else:
+            cnt[a[i]] = 1
+        max_fre = max(max_fre, cnt[a[i]])
+    for i in range(len(a)):
+        if cnt[a[i]] == max_fre:
+            ans = min(ans, a[i])
+    print(ans)
