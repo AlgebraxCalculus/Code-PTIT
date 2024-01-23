@@ -1,0 +1,14 @@
+def check(s):
+    for i in s:
+        if i != '6' and i != '8':
+            return 0
+    if '888' in s or s[0] != '6':
+            return 0
+    return 1
+
+if __name__ == '__main__':
+    s = input()
+    if check(s):
+        print('YES')
+    else:
+        print('NO')
