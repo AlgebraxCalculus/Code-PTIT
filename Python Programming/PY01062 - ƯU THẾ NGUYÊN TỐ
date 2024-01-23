@@ -1,0 +1,29 @@
+from math import *
+
+def isprime(n):
+    if n < 2:
+        return 0
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return 0
+    return 1
+
+def check(n):
+    if not isprime(len(n)):
+        return 0
+    cnt = 0
+    for i in n:
+        if i == '2' or i == '3' or i == '5' or i == '7':
+            cnt += 1
+    if cnt < len(n) - cnt:
+        return 0
+    return 1
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        n = input()
+        if check(n):
+            print('YES')
+        else:
+            print('NO')
