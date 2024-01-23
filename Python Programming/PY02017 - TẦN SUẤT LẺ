@@ -1,0 +1,14 @@
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    m = {}
+    for i in range(len(a)):
+        if a[i] in m:
+            m[a[i]] += 1
+        else:
+            m[a[i]] = 1
+    for i in range(len(a)):
+        if m[a[i]] % 2 == 1:
+            print(a[i])
+            m[a[i]] = 0
