@@ -1,0 +1,32 @@
+from math import *
+
+def isprime(n):
+    if n < 2:
+        return 0
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return 0
+    return 1
+
+def check1(n):
+    for i in range(len(n)):
+        if i % 2 != int(n[i]) % 2:
+            return 0
+    return 1
+
+def check2(n):
+    s = 0
+    while n != 0:
+        s += (n % 10)
+        n //= 10
+    return isprime(s)
+
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        if check1(str(n)) and check2(n):
+            print('YES')
+        else:
+            print('NO')
