@@ -1,0 +1,10 @@
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    a.sort()
+    cnt = 0
+    for i in range(0, len(a) - 1):
+        if a[i + 1] - a[i] > 1:
+            cnt += a[i + 1] - a[i] - 1
+    print(cnt)
