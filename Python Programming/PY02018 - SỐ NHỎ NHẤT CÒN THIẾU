@@ -1,0 +1,10 @@
+n = int(input())
+a = list(map(int, input().split()))
+ok = 0
+for i in range(1, n + 1):
+    if i not in a:
+        print(i)
+        ok = 1
+        break
+if ok == 0:
+    print(n + 1)
