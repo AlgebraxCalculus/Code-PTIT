@@ -1,0 +1,14 @@
+t = int(input())
+for _ in range(t):
+    s = input()
+    sum, mul = 0, 0
+    for i in range(len(s)):
+        if i % 2 == 1:
+            sum += int(s[i])
+        else:
+            if int(s[i]) != 0:
+                if mul == 0:
+                    mul = int(s[i])
+                else:
+                    mul *= int(s[i])
+    print(mul, sum)
