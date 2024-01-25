@@ -1,0 +1,19 @@
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    cnt = {}
+    max_fre, ans = 0, 0
+    for i in a:
+        if i in cnt:
+            cnt[i] += 1
+        else:
+            cnt[i] = 1
+    for i in a:
+        if cnt[i] > max_fre:
+            max_fre = cnt[i]
+            ans = i
+    if max_fre * 2 > n:
+        print(ans)
+    else:
+        print('NO')
