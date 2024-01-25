@@ -1,0 +1,8 @@
+cnt = 10
+s = set()
+while cnt > 0:
+    a = list(map(int, input().split()))
+    cnt -= len(a)
+    for i in a:
+        s.add(i % 42)
+print(len(s))
