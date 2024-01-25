@@ -1,0 +1,16 @@
+def doicoso(n, b):
+    res = ''
+    while n != 0:
+        m = n % b
+        if m >= 10:
+            res = chr(m + 55) + res
+        else:
+            res = str(m) + res
+        n //= b
+    return res
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        n, b = map(int, input().split())
+        print(doicoso(n, b))
