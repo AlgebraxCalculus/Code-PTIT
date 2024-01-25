@@ -1,0 +1,4 @@
+s = input()
+n = int(s, 2)
+ans = oct(n)
+print(ans[2:])
