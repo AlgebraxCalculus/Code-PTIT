@@ -1,0 +1,17 @@
+def check(s):
+    s1 = s.split('.')
+    if len(s1) < 4:
+        return 0
+    for i in s1:
+        if i < '0' or i > '255':
+            return 0
+    return 1
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        s = input()
+        if check(s):
+            print('YES')
+        else:
+            print('NO')
