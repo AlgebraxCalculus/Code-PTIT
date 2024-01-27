@@ -1,0 +1,8 @@
+t = int(input())
+for i in range(t):
+    s1 = sorted(input())
+    s2 = sorted(input())
+    if s1 == s2:
+        print('Test ' + str(i + 1) + ': YES')
+    else:
+        print('Test ' + str(i + 1) + ': NO')
