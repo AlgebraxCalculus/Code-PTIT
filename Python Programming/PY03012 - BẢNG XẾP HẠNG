@@ -1,0 +1,10 @@
+n = int(input())
+a, b = [], []
+for i in range(n):
+    s = input()
+    c, t = map(int, input().split())
+    a = [s, c, t]
+    b.append(a)
+b.sort(key = lambda x: (-x[1], x[2], x[0]))
+for i in b:
+    print(*i)
