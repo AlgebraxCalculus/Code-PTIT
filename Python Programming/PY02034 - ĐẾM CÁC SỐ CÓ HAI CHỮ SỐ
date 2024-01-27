@@ -1,0 +1,12 @@
+s = input()
+a = []
+cnt = {}
+for i in range(0, len(s) - 1, 2):
+    a.append(int(s[i] + s[i + 1]))
+for i in a:
+    if i in cnt:
+        cnt[i] += 1
+    else:
+        cnt[i] = 1
+for key, value in cnt.items():
+    print(key, value)
