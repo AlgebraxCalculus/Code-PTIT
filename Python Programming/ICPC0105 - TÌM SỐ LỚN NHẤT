@@ -1,0 +1,16 @@
+def max_num(s):
+    num, res = 0, 0
+    for i in range(len(s)):
+        if s[i] >= '0' and s[i] <= '9':
+            num = num * 10 + int(s[i])
+        else:
+            res = max(res, num)
+            num = 0
+    return res
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        s = input()
+        s += '@'
+        print(max_num(s))
