@@ -1,0 +1,12 @@
+def solve(n):
+    for i in range(1000):
+        if n % 7 == 0:
+            return n
+        n = n + int(str(n)[::-1])
+    return -1
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        print(solve(n))
