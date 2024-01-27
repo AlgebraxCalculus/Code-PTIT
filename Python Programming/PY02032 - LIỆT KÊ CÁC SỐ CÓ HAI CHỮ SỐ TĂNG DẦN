@@ -1,0 +1,6 @@
+s = input()
+a = set()
+for i in range(0, len(s) - 1, 2):
+    a.add(int(s[i] + s[i + 1]))
+for i in sorted(a):
+    print(i, end = ' ')
