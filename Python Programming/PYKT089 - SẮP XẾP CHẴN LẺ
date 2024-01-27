@@ -1,0 +1,20 @@
+n = int(input())
+a, chan, le = [], [], []
+while len(a) < n:
+    for x in input().split():
+        a.append(int(x))
+for i in a:
+    if i % 2 == 0:
+        chan.append(i)
+    else:
+        le.append(i)
+chan.sort()
+le.sort(reverse = True)
+j1, j2 = 0, 0
+for i in a:
+    if i % 2 == 0:
+        print(chan[j1], end=' ')
+        j1 += 1
+    else:
+        print(le[j2], end=' ')
+        j2 += 1
