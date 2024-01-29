@@ -1,0 +1,27 @@
+def cnt(t, s):
+    if t == 'Xe_con':
+        if s == '5':
+            return 10000
+        else:
+            return 15000
+    if t == 'Xe_tai':
+        return 20000
+    if t == 'Xe_khach':
+        if s == '29':
+            return 50000
+        else:
+            return 70000
+
+if __name__ == '__main__':
+    n = int(input())
+    mp = {}
+    for i in range(n):
+        a = input().split()
+        if a[3] == 'IN':
+            if a[4] in mp:
+                mp[a[4]] += cnt(a[1], a[2])
+            else:
+                mp[a[4]] = cnt(a[1], a[2])
+    mp = sorted(mp.items(), key = lambda x: x[0])
+    for key, value in mp:
+        print(str(key) + ':', value)
