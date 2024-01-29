@@ -1,0 +1,25 @@
+from math import *
+
+def isprime(n):
+    if n < 2:
+        return 0
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return 0
+    return 1
+
+if __name__ == '__main__':
+    n = int(input())
+    a = list(map(int, input().split()))
+    b = []
+    for i in a:
+        if i not in b:
+            b.append(i)
+    ok = 0
+    for i in range(len(b)):
+        if isprime(sum(b[:(i + 1)])) and isprime(sum(b[(i + 1):])):
+            ok = 1
+            print(i)
+            break
+    if ok == 0:
+        print('NOT FOUND')
