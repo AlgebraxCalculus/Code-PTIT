@@ -1,0 +1,20 @@
+check = [1] * (10 ** 6 + 1)
+prime = []
+
+def sang():
+    check[0] = check[1] = 0
+    for i in range(2, 1000):
+        for j in range(i * i, 1000001, i):
+            check[j] = 0
+    for k in range(len(check)):
+        if check[k]:
+            prime.append(k)
+
+if __name__ == '__main__':
+    sang()  # Call the sang function to generate prime numbers
+    n, x = map(int, input().split())
+    cnt = 0
+    while cnt <= n:
+        print(x, end = ' ')
+        x += prime[cnt]
+        cnt += 1
