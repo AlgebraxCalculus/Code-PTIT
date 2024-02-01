@@ -1,0 +1,9 @@
+a, k, n = map(int, input().split())
+ok = 0
+b = k - (a % k)
+if a + b > n:
+    print(-1)
+else:
+    while a + b <= n:
+        print(b, end = ' ')
+        b += k
