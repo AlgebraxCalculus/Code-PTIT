@@ -1,0 +1,9 @@
+n = int(input())
+mp = {}
+for i in range(n):
+    ma_mon = input()
+    ten_mon = input()
+    cach_thi = input()
+    mp[ma_mon] = [ten_mon, cach_thi]
+for i in sorted(mp):
+    print(i, mp[i][0], mp[i][1])
