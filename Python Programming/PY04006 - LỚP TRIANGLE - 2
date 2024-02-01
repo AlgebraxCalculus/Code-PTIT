@@ -1,0 +1,37 @@
+from math import *
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def distance(self, k):
+        x0 = self.x - k.x
+        y0 = self.y - k.y
+        return sqrt(x0 * x0 + y0 * y0)
+
+class Triangle:
+    def __init__(self, c1, c2, c3):
+        self.c1 = c1
+        self.c2 = c2
+        self.c3 = c3
+    def __str__(self):
+        a = self.c1.distance(self.c2)
+        b = self.c1.distance(self.c3)
+        c = self.c2.distance(self.c3)
+        if (a + b <= c) or (a + c <= b) or (b + c <= a):
+            return 'INVALID'
+        else:
+            p = a + b + c
+            ans = sqrt(p * (p - 2 * a) * (p - 2 * b) * (p - 2 * c)) / 4
+            return f'{"%.2f" % ans}'
+
+if __name__ == '__main__':
+    a = []
+    t = int(input())
+    for _ in range(t):
+        a += list(map(float, input().split()))
+    i = 0
+    for x in range(t):
+        triangle = Triangle(Point(a[i], a[i + 1]), Point(a[i + 2], a[i + 3]), Point(a[i + 4], a[i + 5]))
+        print(triangle)
+        i += 6
