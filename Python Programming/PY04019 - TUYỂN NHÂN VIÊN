@@ -1,0 +1,36 @@
+class Examinee:
+    def __init__(self, id, name, diem1, diem2):
+        self.id = id
+        self.name = name
+        self.diem1 = diem1
+        self.diem2 = diem2
+    def get_diem(self):
+        score = (self.diem1 + self.diem2) / 2
+        return score
+    def get_KQ(self):
+        if self.get_diem() > 9.5:
+            return 'XUAT SAC'
+        elif self.get_diem() >= 8:
+            return 'DAT'
+        elif self.get_diem() >= 5:
+            return 'CAN NHAC'
+        return 'TRUOT'
+    def __str__(self):
+        return f'{self.id} {self.name} {"%.2f" % self.get_diem()} {self.get_KQ()}'
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        id = 'TS0' + str(i + 1)
+        name = input()
+        diem1 = float(input())
+        diem2 = float(input())
+        if diem1 > 10:
+            diem1 /= 10
+        if diem2 > 10:
+            diem2 /= 10
+        a.append(Examinee(id, name, diem1, diem2))
+    a.sort(key = lambda x : (-x.get_diem()))
+    for i in a:
+        print(i)
