@@ -1,0 +1,23 @@
+from math import *
+
+class Fraction:
+    def __init__(self, tu, mau):
+        self.tu = tu
+        self.mau = mau
+    def tong(self, x):
+        self.tu = self.mau * x.tu + self.tu * x.mau
+        self.mau = self.mau * x.mau
+    def simplify(self):
+        ucln = gcd(self.tu, self.mau)
+        self.tu //= ucln
+        self.mau //= ucln
+    def __str__(self):
+        return f'{self.tu}/{self.mau}'
+
+if __name__ == '__main__':
+    tu1, mau1, tu2, mau2 = map(int, input().split())
+    p1 = Fraction(tu1, mau1)
+    p2 = Fraction(tu2, mau2)
+    p1.tong(p2)
+    p1.simplify()
+    print(p1)
