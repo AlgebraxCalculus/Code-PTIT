@@ -1,0 +1,45 @@
+class Teacher:
+    def __init__(self, id, name, ma, diem1, diem2):
+        self.id = id
+        self.name = name
+        self.ma = ma
+        self.diem1 = diem1
+        self.diem2 = diem2
+    def get_ma(self):
+        mon = self.ma[0]
+        if mon == 'A':
+            return 'TOAN'
+        elif mon == 'B':
+            return 'LY'
+        return 'HOA'
+    def get_bonus(self):
+        uu_tien = self.ma[1]
+        if uu_tien == '1':
+            return 2.0
+        elif uu_tien == '2':
+            return 1.5
+        elif uu_tien == '3':
+            return 1.0
+        return 0.0
+    def get_diem(self):
+        return self.diem1 * 2 + self.diem2 + self.get_bonus()
+    def get_KQ(self):
+        if self.get_diem() >= 18:
+            return 'TRUNG TUYEN'
+        return 'LOAI'
+    def __str__(self):
+        return f'{self.id} {self.name} {self.get_ma()} {"%.1f" % self.get_diem()} {self.get_KQ()}'
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        id = 'GV{:02d}'.format(i + 1)
+        name = input()
+        ma = input()
+        diem1 = float(input())
+        diem2 = float(input())
+        a.append(Teacher(id, name, ma, diem1, diem2))
+    a.sort(key = lambda x : (-x.get_diem()))
+    for i in a:
+        print(i)
