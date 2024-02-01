@@ -1,0 +1,28 @@
+class Matrix:
+    def __init__(self, a, n, m):
+        self.a = a
+        self.n = n
+        self.m = m
+    def mul(self, other):
+        res = [[0 for _ in range(self.n)] for _ in range(self.n)]
+        for i in range(self.n):
+            for j in range(self.n):
+                for k in range(self.m):
+                    res[i][j] += self.a[i][k] * other.a[k][j]
+        return res
+
+if __name__ == "__main__":
+    t = int(input())
+    for _ in range(t):
+        n, m = map(int, input().split())
+        a = []
+        for i in range(n):
+            a1 = list(map(int, input().split()))
+            a.append(a1)
+        matrix1 = Matrix(a, n, m)
+        transpose = [list(row) for row in zip(*a)]
+        matrix2 = Matrix(transpose, m, n)
+        res = matrix1.mul(matrix2)
+        for i in res:
+            print(*i)
+        print()
