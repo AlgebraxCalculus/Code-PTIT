@@ -1,0 +1,13 @@
+t = int(input())
+for _ in range(t):
+    p, q = map(int, input().split())
+    s = list(input().split())
+    if len(s) > 1:
+        x1, x2 = s[0], s[1]
+    else:
+        x1, x2 = s[0], input()
+    max_val = str(max(p, q))
+    min_val = str(min(p, q))
+    ans1 = int(x1.replace(max_val, min_val)) + int(x2.replace(max_val, min_val))
+    ans2 = int(x1.replace(min_val, max_val)) + int(x2.replace(min_val, max_val))
+    print(ans1, ans2)
