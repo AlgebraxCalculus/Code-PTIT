@@ -1,0 +1,9 @@
+f1 = open("DATA1.in", "r")
+f2 = open("DATA2.in", "r")
+a = set(f1.read().lower().split())
+b = set(f2.read().lower().split())
+for i in sorted(list(a - b)):
+    print(i, end = ' ')
+print()
+for i in sorted(list(b - a)):
+    print(i, end = ' ')
