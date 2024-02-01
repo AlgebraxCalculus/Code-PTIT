@@ -16,13 +16,13 @@ if __name__ == "__main__":
     for _ in range(t):
         data = []
         while len(data) < 2:
-            data += list(map(int, input().split()))
+            data = list(map(int, input().split()))
         n, m = data[0], data[1]
         a = []
         while len(a) < n:
             a1 = []
             while len(a1) < m:
-                a1 += list(map(int, input().split()))
+                a1 = list(map(int, input().split()))
             a.append(a1)
         matrix1 = Matrix(a, n, m)
         transpose = [list(row) for row in zip(*a)]
