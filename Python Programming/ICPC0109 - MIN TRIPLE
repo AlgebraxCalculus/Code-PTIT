@@ -1,0 +1,39 @@
+# Import thư viện heapq để sử dụng hàm nsmallest
+import heapq
+# Import thư viện re để sử dụng các biểu thức chính quy
+import re
+# Đọc số lượng bộ testcases từ input
+t = int(input())
+# Vòng lặp qua từng testcase
+for z in range(t):
+    # Đọc số lượng số trong dãy số từ input
+    n = int(input())
+    # Đọc dãy số và thêm khoảng trắng vào đầu và cuối dãy số
+    main = ' ' + input().replace(' ', '  ') + ' '
+    # Khởi tạo một list rỗng để lưu trữ các số trong khoảng từ -8 đến 8
+    a = []
+    # Khởi tạo biến i với giá trị -8 để bắt đầu từ số âm lớn nhất
+    i = -8
+    # Vòng lặp để lấy ra các số từ dãy số theo mẫu chính quy
+    while i < 9 and len(a) < 4:
+        # Tạo biểu thức chính quy với số lượng chữ số tăng dần từ 1 đến 8
+        s = '\d' * abs(i) + ' '
+        # Xử lý dấu cho số âm
+        if i < 0:
+            s = '-' + s
+        # Xử lý dấu cho số dương
+        elif i > 0:
+            s = ' ' + s
+        # Bước nhảy cho trường hợp i = 0
+        else:
+            i += 1
+            continue
+        # Sử dụng re.findall để tìm các số theo mẫu chính quy và thêm vào list a
+        a += [int(x) for x in re.findall(s, main)]
+        i += 1
+    # Sắp xếp list a và lấy 3 số nhỏ nhất
+    ans = 0
+    for x in heapq.nsmallest(3, a):
+        ans += x
+    # In kết quả của mỗi testcase
+    print(ans)
