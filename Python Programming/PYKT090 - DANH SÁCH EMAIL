@@ -1,0 +1,7 @@
+f = open("CONTACT.in", "r")
+a = set()
+for line in f:
+    a.add(line.strip().lower())
+a = sorted(a)
+for i in a:
+    print(i)
