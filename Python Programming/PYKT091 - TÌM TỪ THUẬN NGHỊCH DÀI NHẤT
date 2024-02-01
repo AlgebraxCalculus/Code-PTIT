@@ -1,0 +1,16 @@
+f = open("VANBAN.in", "r")
+cnt = {}
+res = 0
+a = f.read().split()
+for line in a:
+    if line == line[::-1]:
+        if line in cnt:
+            cnt[line] += 1
+        else:
+            cnt[line] = 1
+for key in cnt.keys():
+    res = max(res, len(key))
+for line in a:
+    if line == line[::-1] and cnt[line] > 0 and len(line) == res:
+        print(line, cnt[line])
+        cnt[line] = 0
