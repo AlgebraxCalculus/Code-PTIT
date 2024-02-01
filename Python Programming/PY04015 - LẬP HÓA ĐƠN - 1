@@ -1,0 +1,29 @@
+class Bill:
+    def __init__(self, id, name, cu, moi):
+        self.id = id
+        self.name = name
+        self.cu = cu
+        self.moi = moi
+    def get_tien(self):
+        so_khoi = self.moi - self.cu
+        if so_khoi <= 50:
+            return round(so_khoi * 100 * 1.02)
+        elif so_khoi <= 100:
+            return round(((50 * 100) + ((so_khoi - 50) * 150)) * 1.03)
+        else:
+            return round(((50 * 100) + (50 * 150) + (so_khoi - 100) * 200) * 1.05)
+    def __str__(self):
+        return f'{self.id} {self.name} {self.get_tien()}'
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        id = 'KH{:02d}'.format(i + 1)
+        name = input()
+        cu = int(input())
+        moi = int(input())
+        a.append(Bill(id, name, cu, moi))
+    a.sort(key = lambda x : (-x.get_tien()))
+    for i in a:
+        print(i)
