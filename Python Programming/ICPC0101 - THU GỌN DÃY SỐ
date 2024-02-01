@@ -1,0 +1,11 @@
+n = int(input())
+a = list(map(int, input().split()))
+ans = []
+for i in a:
+    if len(ans) == 0:
+        ans.append(i)
+    elif (i + ans[-1]) % 2 == 1:
+        ans.append(i)
+    else:
+        ans.pop()
+print(len(ans))
