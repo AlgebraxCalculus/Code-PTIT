@@ -1,0 +1,32 @@
+class Student:
+    def __init__(self, id, name, score):
+        self.id = id
+        self.name = name
+        self.score = score
+    def get_diem(self):
+        ans = sum(self.score) + self.score[0] + self.score[1]
+        return round(ans / 12 + 0.01, 1)
+    def get_KQ(self):
+        if self.get_diem() >= 9:
+            return 'XUAT SAC'
+        elif self.get_diem() >= 8:
+            return 'GIOI'
+        elif self.get_diem() >= 7:
+            return 'KHA'
+        elif self.get_diem() >= 5:
+            return 'TB'
+        return 'YEU'
+    def __str__(self):
+        return f'{self.id} {self.name} {self.get_diem()} {self.get_KQ()}'
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        id = 'HS{:02d}'.format(i + 1)
+        name = input()
+        score = list(map(float, input().split()))
+        a.append(Student(id, name, score))
+    a.sort(key = lambda x : (-x.get_diem(), x.id))
+    for i in a:
+        print(i)
