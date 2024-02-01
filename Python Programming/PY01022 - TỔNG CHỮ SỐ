@@ -1,0 +1,12 @@
+n = input()
+cnt = 0
+while len(n) > 1:
+    s = 0
+    cnt += 1
+    for i in n:
+        if i.isdigit():
+            s += int(i)
+        else:
+            s += int(ord('-') - ord('0'))
+    n = str(s)
+print(cnt)
