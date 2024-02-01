@@ -1,0 +1,15 @@
+from math import *
+
+def solve(n, k):
+    if k == pow(2, n - 1):
+        return chr(n - 1 + ord('A'))
+    elif k <= pow(2, n - 1) - 1:
+        return solve(n - 1, k)
+    else:
+        return solve(n - 1, k - pow(2, n - 1))
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        n, k = map(int, input().split())
+        print(solve(n, k))
