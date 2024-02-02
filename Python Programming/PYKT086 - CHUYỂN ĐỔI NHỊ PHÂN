@@ -1,0 +1,23 @@
+def doicoso(n, b):
+    res = ''
+    while n != 0:
+        m = n % b
+        if m >= 10:
+            res = chr(m + 55) + res
+        else:
+            res = str(m) + res
+        n //= b
+    return res
+
+if __name__ == '__main__':
+    f = open("DATA.in", 'r')
+    a = []
+    for x in f.read().split():
+        a.append(x)
+    for t in range(int(a[0])):
+        b, s = int(a[2 * t + 1]), a[2 * t + 2]
+        n, res = 0, 1
+        for i in range(len(s) - 1, -1, -1):
+            n += int(s[i]) * res
+            res *= 2
+        print(doicoso(n, b))
