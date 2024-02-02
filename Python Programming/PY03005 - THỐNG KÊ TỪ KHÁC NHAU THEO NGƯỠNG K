@@ -1,0 +1,16 @@
+n, k = map(int, input().split())
+cnt = {}
+for _ in range(n):
+    s = input().lower()
+    for i in s:
+        if not i.isalnum():
+            s = s.replace(i, ' ')
+    for i in s.split():
+        if i in cnt:
+            cnt[i] += 1
+        else:
+            cnt[i] = 1
+sorted_cnt = sorted(cnt.items(), key = lambda x: (-x[1], x[0]))
+for key, value in sorted_cnt:
+    if value >= k:
+        print(key, value)
