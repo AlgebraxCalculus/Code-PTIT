@@ -1,0 +1,11 @@
+n = int(input())
+a = list(map(int, input().split()))
+min_step, val = 10 ** 9, -10 ** 9
+for i in range(n):
+    tmp = 0
+    for j in range(n):
+        tmp += abs(a[j] - a[i])
+    if tmp < min_step:
+        min_step = tmp
+        val = a[i]
+print(min_step, val)
