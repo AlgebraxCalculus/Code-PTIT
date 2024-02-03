@@ -1,0 +1,37 @@
+from math import *
+
+check = [1] * 10001
+prime = []
+
+def sang():
+    check[0] = check[1] = 0
+    for i in range(2, 10000):
+        if check[i]:
+            prime.append(i)
+            for j in range(i * i, 10000, i):
+                check[j] = 0
+
+def lower_bound(l, r, x):
+    res = -1
+    while l <= r:
+        m = (l + r) // 2
+        if prime[m] > x:
+            r = m - 1
+        else:
+            res = m
+            l = m + 1
+    return res
+
+if __name__ == '__main__':
+    n = int(input())
+    a = list(map(int, input().split()))
+    sang()
+    res = -1
+    for i in a:
+        vt = lower_bound(0, len(prime), i)
+        if vt == -1:
+            vt += 1
+            res = max(res, prime[vt] - i)
+        else:
+            res = max(res, min(i - prime[vt], prime[vt + 1] - i))
+    print(res)
