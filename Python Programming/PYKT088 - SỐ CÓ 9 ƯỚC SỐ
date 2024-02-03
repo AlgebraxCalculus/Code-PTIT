@@ -1,0 +1,27 @@
+from math import *
+
+n = int(input())
+check = [1] * (isqrt(n) + 1)
+prime = []
+
+def sang():
+    check[0] = check[1] = 0
+    for i in range(2, isqrt(n) + 1):
+        if check[i]:
+            prime.append(i)
+            for j in range(i * i, isqrt(n) + 1, i):
+                check[j] = 0
+
+if __name__ == '__main__':
+    sang()
+    cnt = 0
+    for i in prime:
+        if i ** 8 <= n:
+            cnt += 1
+        else: break
+    for i in range(len(prime)):
+        for j in range(i + 1, len(prime)):
+            if (prime[i] * prime[j]) ** 2 <= n:
+                cnt += 1
+            else: break
+    print(cnt)
