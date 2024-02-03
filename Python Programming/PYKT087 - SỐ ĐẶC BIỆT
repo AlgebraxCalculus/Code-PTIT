@@ -1,0 +1,10 @@
+t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    mod, ans, tmp = (10 ** 9) + 7, 0, 1
+    while k > 0:
+        if k & 1:
+            ans = (ans % mod + tmp % mod) % mod
+        k >>= 1
+        tmp = (tmp * n) % mod
+    print(ans % mod)
