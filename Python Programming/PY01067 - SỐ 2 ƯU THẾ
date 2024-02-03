@@ -1,0 +1,20 @@
+from queue import Queue
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    q = Queue()
+    cnt = 0
+    q.put('1')
+    q.put('2')
+    while (not q.empty()):
+        top = q.get()
+        if top.count('2') > (len(top) / 2):
+            print(top, end = ' ')
+            cnt += 1
+        if cnt == n:
+            break
+        q.put(top + '0')
+        q.put(top + '1')
+        q.put(top + '2')
+    print()
