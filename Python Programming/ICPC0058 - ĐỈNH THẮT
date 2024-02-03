@@ -1,0 +1,27 @@
+adj = [[0 for _ in range(1001)] for _ in range(1001)]
+visited = [False] * 1001
+
+def DFS(u):
+    visited[u] = True
+    for v in adj[u]:
+        if not visited[v]:
+            DFS(v)
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        n, m, u, v = map(int, input().split())
+        for i in range(1, n + 1):
+            adj[i].clear()
+        for i in range(m):
+            x, y = map(int, input().split())
+            adj[x].append(y)
+        cnt = 0
+        for i in range(1, n + 1):
+            if i != u and i != v:
+                visited = [False] * 1001
+                visited[i] = True
+                DFS(u)
+                if not visited[v]:
+                    cnt += 1
+        print(cnt)
