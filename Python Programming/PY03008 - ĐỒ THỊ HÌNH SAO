@@ -1,0 +1,21 @@
+n = int(input())
+mp = {}
+for i in range(n - 1):
+    x, y = map(int, input().split())
+    if x in mp:
+        mp[x] += 1
+    else:
+        mp[x] = 1
+    if y in mp:
+        mp[y] += 1
+    else:
+        mp[y] = 1
+ok = 1
+for i in mp:
+    if mp[i] > 1 and mp[i] != n - 1:
+        ok = 0
+        break
+if ok == 1:
+    print('Yes')
+else:
+    print('No')
