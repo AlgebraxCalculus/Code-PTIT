@@ -1,0 +1,36 @@
+def change_time(vao, ra):
+    h1, m1 = map(int, vao.split(':'))
+    h2, m2 = map(int, ra.split(':'))
+    return (h2 * 60 + m2) - (h1 * 60 + m1)
+
+class Station:
+    def __init__(self, id, name, bd, kt, amount):
+        self.id = id
+        self.name = name
+        self.bd = bd
+        self.kt = kt
+        self.amount = amount
+        self.time = change_time(bd, kt)
+    def adding (self, bd, kt, mua):
+        self.time += change_time(bd, kt)
+        self.amount += mua
+
+    def __str__(self):
+        return f'{self.id} {self.name} {"%.2f" % (self.amount / self.time * 60)}'
+
+if __name__ == '__main__':
+    n = int(input())
+    mp = {}
+    for i in range(n):
+        id = "T{:02d}".format(i + 1)
+        name = input()
+        bd = input()
+        kt = input()
+        amount = int(input())
+        a = Station(id, name, bd, kt, amount)
+        if name in mp:
+            mp[name].adding(a.bd, a.kt, a.amount)
+        else:
+            mp[name] = a
+    for i in mp:
+        print(mp[i])
