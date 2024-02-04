@@ -1,0 +1,7 @@
+from itertools import combinations
+
+n, k = map(int, input().split())
+a = sorted(set(list(input().split())))
+res = combinations(a, k)
+for i in list(res):
+    print(*i)
