@@ -1,0 +1,40 @@
+hamming = [1]
+
+def init():
+    i2, i3, i5 = 0, 0, 0
+    while True:
+        hamming_number = min(hamming[i2] * 2, hamming[i3] * 3, hamming[i5] * 5)
+        if hamming_number > 10 ** 18:
+            return
+        if hamming_number == hamming[i2] * 2:
+            i2 += 1
+        if hamming_number == hamming[i3] * 3:
+            i3 += 1
+        if hamming_number == hamming[i5] * 5:
+            i5 += 1
+        hamming.append(hamming_number)
+
+def binary_search(a, x):
+    l, r = 0, len(a) - 1
+    if x < a[l] or x > a[r]:
+        return -1
+    while l <= r:
+        m = (l + r) // 2
+        if a[m] == x:
+            return m
+        elif a[m] > x:
+            r = m - 1
+        else:
+            l = m + 1
+    return -1
+
+if __name__ == "__main__":
+    init()
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        idx = binary_search(hamming, n)
+        if idx == -1:
+            print('Not in sequence')
+        else:
+            print(idx + 1)
