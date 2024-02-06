@@ -1,0 +1,25 @@
+class Bill:
+    def __init__(self, id, name, sl, price, addition):
+        self.id = id
+        self.name = name
+        self.sl = sl
+        self.price = price
+        self.addition = addition
+    def get_total(self):
+        return (self.sl * self.price) - self.addition
+    def __str__(self):
+        return f'{self.id} {self.name} {self.sl} {self.price} {self.addition} {self.get_total()}'
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        id = input()
+        name = input()
+        sl = int(input())
+        price = int(input())
+        addition = int(input())
+        a.append(Bill(id, name, sl, price, addition))
+    a.sort(key = lambda x: (-x.get_total()))
+    for i in a:
+        print(i)
