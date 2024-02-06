@@ -1,0 +1,16 @@
+res = []
+while True:
+    try:
+        s = input().lower().split()
+        s[0] = s[0].title()
+        if s[-1] != '.' and s[-1] != '?' and s[-1] != '!':
+            ss = ' '.join(s)
+        else:
+            ss = ' '.join(s[:-1])
+            ss += s[-1]
+        if ss[-1] != '.' and ss[-1] != '?' and ss[-1] != '!':
+            ss += '.'
+        res.append(ss)
+    except EOFError:
+        break
+print(*res, sep = '\n')
