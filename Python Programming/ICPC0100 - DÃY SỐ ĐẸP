@@ -1,0 +1,12 @@
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    cnt = 0
+    for i in range(n - 1):
+        max_val = max(a[i], a[i + 1])
+        min_val = min(a[i], a[i + 1])
+        while max_val > 2 * min_val:
+            cnt += 1
+            min_val *= 2
+    print(cnt)
