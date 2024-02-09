@@ -1,0 +1,20 @@
+dx = [-1, -1, -1, 0, 0, 1, 1, 1]
+dy = [-1, 0, 1, -1, 1, -1, 0, 1]
+
+n, m = map(int, input().split())
+a = []
+for i in range(n):
+    b = list(map(int, input().split()))
+    a.append(b)
+visited = [[False] * m for _ in range(n)]
+res = 0
+for i in range(n):
+    for j in range(m):
+        if a[i][j] == -1:
+            for k in range(8):
+                i1 = i + dx[k]
+                j1 = j + dy[k]
+                if 0 <= i1 < n and 0 <= j1 < m and not visited[i1][j1]:
+                    res += a[i1][j1]
+                    visited[i1][j1] = True
+print(res)
