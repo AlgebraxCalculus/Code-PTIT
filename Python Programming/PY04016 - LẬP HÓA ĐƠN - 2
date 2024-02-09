@@ -1,0 +1,44 @@
+from datetime import datetime
+
+class Hotel:
+    def __init__(self, id, name, room, vao, ra, addition):
+        self.id = id
+        self.name = name
+        self.room = room
+        self.vao = vao
+        self.ra = ra
+        self.addition = addition
+    def get_bill(self):
+        floor = self.room[0]
+        if floor == '1':
+            return 25
+        elif floor == '2':
+            return 34
+        elif floor == '3':
+            return 50
+        return 80
+    def get_date(self):
+        check_in = datetime.strptime(self.vao, "%d/%m/%Y")
+        check_out = datetime.strptime(self.ra, "%d/%m/%Y")
+        return (check_out - check_in).days + 1
+
+    def get_total(self):
+        return self.get_bill() * self.get_date() + self.addition
+
+    def __str__(self):
+        return f'{self.id} {self.name} {self.room} {self.get_date()} {self.get_total()}'
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        id = "KH{:02d}".format(i + 1)
+        name = input()
+        room = input()
+        vao = input().strip()
+        ra = input().strip()
+        addition = int(input())
+        a.append(Hotel(id, name, room, vao, ra, addition))
+    a.sort(key = lambda x: (-x.get_total()))
+    for i in a:
+        print(i)
