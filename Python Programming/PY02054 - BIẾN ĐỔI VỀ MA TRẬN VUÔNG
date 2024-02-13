@@ -1,0 +1,23 @@
+n, m = map(int, input().split())
+a = []
+for i in range(n):
+    b = list(map(int, input().split()))
+    a.append(b)
+if n > m:
+    row = [0] * n
+    for i in range(0, n - m):
+        row[i * 2] = 1
+    for i in range(n):
+        if not row[i]:
+            for j in range(m):
+                print(a[i][j], end = ' ')
+            print()
+else:
+    column = [0] * m
+    for i in range(0, m - n):
+        column[i * 2 + 1] = 1
+    for i in range(n):
+        for j in range(m):
+            if not column[j]:
+                print(a[i][j], end = ' ')
+        print()
