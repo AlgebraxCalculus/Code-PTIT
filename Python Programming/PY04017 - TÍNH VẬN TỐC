@@ -1,0 +1,33 @@
+class Racer:
+    def __init__(self, name, group, ra):
+        self.name = name
+        self.group = group
+        self.ra = ra
+
+    def get_id(self):
+        id = ''
+        for i in self.group.split():
+            id += i[0]
+        for i in self.name.split():
+            id += i[0]
+        return id
+
+    def get_speed(self):
+        h, m = map(int, self.ra.split(':'))
+        time = (h + (m / 60)) - 6
+        return 120 / time
+
+    def __str__(self):
+        return f'{self.get_id()} {self.name} {self.group} {round(self.get_speed())} Km/h'
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        name = input()
+        group = input()
+        ra = input()
+        a.append(Racer(name, group, ra))
+    a.sort(key = lambda x : (-x.get_speed()))
+    for i in a:
+        print(i)
