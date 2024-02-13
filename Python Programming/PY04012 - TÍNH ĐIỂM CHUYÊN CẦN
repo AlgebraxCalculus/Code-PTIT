@@ -1,0 +1,32 @@
+class Student:
+    def __init__(self, id, name, lop):
+        self.id = id
+        self.name = name
+        self.lop = lop
+        self.score = 0
+        self.note = ''
+
+    def get_score(self, cc):
+        self.score = max(0, 10 - (cc.count('v') * 2 + cc.count('m') * 1))
+        if self.score == 0:
+            self.note = 'KDDK'
+
+    def __str__(self):
+        return f'{self.id} {self.name} {self.lop} {self.score} {self.note}'
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        id = input()
+        name = input()
+        lop = input()
+        a.append(Student(id, name, lop))
+    for i in range(n):
+        ma, cc = input().split()
+        for x in a:
+            if x.id == ma:
+                x.get_score(cc)
+                break
+    for i in a:
+        print(i)
