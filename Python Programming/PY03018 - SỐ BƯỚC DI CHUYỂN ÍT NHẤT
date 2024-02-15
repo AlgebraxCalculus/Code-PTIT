@@ -1,0 +1,36 @@
+from collections import deque
+
+def BFS(n, m, a):
+    visited = [[False for _ in range(m)] for _ in range(n)]
+    dq = deque([((0, 0), 0)])
+    visited[0][0] = True
+    while dq:
+        (i, j), step = dq.popleft()
+        if i == n - 1 and j == m - 1:
+            return step
+        if i < n - 1:
+            sub = abs(a[i + 1][j] - a[i][j])
+            if i + sub < n and not visited[i + sub][j]:
+                dq.append(((i + sub, j), step + 1))
+                visited[i + sub][j] = True
+        if j < m - 1:
+            sub = abs(a[i][j + 1] - a[i][j])
+            if j + sub < m and not visited[i][j + sub]:
+                dq.append(((i, j + sub), step + 1))
+                visited[i][j + sub] = True
+        if i < n - 1 and j < m - 1:
+            sub = abs(a[i + 1][j + 1] - a[i][j])
+            if i + sub < n and j + sub < m and not visited[i + sub][j + sub]:
+                dq.append(((i + sub, j + sub), step + 1))
+                visited[i + sub][j + sub] = True
+    return -1
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        n, m = map(int, input().split())
+        a = []
+        for i in range(n):
+            b = list(map(int, input().split()))
+            a.append(b)
+        print(BFS(n, m, a))
