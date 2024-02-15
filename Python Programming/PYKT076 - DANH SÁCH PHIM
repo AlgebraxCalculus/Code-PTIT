@@ -1,0 +1,30 @@
+from datetime import datetime
+
+class Film:
+    def __init__(self, id, category, date, name, episode):
+        self.id = id
+        self.category = category
+        self.date = date
+        self.name = name
+        self.episode = episode
+
+    def __str__(self):
+        return f'{self.id} {self.category} {self.date} {self.name} {self.episode}'
+
+if __name__ == '__main__':
+    n, m = map(int, input().split())
+    a, mp = [], {}
+    for i in range(n):
+        code = 'TL{:03d}'.format(i + 1)
+        topic = input()
+        mp[code] = topic
+    for i in range(m):
+        id = 'P{:03d}'.format(i + 1)
+        ma = input()
+        date = input()
+        name = input()
+        episode = int(input())
+        a.append(Film(id, mp[ma], date, name, episode))
+    a.sort(key = lambda x : (datetime.strptime(x.date, '%d/%m/%Y'), x.name, -x.episode))
+    for i in a:
+        print(i)
