@@ -1,0 +1,19 @@
+t = int(input())
+for _ in range(t):
+    n, m, l = map(int, input().split())
+    a = [[0 for _ in range(m + 1)] for _ in range(n + 1)]
+    prefix = [[0 for _ in range(m + 1)]]
+    for i in range(n):
+        row = list(map(int, input().split()))
+        tmp = 0
+        b = [0]
+        for j in range(m):
+            tmp += row[j]
+            a[i + 1][j + 1] = a[i][j + 1] + tmp
+            b.append(a[i + 1][j + 1])
+        prefix.append(b)
+    for i in range(l, n + 1):
+        for j in range(l, m + 1):
+            res = (prefix[i][j] - prefix[i - l][j] - prefix[i][j - l] + prefix[i - l][j - l]) // (l * l)
+            print(res, end = ' ')
+        print()
