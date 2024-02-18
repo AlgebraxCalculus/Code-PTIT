@@ -1,0 +1,33 @@
+from datetime import datetime
+
+class Test:
+    def __init__(self, id, date, hour, room):
+        self.id = id
+        self.date = date
+        self.hour = hour
+        self.room = room
+
+    def get_compared_date(self):
+        return (datetime.strptime(self.date, '%d/%m/%Y') - datetime.strptime('1/1/2021', '%d/%m/%Y')).days
+
+    def get_compared_hour(self):
+        return (datetime.strptime(self.hour, '%H:%M') - datetime.strptime('06:00', '%H:%M')).seconds
+
+    def __str__(self):
+        return f'{self.id} {self.date} {self.hour} {self.room}'
+
+if __name__ == '__main__':
+    f = open("CATHI.in", 'r')
+    x = f.read().split()
+    a, idx = [], 1
+    n = int(x[0])
+    for i in range(n):
+        id = 'C{:03d}'.format(i + 1)
+        date = x[idx]
+        hour = x[idx + 1]
+        room = x[idx + 2]
+        a.append(Test(id, date, hour, room))
+        idx += 3
+    a.sort(key = lambda x : (x.get_compared_date(), x.get_compared_hour(), x.id))
+    for i in a:
+        print(i)
