@@ -1,0 +1,21 @@
+from math import *
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    c = list(map(int, input().split()))
+    mp = {0: 0}
+    u = [0]
+    for i in range(n):
+        for x in u:
+            d = gcd(x, a[i])
+            cost = mp[x] + c[i]
+            if d not in mp:
+                mp[d] = cost
+                u.append(d)
+            elif mp[d] > cost:
+                mp[d] = cost
+    if 1 not in mp:
+        mp[1] = -1
+    print(mp[1])
