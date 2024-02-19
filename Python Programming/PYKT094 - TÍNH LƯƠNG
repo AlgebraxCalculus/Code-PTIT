@@ -1,0 +1,69 @@
+class Employee:
+    def __init__(self, id, name, group, lcb, nc):
+        self.id = id
+        self.name = name
+        self.group = group
+        self.lcb = lcb
+        self.nc = nc
+
+    def get_hsn(self):
+        employee_type = self.id[0]
+        employee_year = int(self.id[1:3])
+        if employee_type == 'A':
+            if 1 <= employee_year <= 3:
+                return 10
+            elif 4 <= employee_year <= 8:
+                return 12
+            elif 9 <= employee_year <= 15:
+                return 14
+            else:
+                return 20
+        elif employee_type == 'B':
+            if 1 <= employee_year <= 3:
+                return 10
+            elif 4 <= employee_year <= 8:
+                return 11
+            elif 9 <= employee_year <= 15:
+                return 13
+            else:
+                return 16
+        elif employee_type == 'C':
+            if 1 <= employee_year <= 3:
+                return 9
+            elif 4 <= employee_year <= 8:
+                return 10
+            elif 9 <= employee_year <= 15:
+                return 12
+            else:
+                return 14
+        else:
+            if 1 <= employee_year <= 3:
+                return 8
+            elif 4 <= employee_year <= 8:
+                return 9
+            elif 9 <= employee_year <= 15:
+                return 11
+            else:
+                return 13
+
+    def __str__(self):
+        return f'{self.id} {self.name} {self.group} {self.lcb * 1000 * self.nc * self.get_hsn()}'
+
+if __name__ == '__main__':
+    n = int(input())
+    mp = {}
+    for i in range(n):
+        x = input()
+        code = x[:2]
+        job = x[3:]
+        mp[code] = job
+    m = int(input())
+    a = []
+    for i in range(m):
+        id = input()
+        name = input()
+        lcb = int(input())
+        nc = int(input())
+        a.append(Employee(id, name, mp[id[3:]], lcb, nc))
+    for i in a:
+        print(i)
