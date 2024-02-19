@@ -1,0 +1,46 @@
+class Electricity:
+    def __init__(self, id, name, group, dau, cuoi):
+        self.id = id
+        self.name = name
+        self.group = group
+        self.dau = dau
+        self.cuoi = cuoi
+
+    def get_dinh_muc(self):
+        if self.group == 'A':
+            return 100
+        elif self.group == 'B':
+            return 500
+        return 200
+
+    def get_trong_dinh_muc(self):
+        if self.cuoi - self.dau < self.get_dinh_muc():
+            return (self.cuoi - self.dau) * 450
+        return self.get_dinh_muc() * 450
+
+    def get_ngoai_dinh_muc(self):
+        if self.cuoi - self.dau > self.get_dinh_muc():
+            return (self.cuoi - self.dau - self.get_dinh_muc()) * 1000
+        return 0
+
+    def get_VAT(self):
+        return self.get_ngoai_dinh_muc() // 20
+
+    def get_total(self):
+        return self.get_trong_dinh_muc() + self.get_ngoai_dinh_muc() + self.get_VAT()
+
+    def __str__(self):
+        return f'{self.id} {self.name} {self.get_trong_dinh_muc()} {self.get_ngoai_dinh_muc()} {self.get_VAT()} {self.get_total()}'
+
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        id = 'KH{:02d}'.format(i + 1)
+        name = ' '.join(input().split()).title()
+        group, dau, cuoi = input().split()
+        a.append(Electricity(id, name, group, int(dau), int(cuoi)))
+    a.sort(key = lambda x: (-x.get_total()))
+    for i in a:
+        print(i)
