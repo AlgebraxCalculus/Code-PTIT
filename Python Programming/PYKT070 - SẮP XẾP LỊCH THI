@@ -1,0 +1,52 @@
+from datetime import datetime
+
+class MonThi:
+    def __init__(self, id, name, format):
+        self.id = id
+        self.name = name
+        self.format = format
+
+class CaThi:
+    def __init__(self, id, date, hour, room):
+        self.id = 'C{:03d}'.format(id)
+        self.date = datetime.strptime(date, '%d/%m/%Y')
+        self.hour = datetime.strptime(hour, '%H:%M')
+        self.room = room
+
+class LichThi:
+    def __init__(self, subject: MonThi, exam: CaThi, group, number):
+        self.subject = subject
+        self.exam = exam
+        self.group = group
+        self.number = number
+
+    def __str__(self):
+        formatted_date = datetime.strftime(self.exam.date, '%d/%m/%Y')
+        formatted_hour = datetime.strftime(self.exam.hour, '%H:%M')
+        return f'{formatted_date} {formatted_hour} {self.exam.room} {self.subject.name} {self.group} {self.number}'
+
+if __name__ == '__main__':
+    f1 = open('MONTHI.in','r')
+    f2 = open('CATHI.in','r')
+    f3 = open('LICHTHI.in','r')
+    map_mon_thi, map_ca_thi = {}, {}
+    n = int(f1.readline().strip())
+    for i in range(n):
+        mt = MonThi(f1.readline().strip(), f1.readline().strip(), f1.readline().strip())
+        map_mon_thi[mt.id] = mt
+    m = int(f2.readline().strip())
+    for i in range(m):
+        ct = CaThi(i + 1, f2.readline().strip(), f2.readline().strip(), f2.readline().strip())
+        map_ca_thi[ct.id] = ct
+    p = int(f3.readline().strip())
+    schedule_list = []
+    for i in range(p):
+        schedule = f3.readline().strip().split()
+        exam_id = schedule[0]
+        subject_code = schedule[1]
+        group = schedule[2]
+        number = schedule[3]
+        schedule_list.append(LichThi(map_mon_thi[subject_code], map_ca_thi[exam_id], group, number))
+    schedule_list.sort(key = lambda x: (x.exam.date, x.exam.hour, x.exam.id))
+    for i in schedule_list:
+        print(i)
