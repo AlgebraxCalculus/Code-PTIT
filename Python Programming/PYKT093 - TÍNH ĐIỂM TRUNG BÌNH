@@ -1,0 +1,39 @@
+from decimal import Decimal, ROUND_UP
+
+class Student:
+    def __init__(self, id, name, diem1, diem2, diem3):
+        self.id = id
+        self.name = name
+        self.diem1 = diem1
+        self.diem2 = diem2
+        self.diem3 = diem3
+
+    def get_name(self):
+        return ' '.join(self.name.split()).title()
+
+    def get_average(self):
+        average = (self.diem1 * 3 + self.diem2 * 3 + self.diem3 * 2) / (3 + 3 + 2)
+        return Decimal(str(average)).quantize(Decimal('0.00'), rounding = ROUND_UP)
+
+    def __str__(self):
+        return f'{self.id} {self.get_name()} {self.get_average()}'
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        id = 'SV{:02d}'.format(i + 1)
+        name = input()
+        diem1 = float(input())
+        diem2 = float(input())
+        diem3 = float(input())
+        a.append(Student(id, name, diem1, diem2, diem3))
+    a.sort(key = lambda x : (-x.get_average(), x.id))
+    rank = 1
+    print(a[0], rank)
+    for i in range(1, len(a)):
+        if a[i].get_average() != a[i - 1].get_average():
+            print(a[i], rank + 1)
+        else:
+            print(a[i], rank)
+        rank += 1
