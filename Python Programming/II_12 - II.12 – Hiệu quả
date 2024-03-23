@@ -1,0 +1,8 @@
+a0, b0, c0 = map(int, input().split())
+a1, b1, c1 = map(int, input().split())
+time1 = a0 * 3600 + b0 * 60 + c0
+time2 = a1 * 3600 + b1 * 60 + c1
+res = time2 - time1
+if res < 0:
+    res += 24 * 3600
+print(res)
