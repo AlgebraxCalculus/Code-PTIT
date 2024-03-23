@@ -1,0 +1,10 @@
+n = int(input())
+a = []
+for i in range(n):
+    a.append(int(input()))
+se_max_num = 0
+max_num = max(a)
+for i in a:
+    if i > se_max_num and i < max_num:
+        se_max_num = i
+print('Silver =', se_max_num)
