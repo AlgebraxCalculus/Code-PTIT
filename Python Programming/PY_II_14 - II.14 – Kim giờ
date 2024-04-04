@@ -1,0 +1,3 @@
+h, m, s = map(int, input().split())
+angle = 0.5 * (60 * h + m + (s / 60))
+print("Angle: ", angle)
