@@ -1,0 +1,27 @@
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+def collinear(p1, p2, p3):
+    return (p2.y - p1.y) * (p3.x - p2.x) == (p3.y - p2.y) * (p2.x - p1.x)
+
+def check(n):
+    for i in range(n):
+        for j in range(i + 1, n):
+            for k in range(j + 1, n):
+                if not collinear(a[i], a[j], a[k]):
+                    return [i + 1, j + 1, k + 1]
+    return None
+
+if __name__ == '__main__':
+    n = int(input())
+    a = []
+    for i in range(n):
+        x, y = map(int, input().split())
+        a.append(Point(x, y))
+    if check(n):
+        print('Yes')
+        print(*check(n))
+    else:
+        print('No')
