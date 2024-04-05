@@ -1,0 +1,9 @@
+while True:
+    x = int(input())
+    if x == -1:
+        break
+    else:
+        if x % 9 == 0:
+            print(x)
+        else:
+            print(x + (9 - x % 9))
