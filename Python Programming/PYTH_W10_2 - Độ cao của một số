@@ -1,0 +1,12 @@
+while True:
+    line = input()
+    if line == '-1':
+        break
+    else:
+        n, h = map(int, line.split())
+        cnt = 0
+        for k in range(n):
+            s = sum(int(i) for i in str(k))
+            if s == h:
+                cnt += 1
+        print(cnt)
