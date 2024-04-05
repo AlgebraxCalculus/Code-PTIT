@@ -1,0 +1,8 @@
+while True:
+    line = input()
+    if line == '-1':
+        break
+    else:
+        y, z = map(int, line.split())
+        s = sum(int(i) for i in str(y))
+        print(z // s)
