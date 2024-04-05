@@ -11,7 +11,7 @@ def sang():
             prime.append(k)
 
 if __name__ == '__main__':
-    sang()  # Call the sang function to generate prime numbers
+    sang()  
     n, x = map(int, input().split())
     cnt = 0
     while cnt <= n:
