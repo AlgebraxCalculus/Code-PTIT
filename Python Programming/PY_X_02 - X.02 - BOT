@@ -1,0 +1,17 @@
+n = int(input())
+profit = list(map(int, input().split()))
+max_profit = 0
+curr_profit = 0
+st = 0
+en = 0 
+tmp = 0
+for i in range(n):
+    curr_profit += profit[i]
+    if curr_profit > max_profit:
+        max_profit = curr_profit
+        st = tmp
+        en = i
+    if curr_profit < 0:
+        curr_profit = 0
+        tmp = i + 1
+print(st + 1, en + 1, max_profit)
