@@ -1,0 +1,15 @@
+def Count_Consecutive(n):
+    cnt = 0
+    L = 1
+    while L * (L + 1) < 2 * n:
+        a = (1.0 * n - (L * (L + 1)) / 2) / (L + 1)
+        if a - int(a) == 0.0:
+            cnt += 1
+        L += 1
+    return cnt
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        print(Count_Consecutive(n))
