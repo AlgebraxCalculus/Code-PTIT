@@ -1,0 +1,7 @@
+from math import *
+
+s = float(input())
+l = sqrt(s) / 2
+d = 2 / (2 + sqrt(2) + sqrt(6))
+r = l * d
+print("{:.4f}".format(r))
