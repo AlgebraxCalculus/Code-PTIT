@@ -1,0 +1,10 @@
+from math import *
+
+a, b = map(float, input().split())
+c = sqrt(a ** 2 + b ** 2)
+r = (a + b - c) / 2
+d = sqrt(a ** 2 + b ** 2 - a * c)
+q = (d - r) / (d + r)
+Triangle_Area = (a * b) / 2
+Circle_Area = (pi * pow(r, 2)) / (1 - pow(q, 2))
+print('{:.4f}'.format(Circle_Area / Triangle_Area))
