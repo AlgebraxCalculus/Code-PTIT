@@ -1,0 +1,10 @@
+#Tìm số lớn nhất mà mọi số trong mảng đều chia hết cho số đó (tìm UCLN)
+
+from math import *
+
+n = int(input())
+a = list(map(int, input().split()))
+res = 0
+for x in a:
+    res = gcd(res, x)
+print(res)
