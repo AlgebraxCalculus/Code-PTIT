@@ -1,0 +1,12 @@
+#In ra vị trí cuối cùng số nhỏ nhất và vị trí đầu tiên số lớn nhất
+n = int(input())
+a = list(map(int, input().split()))
+min_val, max_val, min_pos, max_pos = min(a), max(a), 0, 0
+for i in range(n):
+    if a[i] == min_val:
+        min_pos = i
+for i in range(n):
+    if a[i] == max_val:
+        max_pos = i
+        break
+print(min_pos, max_pos)
