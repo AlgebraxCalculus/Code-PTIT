@@ -1,0 +1,12 @@
+a = input().split()
+#Theo thứ tự từ điển
+se = set(a)
+for x in sorted(se):
+    print(x, end = ' ')
+print()
+#Theo thứ tự xuất hiện
+se1 = set(a)
+for x in a:
+    if x in se1:
+        print(x, end = ' ')
+        se1.remove(x)
