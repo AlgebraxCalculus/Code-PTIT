@@ -1,0 +1,29 @@
+#Cho một dãy các số nguyên dương có thể cách nhau vài khoảng trống hoặc xuống dòng
+#Liệt kê số không giảm và liệt kê theo thứ tự xuất hiện giảm dần, trong trường hợp cùng thứ tự xuất hiện thì theo giá trị tăng dần
+
+from sys import stdin
+
+def check(n):
+    r = n % 10
+    n //= 10
+    while n != 0:
+        if r < (n % 10):
+            return False
+        r = n % 10
+        n //= 10
+    return True
+
+a = []
+cnt = {}
+for line in stdin:
+    a += list(map(int, line.split()))
+for x in a:
+    if check(x):
+        if x in cnt:
+            cnt[x] += 1
+        else:
+            cnt[x] = 1
+cnt = list(cnt.items())
+cnt.sort(key = lambda x : (-x[1], x[0]))
+for key, value in cnt:
+    print(key, value)
