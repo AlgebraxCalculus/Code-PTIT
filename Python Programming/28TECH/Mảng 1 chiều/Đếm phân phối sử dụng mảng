@@ -1,0 +1,26 @@
+#In mảng theo thứ tự xuất hiện theo tần suất và thứ tự từ nhỏ đến lớn
+#Tìm số có tần suất lớn nhất và nhỏ nhất, nếu cùng tần suất ưu tiên giá trị lớn nhất và nhỏ nhất
+
+n = int(input())
+a = list(map(int, input().split()))
+cnt = {}
+for x in a:
+    if x in cnt:
+        cnt[x] += 1
+    else:
+        cnt[x] = 1
+for x in cnt:
+    print(x, cnt[x])
+print()
+for x in sorted(cnt):
+    print(x, cnt[x])
+l, r = min(a), max(a)
+max_fre, max_val = 0, 0
+for x in cnt:
+    if cnt[x] >= max_fre:
+        max_fre, max_val = cnt[x], x
+min_fre, min_val = 10 ** 18, 0
+for i in cnt:
+    if cnt[i] != 0 and cnt[i] <= min_fre:
+        min_fre, min_val = cnt[i], i
+print(max_val, min_val, sep = '\n')
