@@ -1,0 +1,9 @@
+#Đủ kí tự từ a đến z là xâu pangram 
+
+s = input()
+s = s.lower()
+se = set(s)
+if len(se) == 26:
+    print('YES')
+else:
+    print('NO')
