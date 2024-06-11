@@ -1,0 +1,29 @@
+n = int(input())
+a = [[0 for _ in range(n)] for _ in range(n)]
+h1, h2, c1, c2 = 0, n - 1, 0, n - 1
+cnt = 1
+while cnt <= n * n:
+    #Xây dựng hàng trên cùng: c1 => c2 của h1
+    for i in range(c1, c2 + 1):
+        a[h1][i] = cnt
+        cnt += 1
+    h1 += 1
+    #Xây dựng cột cuối cùng: h1 => h2 của c2
+    for i in range(h1, h2 + 1):
+        a[i][c2] = cnt
+        cnt += 1
+    c2 -= 1
+    #Xây dựng hàng dưới cùng: c2 => c1 của h2
+    for i in range(c2, c1 - 1, -1):
+        a[h2][i] = cnt
+        cnt += 1
+    h2 -= 1
+    #Xây dựng cột đầu tiên: h2 => h1 của c1
+    for i in range(h2, h1 - 1, -1):
+        a[i][c1] = cnt
+        cnt += 1
+    c1 += 1
+for i in range(n):
+    for j in range(n):
+        print(a[i][j], end = ' ')
+    print()
