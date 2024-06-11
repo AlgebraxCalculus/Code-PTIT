@@ -1,0 +1,16 @@
+a = input().split()
+cnt = {}
+for x in a:
+    if x in cnt:
+        cnt[x] += 1
+    else:
+        cnt[x] = 1
+min_fre, max_fre = 10 ** 18, 0
+res1, res2 = '', ''
+for x in sorted(cnt):
+    if cnt[x] <= min_fre:
+        min_fre, res1 = cnt[x], x
+    if cnt[x] >= max_fre:
+        max_fre, res2 = cnt[x], x
+print(res1, max_fre)
+print(res2, min_fre)
