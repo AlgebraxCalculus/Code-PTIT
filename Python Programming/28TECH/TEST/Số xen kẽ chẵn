@@ -1,0 +1,19 @@
+"""
+Số chữ số là chẵn.
+Số đầu tiên khác số thứ ba, các chữ số ở vị trí chẵn có giá trị bằng nhau.
+"""
+
+def check(s):
+    if len(s) % 2 != 0 or s[0] == s[2]
+        return False
+    for i in range(0, len(s) - 2, 2):
+        if s[i] != s[i + 2]:
+            return False
+    return True
+
+for _ in range(int(input())):
+    s = input()
+    if check(s):
+        print('YES')
+    else:
+        print('NO')
