@@ -1,0 +1,28 @@
+"""
+- Có đúng 8 chữ số
+- Từ trái qua vị trí giảm chặt, từ vị trí qua phải tăng chặt
+"""
+
+def check(s):
+    if len(s) != 8:
+        return False
+    pos = 0
+    for i in range(len(s) - 1):
+        if s[i] == s[i + 1]:
+            return False
+        elif s[i] < s[i + 1]:
+            pos = i
+            break
+    if pos == 0:
+        return False
+    for i in range(pos, len(s) - 1):
+        if s[i] > s[i + 1]:
+            return False
+    return True
+
+for _ in range(int(input())):
+    s = input()
+    if check(s):
+        print('YES')
+    else:
+        print('NO')
