@@ -1,0 +1,19 @@
+#Cho danh sách DANHSACH.in, chuẩn hóa họ tên trong danh sách và sắp xếp tên theo thứ tự từ điển (tên => họ => tên đệm)
+
+def chuan_hoa(s):
+    s = s.strip()
+    name = s.split()
+    return ' '.join(name).title()
+
+def tach_ten(s):
+    name = s.split()
+    return name[-1], name[0], name[1: -1]
+
+with open('DANHSACH.in', 'r') as f:
+    b = []
+    a = f.readlines()
+    for i in a:
+        b.append(chuan_hoa(i))
+    b.sort(key = lambda x : tach_ten(x))
+    for i in b:
+        print(i)
