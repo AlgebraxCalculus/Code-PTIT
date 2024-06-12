@@ -1,0 +1,18 @@
+#Các số từ 0 đến 4 và tổng các chữ số đúng bằng 5
+
+def check(s):
+    t = 0
+    for x in s:
+        if x not in '01234':
+            return False
+        t += int(x)
+    if t != 5:
+        return False
+    return True
+
+for _ in range(int(input())):
+    s = input()
+    if check(s):
+        print('YES')
+    else:
+        print('NO')
