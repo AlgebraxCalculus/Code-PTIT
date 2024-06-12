@@ -1,0 +1,15 @@
+#Ghép từ sao cho từ được ghép có thứ tự từ điển lớn nhất
+
+from functools import cmp_to_key
+
+def comp(a, b):
+    ab = a + b
+    ba = b + a
+    if ab > ba:
+        return -1
+    return 1
+
+n = int(input())
+a = input().split()
+a.sort(key = cmp_to_key(comp))
+print(''.join(a))
