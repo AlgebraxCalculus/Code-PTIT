@@ -1,0 +1,13 @@
+#Kiểm tra số chữ số 3 cộng với số chữ số 5 bằng 3 hoặc 5 không
+
+s = input()
+cnt3, cnt5 = 0, 0
+for x in s:
+    if x == '3':
+        cnt3 += 1
+    if x == '5':
+        cnt5 += 1
+if cnt3 + cnt5 == 3 or cnt3 + cnt5 == 5:
+    print('YES')
+else:
+    print('NO')
