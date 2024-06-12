@@ -1,0 +1,25 @@
+#Tất cả các chữ số là số nguyên tố và tổng chữ số cũng là số nguyên tố
+
+from math import *
+
+def nt(n):
+    if n < 2:
+        return False
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def check(s):
+    t = 0
+    for x in s:
+        if x not in '2357':
+            return False
+        t += int(x)
+    return nt(t)
+
+s = input()
+if check(s):
+    print('YES')
+else:
+    print('NO')
