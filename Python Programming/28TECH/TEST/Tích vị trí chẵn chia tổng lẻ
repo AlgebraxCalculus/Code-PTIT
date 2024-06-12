@@ -1,0 +1,16 @@
+#Lấy tích các số ở vị trí số lẻ chia cho tổng các số ở vị trí chẵn
+#Nếu tổng bằng 0 trả INVALID, có kết quả làm tròn 6 chữ số
+
+for _ in range(int(input())):
+    s = input()
+    tich, tong = 1, 0
+    for i in range(len(s)):
+        if i % 2 != 0:
+            tong += int(s[i])
+        else:
+            if s[i] != 0:
+                tich *= int(s[i])
+    if tong == 0:
+        print('INVALID')
+    else:
+        print('{:.6f}'.format(tich / tong))
