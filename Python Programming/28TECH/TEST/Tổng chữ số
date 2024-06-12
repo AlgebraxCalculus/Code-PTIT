@@ -1,0 +1,23 @@
+"""
+Cho một file nhị phân DATA.in bao gồm các string chỉ có chữ cái và số.
+Tách các chữ số và ghép thành số nguyên dương, sau đó tính tổng chữ số của số ghép được.
+"""
+
+# Đọc file nhị phân
+with open('D:\\input.txt', 'rb') as f:
+    data = f.read()
+
+# Chuyển đổi dữ liệu byte thành chuỗi ký tự
+ascii_data = data.decode('ascii')
+
+# Tách các phần tử trong chuỗi
+a = ascii_data.strip().split()
+for s in a:
+    t = ''
+    for x in s:
+        if x.isalpha():
+            t += ' '
+        else:
+            t += x
+    n = list(map(int, t.split()))
+    print(int(''.join(t.split())), sum(n))
