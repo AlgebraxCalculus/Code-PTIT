@@ -1,0 +1,12 @@
+#Đếm số lượng xâu con có kí tự đầu và cuối giống nhau
+#Sử dụng tổ hợp chập 2 của số lượng kí tự
+
+s = input()
+d = [0] * 256
+for x in s:
+    d[ord(x)] += 1
+ans = len(s)
+for i in range(256):
+    if d[i] != 0:
+        ans += d[i] * (d[i] - 1) // 2
+print(ans)
