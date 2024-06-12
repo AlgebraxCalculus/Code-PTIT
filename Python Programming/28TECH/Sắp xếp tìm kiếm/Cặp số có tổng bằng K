@@ -31,7 +31,7 @@ a = list(map(int, input().split()))
 a.sort()
 ans = 0
 for i in range(n):
-    #Tìm [i + 1, n - 1] => k - a[i]
+    #Tìm [i + 1, n - 1] = k - a[i]
     p1, p2 = ham1(a, i + 1, n - 1, k - a[i]), ham2(a, i + 1, n - 1, k - a[i])
     if p1 != -1:
         ans += p2 - p1 + 1
