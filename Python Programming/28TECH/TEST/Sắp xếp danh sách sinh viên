@@ -1,0 +1,34 @@
+"""
+Cho file SINHVIEN.in, xây dựng class bao gồm: MSV, tên, sđt và email.
+Sắp xếp theo tên (tên => họ => tên đệm), nếu trùng tên sắp xếp MSV.
+"""
+
+class Student:
+    def __init__(self, msv, name, tel, email):
+        self.msv = msv
+        self.name = name
+        self.tel = tel
+        self.email = email
+
+    def tach_ten(self):
+        s = self.name.split()
+        return s[0], s[-1], s[1:-1]
+
+    def __str__(self):
+        return f'{self.msv} {self.name} {self.tel} {self.email}'
+
+with open("SINHVIEN.in", 'r') as f:
+    data = f.read().split('\n')
+    n = int(data[0])
+    a = []
+    idx = 1
+    for _ in range(n):
+        msv = data[idx]
+        name = data[idx + 1]
+        tel = data[idx + 2]
+        email = data[idx + 3]
+        idx += 4
+        a.append(Student(msv, name, tel, email))
+    a.sort(key = lambda x: (x.tach_ten()[1], x.tach_ten()[0], x.tach_ten()[2], x.msv))
+    for i in a:
+        print(i)
