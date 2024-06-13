@@ -1,0 +1,33 @@
+"""
+Cho file MONHOC.in, lập class bao gồm mã môn học, tên môn học, số tín chỉ, hình thức giảng dạy lý thuyết + thực hành.
+Lọc danh sách các môn đăng ký thực hành trực tuyến và sắp xếp theo mã môn học.
+"""
+
+class Subject:
+    def __init__(self, id, name, tc, lt, th):
+        self.id = id
+        self.name = name
+        self.tc = tc
+        self.lt = lt
+        self.th = th
+
+    def __str__(self):
+        return f'{self.id} {self.name} {self.tc} {self.lt} {self.th}'
+
+with open("MONHOC.in", 'r') as f:
+    data = f.read().split('\n')
+    n = int(data[0])
+    a = []
+    idx = 1
+    for i in range(n):
+        id = data[idx]
+        name = data[idx + 1]
+        tc = data[idx + 2]
+        lt = data[idx + 3]
+        th = data[idx + 4]
+        idx += 5
+        if th == 'Truc tuyen' or '.ptit.edu.vn' in th:
+            a.append(Subject(id, name, tc, lt, th))
+    a.sort(key = lambda x : x.id)
+    for i in a:
+        print(i)
