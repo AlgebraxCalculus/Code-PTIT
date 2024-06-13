@@ -1,0 +1,26 @@
+def check(s):
+    if ' ' in s or not '@' in s:
+        return False
+    if s.count('@') > 1:
+        return False
+    s1, s2 = s.split('@')
+    if not (1 <= len(s1) <= 64):
+        return False
+    for i in s1:
+        if not (i.isalnum() or i in '._'):
+            return False
+    if not (1 <= len(s2) <= 254):
+        return False
+    if not '.' in s2 or s2[0] == '.' or s2[-1] == '.':
+        return False
+    for i in s2:
+        if not (i.isalnum() or i in '._'):
+            return False
+    return True
+
+for _ in range(int(input())):
+    s = input()
+    if check(s):
+        print('YES')
+    else:
+        print('NO')
