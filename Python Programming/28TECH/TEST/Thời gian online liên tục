@@ -1,0 +1,36 @@
+"""
+Cho file ONLINE.in, bao gồm tên SV, thời gian vào ra code ptit.
+Sắp xếp thời gian online của SV theo thứ tự giảm dần.
+"""
+
+from datetime import datetime
+
+class Online:
+    def __init__(self, name, start, end):
+        self.name = name
+        self.start = start
+        self.end = end
+
+    def get_time(self):
+        check_in = datetime.strptime(self.start, "%d/%m/%Y %H:%M:%S")
+        check_out = datetime.strptime(self.end, "%d/%m/%Y %H:%M:%S")
+        delta = check_out - check_in
+        return int(delta.total_seconds() / 60)
+
+    def __str__(self):
+        return f'{self.name} {self.get_time()}'
+
+with open("ONLINE.in", "r") as f:
+    data = f.read().split('\n')
+    n = int(data[0])
+    idx = 1
+    a = []
+    for i in range(n):
+        name = data[idx]
+        start = data[idx + 1]
+        end = data[idx + 2]
+        idx += 3
+        a.append(Online(name, start, end))
+    a.sort(key = lambda x : (-x.get_time()))
+    for i in a:
+        print(i)
