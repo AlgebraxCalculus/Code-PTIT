@@ -1,0 +1,35 @@
+"""
+Cho một passcode và một đoạn passcode được mã hóa bằng cách chèn thêm các chữ cái.
+Kiểm tra xem passcode có khớp hay không.
+"""
+
+for _ in range(int(input())):
+    s1, s2 = input().split()
+    t = ''
+    for i in s2:
+        if i.isdigit():
+            t += ''
+        elif i == 'A' or i == 'K':
+            t += '0'
+        elif i == 'B' or i == 'L':
+            t += '1'
+        elif i == 'C' or i == 'M':
+            t += '2'
+        elif i == 'D' or i == 'N':
+            t += '3'
+        elif i == 'E' or i == 'O':
+            t += '4'
+        elif i == 'F' or i == 'P':
+            t += '5'
+        elif i == 'G' or i == 'Q':
+            t += '6'
+        elif i == 'H' or i == 'R':
+            t += '7'
+        elif i == 'I' or i == 'S':
+            t += '8'
+        elif i == 'J' or i == 'T':
+            t += '9'
+    if s1 == t:
+        print('YES')
+    else:
+        print('NO')
