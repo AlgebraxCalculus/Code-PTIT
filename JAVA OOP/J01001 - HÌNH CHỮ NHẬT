@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+       int l, r;
+       l = sc.nextInt();
+       r = sc.nextInt();
+       if (l <= 0 || r <= 0) {
+           System.out.println(0);
+       } else{
+           System.out.println((long) (l + r) * 2 + " " + (long) l * r);
+       }
+    }
+}
