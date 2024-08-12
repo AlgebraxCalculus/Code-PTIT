@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+    private static long Factorial (int n) {
+        long gt = 1;
+        for (int i = 1; i <= n; i++) {
+            gt *= i;
+        }
+        return gt;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n;
+        n = sc.nextInt();
+        long s = 0;
+        for (int i = 1; i <= n; i++) {
+            s += Factorial(i);
+        }
+        System.out.println(s);
+    }
+}
