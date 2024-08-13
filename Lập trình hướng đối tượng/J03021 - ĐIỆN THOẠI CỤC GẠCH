@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t;
+        t = sc.nextInt();
+        while (t --> 0) {
+            String s = sc.next().toLowerCase();
+            StringBuilder b = new StringBuilder();
+            for (int i = 0; i < s.length(); i++) {
+                if (s.charAt(i) >= 'a' && s.charAt(i) <= 'c') {
+                    b.append('2');
+                } else if (s.charAt(i) >= 'd' && s.charAt(i) <= 'f') {
+                    b.append('3');
+                } else if (s.charAt(i) >= 'g' && s.charAt(i) <= 'i') {
+                    b.append('4');
+                } else if (s.charAt(i) >= 'j' && s.charAt(i) <= 'l') {
+                    b.append('5');
+                } else if (s.charAt(i) >= 'm' && s.charAt(i) <= 'o') {
+                    b.append('6');
+                } else if (s.charAt(i) >= 'p' && s.charAt(i) <= 's') {
+                    b.append('7');
+                } else if (s.charAt(i) >= 't' && s.charAt(i) <= 'v') {
+                    b.append('8');
+                } else {
+                    b.append('9');
+                }
+            }
+            if (b.toString().equals(new StringBuilder(b).reverse().toString())) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
+        }
+    }
+}
