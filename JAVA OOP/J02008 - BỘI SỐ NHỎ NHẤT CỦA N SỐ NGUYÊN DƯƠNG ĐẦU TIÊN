@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class Main {
     private static long gcd (long a, long b) {
         if (b == 0) {
