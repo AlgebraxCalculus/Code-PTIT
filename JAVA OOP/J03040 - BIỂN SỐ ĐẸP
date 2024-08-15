@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Main {
+    private static int check (String s) {
+        if (s.charAt(10) > s.charAt(9) && s.charAt(9) > s.charAt(7) && s.charAt(7) > s.charAt(6) && s.charAt(6) > s.charAt(5)) {
+            return 1;
+        }
+        if (s.charAt(10) == s.charAt(9) && s.charAt(9) == s.charAt(7) && s.charAt(7) == s.charAt(6) && s.charAt(6) == s.charAt(5)) {
+            return 1;
+        }
+        if (s.charAt(10) == s.charAt(9) && s.charAt(7) == s.charAt(6) && s.charAt(6) == s.charAt(5)) {
+            return 1;
+        }
+        for (int i = 5; i <= 10; i++) {
+            if (i != 8) {
+                if (s.charAt(i) != '6' && s.charAt(i) != '8') {
+                    return 0;
+                }
+            }
+        }
+        return 1;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t --> 0) {
+            String s = sc.next();
+            if (check(s) == 1) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
+        }
+    }
+}
