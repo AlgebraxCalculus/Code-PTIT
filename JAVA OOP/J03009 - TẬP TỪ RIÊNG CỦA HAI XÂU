@@ -1,0 +1,21 @@
+import java.util.Scanner;
+import java.util.TreeSet;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while (t --> 0) {
+            String[] a = sc.nextLine().split(" ");
+            String[] b = sc.nextLine().split(" ");
+            TreeSet<String> se1 = new TreeSet<>(Arrays.asList(a));
+            TreeSet<String> se2 = new TreeSet<>(Arrays.asList(b));
+            se1.removeAll(se2);
+            for (String i : se1) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+}
