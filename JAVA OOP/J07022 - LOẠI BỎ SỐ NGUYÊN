@@ -1,0 +1,40 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+    private static int check (String s) {
+        if (s.length() > 9) {
+            return 1;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLetter(s.charAt(i))) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        File f = new File("DATA.in");
+        try {
+            Scanner sc = new Scanner(f);
+            ArrayList<String> a = new ArrayList<>();
+            while (sc.hasNext()) {
+                String s = sc.next();
+                if (check(s) == 1) {
+                    a.add(s);
+                }
+            }
+            Collections.sort(a);
+            for (String x : a) {
+                System.out.print(x + " ");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+}
