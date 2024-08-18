@@ -1,0 +1,34 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main {
+    private static int check (String s) {
+        if (s.length() > 9) {
+            return 0;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLetter(s.charAt(i))) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    public static void main(String[] args) {
+        File f = new File("DATA.in");
+        try {
+            Scanner sc = new Scanner(f);
+            long tong = 0;
+            while (sc.hasNext()) {
+                String s = sc.next();
+                if (check(s) == 1) {
+                    tong += Integer.parseInt(s);
+                }
+            }
+            System.out.println(tong);
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+}
