@@ -1,0 +1,45 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main {
+    private static void sort_matrix (int[][] a, int n, int m, int k) {
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (a[i][k - 1] > a[j][k - 1]) {
+                    int tmp = a[i][k - 1];
+                    a[i][k - 1] = a[j][k - 1];
+                    a[j][k - 1] = tmp;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        File f = new File("MATRIX.in");
+        try {
+            Scanner sc = new Scanner(f);
+            int t = sc.nextInt();
+            while (t --> 0) {
+                int n = sc.nextInt();
+                int m = sc.nextInt();
+                int k = sc.nextInt();
+                int[][] a = new int[n][m];
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < m; j++) {
+                        a[i][j] = sc.nextInt();
+                    }
+                }
+                sort_matrix(a, n, m, k);
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < m; j++) {
+                        System.out.print(a[i][j] + " ");
+                    }
+                    System.out.println();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+}
