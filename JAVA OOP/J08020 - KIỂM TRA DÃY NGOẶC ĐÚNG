@@ -1,0 +1,48 @@
+import java.util.Stack;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t --> 0) {
+            String s = sc.next();
+            int ok = 1;
+            Stack<Character> st = new Stack<>();
+            for (int i = 0; i < s.length(); i++) {
+                if (s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{') {
+                    st.push(s.charAt(i));
+                } else if (s.charAt(i) == ')') {
+                    if (!st.empty() && st.peek() == '(') {
+                        st.pop();
+                    } else {
+                        ok = 0;
+                        break;
+                    }
+                } else if (s.charAt(i) == ']') {
+                    if (!st.empty() && st.peek() == '[') {
+                        st.pop();
+                    } else {
+                        ok = 0;
+                        break;
+                    }
+                } else if (s.charAt(i) == '}') {
+                    if (!st.empty() && st.peek() == '{') {
+                        st.pop();
+                    } else {
+                        ok = 0;
+                        break;
+                    }
+                }
+            }
+            if (!st.empty()) {
+                ok = 0;
+            }
+            if (ok == 1) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
+        }
+    }
+}
