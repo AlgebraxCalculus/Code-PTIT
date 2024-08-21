@@ -1,0 +1,43 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main {
+    private static int Prime_check (int n) {
+        if (n < 2) {
+            return 0;
+        }
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    public static void main(String[] args) {
+        try {
+            ObjectInputStream f = new ObjectInputStream(new FileInputStream("DATA.in"));
+            ArrayList<Integer> a = (ArrayList<Integer>) f.readObject();
+            ArrayList<Integer> prime = new ArrayList<>();
+            int[] cnt = new int[1000001];
+            for (int i : a) {
+                if (Prime_check(i) == 1) {
+                    if (cnt[i] == 0) {
+                        prime.add(i);
+                    }
+                    cnt[i]++;
+                }
+            }
+            prime.sort(Collections.reverseOrder());
+            for (int i = 0; i < 10; i++) {
+                System.out.println(prime.get(i) + " " + cnt[prime.get(i)]);
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+}
