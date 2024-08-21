@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Main {
+    static ArrayList<Long> v = new ArrayList<>();
+    static long[] ans = new long[101];
+
+    private static void init() {
+        Queue<String> q = new LinkedList<>();
+        q.add("9");
+        v.add((long) 9);
+        while (true) {
+            String top = q.peek();
+            q.remove();
+            if (top.length() == 10) {
+                break;
+            }
+            v.add(Long.parseLong(top + "0"));
+            v.add(Long.parseLong(top + "9"));
+            q.add(top + "0");
+            q.add(top + "9");
+        }
+        for (int i = 1; i <= 100; i++) {
+            for (Long x : v) {
+                if (x % i == 0) {
+                    ans[i] = x;
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        init();
+        while (t --> 0) {
+            int n = sc.nextInt();
+            System.out.println(ans[n]);
+        }
+    }
+}
