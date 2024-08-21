@@ -1,0 +1,32 @@
+import java.util.LinkedHashMap;
+import java.util.Scanner;
+
+public class Main {
+    private static boolean palindrome (String s) {
+        StringBuilder ss = new StringBuilder(s);
+        return ss.toString().equals(ss.reverse().toString());
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        LinkedHashMap<String, Integer> mp = new LinkedHashMap<>();
+        while (sc.hasNext()) {
+            String s = sc.next();
+            if (palindrome(s)) {
+                if (mp.containsKey(s)) {
+                    mp.put(s, mp.get(s) + 1);
+                } else {
+                    mp.put(s, 1);
+                }
+            }
+        }
+        long max_len = 0;
+        for (String key : mp.keySet()) {
+            max_len = Math.max(max_len, key.length());
+        }
+        for (String key : mp.keySet()) {
+            if (key.length() == max_len) {
+                System.out.println(key + " " + mp.get(key));
+            }
+        }
+    }
+}
