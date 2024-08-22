@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    static int n, k;
+    static int cnt = 0;
+    static int[] a = new int[1005];
+
+    private static void Try (int i) {
+        for (int j = a[i - 1] + 1; j <= n - k + i; j++) {
+            a[i] = j;
+            if (i == k) {
+                for (int l = 1; l <= k; l++) {
+                    System.out.print(a[l]);
+                }
+                cnt++;
+                System.out.print(" ");
+            } else {
+                Try(i + 1);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        k = sc.nextInt();
+        Try(1);
+        System.out.println();
+        System.out.println("Tong cong co " + cnt + " to hop");
+    }
+}
