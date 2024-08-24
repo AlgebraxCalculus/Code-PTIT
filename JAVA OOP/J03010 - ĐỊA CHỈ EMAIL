@@ -1,0 +1,34 @@
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+    private static String chuan_hoa(String[] ss) {
+        String res = "";
+        res += ss[ss.length - 1];
+        for (int i = 0; i < ss.length - 1; i++) {
+            res += ss[i].charAt(0);
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        Map<String, Integer> mp = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            String[] ss = sc.nextLine().trim().toLowerCase().split("\\s+");
+            String tmp = chuan_hoa(ss);
+            if (mp.containsKey(tmp)) {
+                mp.put(tmp, mp.get(tmp) + 1);
+            } else {
+                mp.put(tmp, 1);
+            }
+            if (mp.get(tmp) == 1) {
+                System.out.println(tmp + "@ptit.edu.vn");
+            } else {
+                System.out.println(tmp + mp.get(tmp) + "@ptit.edu.vn");
+            }
+        }
+    }
+}
