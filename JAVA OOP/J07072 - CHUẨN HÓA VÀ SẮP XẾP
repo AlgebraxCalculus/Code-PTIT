@@ -1,0 +1,41 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Scanner;
+
+public class Main {
+    private static String chuanhoa (String s) {
+        String[] ss = s.trim().toLowerCase().split("\\s+");
+        String res = "";
+        for (String i : ss) {
+            res += i.substring(0, 1).toUpperCase() + i.substring(1) + " ";
+        }
+        return res;
+    }
+    public static void main(String[] args) {
+        try {
+            Scanner sc = new Scanner(new File("DANHSACH.in"));
+            ArrayList<String> a = new ArrayList<>();
+            while (sc.hasNextLine()) {
+                a.add(chuanhoa(sc.nextLine()));
+            }
+            a.sort(new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    String[] ss1 = o1.split("\\s+");
+                    String[] ss2 = o2.split("\\s+");
+                    if (ss1[ss1.length - 1].equals(ss2[ss2.length - 1])) {
+                        return o1.compareTo(o2);
+                    }
+                    return ss1[ss1.length - 1].compareTo(ss2[ss2.length - 1]);
+                }
+            });
+            for (String x : a) {
+                System.out.println(x);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+}
