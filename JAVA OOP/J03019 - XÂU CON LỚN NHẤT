@@ -1,0 +1,19 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        Stack<Character> st = new Stack<>();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (st.isEmpty() || s.charAt(i) >= st.peek()) {
+                st.push(s.charAt(i));
+            }
+        }
+        while (!st.empty()) {
+            System.out.print(st.peek());
+            st.pop();
+        }
+    }
+}
