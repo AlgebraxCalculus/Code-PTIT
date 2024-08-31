@@ -1,0 +1,47 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+public class Main {
+    private static boolean prime_check(int n) {
+        if (n < 2) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        try {
+            ObjectInputStream f1 = new ObjectInputStream(new FileInputStream("DATA1.in"));
+            ArrayList<Integer> a = (ArrayList<Integer>) f1.readObject();
+            ObjectInputStream f2 = new ObjectInputStream(new FileInputStream("DATA2.in"));
+            ArrayList<Integer> b = (ArrayList<Integer>) f2.readObject();
+            TreeSet<Integer> se1 = new TreeSet<>();
+            TreeSet<Integer> se2 = new TreeSet<>();
+            for (int x : a) {
+                if (prime_check(x)) {
+                    se1.add(x);
+                }
+            }
+            for (int x : b) {
+                if (prime_check(x)) {
+                    se2.add(x);
+                }
+            }
+            for (int x : se1) {
+                if (se2.contains(1000000 - x) && x < 1000000 - x) {
+                    System.out.println(x + " " + (1000000 - x));
+                }
+            }
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
