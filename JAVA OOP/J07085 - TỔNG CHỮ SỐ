@@ -1,0 +1,33 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.math.BigInteger;
+import java.util.ArrayList;
+
+public class Main {
+    private static String solve (String s) {
+        String res = "";
+        long sum = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isDigit(s.charAt(i))) {
+                res += s.charAt(i);
+                sum += (s.charAt(i) - '0');
+            }
+        }
+        BigInteger ans = new BigInteger(res);
+        return (ans + " " + sum);
+    }
+    public static void main(String[] args) {
+        try {
+            ObjectInputStream f = new ObjectInputStream(new FileInputStream("DATA.in"));
+            ArrayList<String> s = (ArrayList<String>) f.readObject();
+            for (String x : s) {
+                if (!solve(x).equals("0 0")) {
+                    System.out.println(solve(x));
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
