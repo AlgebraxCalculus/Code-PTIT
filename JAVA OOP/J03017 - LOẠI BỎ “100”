@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while (t --> 0) {
+            String s = sc.nextLine();
+            int ans = 0;
+            ArrayList<Integer> a = new ArrayList<>();
+            a.add(-1);
+            String res = "";
+            for (int i = 0; i < s.length(); i++) {
+                res += s.charAt(i);
+                a.add(i);
+                while (res.length() > 0 && res.endsWith("100")) {
+                    res = res.substring(0, res.length() - 3);
+                    a.remove(a.size() - 3);
+                    a.remove(a.size() - 2);
+                    a.remove(a.size() - 1);
+                }
+                ans = Math.max(ans, i - a.get(a.size() - 1));
+            }
+            System.out.println(ans);
+        }
+    }
+}
