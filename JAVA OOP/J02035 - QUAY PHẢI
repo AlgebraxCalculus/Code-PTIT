@@ -8,7 +8,7 @@ public class Main {
             int n = sc.nextInt();
             long[] a = new long[n];
             for (int i = 0; i < n; i++) {
-                a[i] = sc.nextInt();
+                a[i] = sc.nextLong();
             }
             int k = 0;
             while (k < n - 1 && a[k] < a[k + 1]) {
