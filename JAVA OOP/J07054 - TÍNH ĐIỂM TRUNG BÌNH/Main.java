@@ -15,14 +15,15 @@ public class Main {
             }
             Collections.sort(a);
             int rank = 1;
-            System.out.println(a.get(0) + " " + rank);
+            a.get(0).setThu_hang(rank);
             for (int i = 1; i < a.size(); i++) {
                 if (a.get(i).getDiemTB() != a.get(i - 1).getDiemTB()) {
-                    System.out.println(a.get(i) + " " + (rank + 1));
-                } else {
-                    System.out.println(a.get(i) + " " + rank);
+                    rank = i + 1;
                 }
-                rank += 1;
+                a.get(i).setThu_hang(rank);
+            }
+            for (Student x : a) {
+                System.out.println(x);
             }
         } catch (FileNotFoundException e) {
             System.out.println(e);
