@@ -1,0 +1,58 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+    private static boolean isPrime (int sum) {
+        if (sum < 2) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(sum); i++) {
+            if (sum % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private static void Try (int i, Integer[] a, int[] x, int n) {
+        for (int j = 0; j <= 1; j++) {
+            x[i] = j;
+            if (i == n - 1) {
+                Result(x, a, n);
+            } else {
+                Try(i + 1, a, x, n);
+            }
+        }
+    }
+    private static void Result (int[] x, Integer[] a, int n) {
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (x[i] == 1) {
+                sum += a[i];
+            }
+        }
+        if (isPrime(sum)) {
+            for (int i = 0; i < n; i++) {
+                if (x[i] == 1) {
+                    System.out.print(a[i] + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t --> 0) {
+            int n = sc.nextInt();
+            Integer[] a = new Integer[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = sc.nextInt();
+            }
+            Arrays.sort(a, Collections.reverseOrder());
+            int[] x = new int[n];
+            Try(0, a, x, n);
+        }
+    }
+}
