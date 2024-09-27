@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Main {
+    private static int counting_steps (String[] a, int idx) {
+        int cnt = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (i != idx) {
+                String s = a[i];
+                while (!s.equals(a[idx])) {
+                    cnt++;
+                    s = s.substring(1) + s.charAt(0);
+                    if (s.equals(a[i])) {
+                        return -1;
+                    }
+                }
+            }
+        }
+        return cnt;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        String[] a = new String[n];
+        for (int i = 0; i < n; i++)  {
+            a[i] = sc.nextLine();
+        }
+        int ans = counting_steps(a, 0);
+        if (ans == -1) {
+            System.out.println(-1);
+            return;
+        } else {
+            for (int i = 1; i < a.length; i++) {
+                int cnt = counting_steps(a, i);
+                if (cnt == -1) {
+                    System.out.println(-1);
+                    return;
+                } else {
+                    ans = Math.min(ans, cnt);
+                }
+            }
+        }
+        System.out.println(ans);
+    }
+}
