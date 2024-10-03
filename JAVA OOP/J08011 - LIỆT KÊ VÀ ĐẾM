@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+    private static boolean check (int n) {
+        String s = Integer.toString(n);
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) > s.charAt(i + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        HashMap<Integer, Integer> mp1 = new HashMap<>();
+        HashMap<Integer, Integer> mp2 = new HashMap<>();
+        ArrayList<Integer> a = new ArrayList<>();
+        while (sc.hasNextInt()) {
+            int x = sc.nextInt();
+            if (check(x)) {
+                a.add(x);
+            }
+        }
+        for (int i = 0; i < a.size(); i++) {
+            mp1.put(a.get(i), mp1.getOrDefault(a.get(i), 0) + 1);
+            mp2.putIfAbsent(a.get(i), i);
+        }
+        Collections.sort(a, (Integer o1, Integer o2) -> {
+            int fre1 = mp1.get(o1);
+            int fre2 = mp1.get(o2);
+            if (fre1 == fre2) {
+                return mp2.get(o1) - mp2.get(o2);
+            }
+            return fre2 - fre1;
+        });
+        Set<Integer> se = new HashSet<>();
+        for (int x : a) {
+            if (!se.contains(x)) {
+                System.out.println(x + " " + mp1.get(x));
+                se.add(x);
+            }
+        }
+    }
+}
