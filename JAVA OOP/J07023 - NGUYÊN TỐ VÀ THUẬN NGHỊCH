@@ -1,0 +1,54 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
+public class Main {
+    static int[] prime = new int[1000001];
+    private static void sieve() {
+        for (int i = 1; i <= 1000000; i++) {
+            prime[i] = 1;
+        }
+        prime[0] = prime[1] = 0;
+        for (int i = 2; i <= Math.sqrt(1000000); i++) {
+            for (int j = i * i; j <= 1000000; j += i) {
+                prime[j] = 0;
+            }
+        }
+    }
+
+    private static boolean check_palindrome (int n) {
+        String s = Integer.toString(n);
+        StringBuilder sb = new StringBuilder(s);
+        if (s.equals(sb.reverse().toString())) {
+            return true;
+        }
+        return false;
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream o1 = new ObjectInputStream(new FileInputStream("DATA1.in"));
+        ArrayList<Integer> a = (ArrayList<Integer>) o1.readObject();
+        ObjectInputStream o2 = new ObjectInputStream(new FileInputStream("DATA2.in"));
+        ArrayList<Integer> b = (ArrayList<Integer>) o2.readObject();
+        sieve();
+        int[] cnt1 = new int[1000001];
+        int[] cnt2 = new int[1000001];
+        for (int x : a) {
+            if (prime[x] == 1 && check_palindrome(x)) {
+                cnt1[x]++;
+            }
+        }
+        for (int x : b) {
+            if (prime[x] == 1 && check_palindrome(x)) {
+                cnt2[x]++;
+            }
+        }
+        for (int i = 2; i <= 1000000; i++) {
+            if (cnt1[i] > 0 && cnt2[i] > 0) {
+                System.out.println(i + " " + cnt1[i] + " " + cnt2[i]);
+            }
+        }
+    }
+}
