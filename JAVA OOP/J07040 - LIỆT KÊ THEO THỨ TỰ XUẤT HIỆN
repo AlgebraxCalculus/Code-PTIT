@@ -1,0 +1,38 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+        ObjectInputStream o1 = new ObjectInputStream(new FileInputStream("NHIPHAN.in"));
+        ArrayList<String> a = (ArrayList<String>) o1.readObject();
+        Scanner sc1 = new Scanner(new File("VANBAN.in"));
+        ArrayList<String> b = new ArrayList<>();
+        Set<String> se1 = new HashSet<>();
+        Set<String> se2 = new HashSet<>();
+        for (String i : a) {
+            String[] x1 = i.toLowerCase().split("\\s+");
+            for (String j : x1) {
+                se1.add(j);
+            }
+        }
+        while (sc1.hasNextLine()) {
+            String[] x2 = sc1.nextLine().toLowerCase().split("\\s+");
+            for (String x : x2) {
+                b.add(x);
+            }
+        }
+        for (String y : b) {
+            if (!se2.contains(y) && se1.contains(y)) {
+                System.out.println(y);
+                se2.add(y);
+            }
+        }
+    }
+}
