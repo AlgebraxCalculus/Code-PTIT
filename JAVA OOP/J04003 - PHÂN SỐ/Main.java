@@ -5,6 +5,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Fraction f = new Fraction(sc.nextLong(), sc.nextLong());
         f.simplify();
-        f.output();
+        System.out.println(f);
     }
 }
