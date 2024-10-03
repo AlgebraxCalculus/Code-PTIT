@@ -1,0 +1,52 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+
+public class Main {
+    private static boolean check (int n) {
+        String s = Integer.toString(n);
+        if (s.length() == 1 || s.length() % 2 == 0) {
+            return false;
+        }
+        for (int i = 0; i <= s.length() / 2; i++) {
+            if (s.charAt(i) != s.charAt(s.length() - i - 1)) {
+                return false;
+            }
+            if ((s.charAt(i) - '0') % 2 != 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+        ObjectInputStream o1 = new ObjectInputStream(new FileInputStream("DATA1.in"));
+        ObjectInputStream o2 = new ObjectInputStream(new FileInputStream("DATA2.in"));
+        ArrayList<Integer> a = (ArrayList<Integer>) o1.readObject();
+        ArrayList<Integer> b = (ArrayList<Integer>) o2.readObject();
+        int[] cnt = new int[1000001];
+        TreeSet<Integer> se = new TreeSet<>();
+        for (int x : a) {
+            if (check(x)) {
+                cnt[x]++;
+            }
+        }
+        for (int x : b) {
+            if (cnt[x] != 0) {
+                cnt[x]++;
+                se.add(x);
+            }
+        }
+        int dem = 0;
+        for (int x : se) {
+            System.out.println(x + " " + cnt[x]);
+            dem++;
+            if (dem == 10) {
+                break;
+            }
+        }
+    }
+}
