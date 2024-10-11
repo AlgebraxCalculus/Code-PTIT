@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t --> 0) {
+            int n = sc.nextInt();
+            HashMap<Integer, Integer> mp1 = new HashMap<>();
+            HashMap<Integer, Integer> mp2 = new HashMap<>();
+            ArrayList<Integer> a = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                a.add(sc.nextInt());
+            }
+            for (int i = 0; i < n; i++) {
+                mp1.put(a.get(i), mp1.getOrDefault(a.get(i), 0) + 1);
+                mp2.putIfAbsent(a.get(i), i);
+            }
+            Collections.sort(a, (Integer o1, Integer o2) -> {
+                int fre1 = mp1.get(o1);
+                int fre2 = mp1.get(o2);
+                if (fre1 == fre2) {
+                    return mp2.get(o1) - mp2.get(o2);
+                }
+                return fre2 - fre1;
+            });
+            for (int x : a) {
+                System.out.print(x + " ");
+            }
+            System.out.println();
+        }
+    }
+}
