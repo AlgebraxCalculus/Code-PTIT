@@ -1,0 +1,41 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner sc = new Scanner(new File("VANBAN.in"));
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<String> word = new ArrayList<>();
+        Map<String, Integer> mp = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            String s = sc.nextLine().toLowerCase();
+            s = s.replaceAll("[^a-z0-9]", " ");
+            String[] ss = s.split("\\s+");
+            for (String x : ss) {
+                if (!x.isEmpty()) {
+                    if (!mp.containsKey(x)) {
+                        word.add(x);
+                    }
+                    mp.put(x, mp.getOrDefault(x, 0) + 1);
+                }
+            }
+        }
+        Collections.sort(word, (String o1, String o2) -> {
+            int freqCompare = mp.get(o2) - mp.get(o1);
+            if (freqCompare == 0) {
+                return o1.compareTo(o2);
+            }
+            return freqCompare;
+        });
+
+        for (String y : word) {
+            System.out.println(y + " " + mp.get(y));
+        }
+    }
+}
