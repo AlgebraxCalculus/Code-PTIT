@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+    static long[] fibo = new long[93];
+    
+    private static void init() {
+        fibo[0] = 1;
+        fibo[1] = 1;
+        for (int i = 2; i < 93; i++) {
+            fibo[i] = fibo[i - 1] + fibo[i - 2];
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        init();
+        while (t --> 0) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            for (int i = a; i <= b; i++) {
+                System.out.print(fibo[i - 1] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
