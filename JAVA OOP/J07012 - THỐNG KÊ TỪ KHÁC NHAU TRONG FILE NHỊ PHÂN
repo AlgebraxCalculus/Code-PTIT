@@ -1,0 +1,39 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+        ObjectInputStream ob = new ObjectInputStream(new FileInputStream("DATA.in"));
+        ArrayList<String> a = (ArrayList<String>) ob.readObject();
+        ArrayList<String> word = new ArrayList<>();
+        Map<String, Integer> mp = new HashMap<>();
+        for (String x : a) {
+            x = x.replaceAll("[^a-zA-Z0-9]", " ");
+            String[] ss = x.toLowerCase().split("\\s+");
+            for (String i : ss) {
+                if (!i.isEmpty()) {
+                    if (!mp.containsKey(i)) {
+                        word.add(i);
+                    }
+                    mp.put(i, mp.getOrDefault(i, 0) + 1);
+                }
+            }
+        }
+        Collections.sort(word, (String o1, String o2) -> {
+            if (Objects.equals(mp.get(o1), mp.get(o2))) {
+                return o1.compareTo(o2);
+            }
+            return mp.get(o2) - mp.get(o1);
+        });
+        for (String y : word) {
+            System.out.println(y + " " + mp.get(y));
+        }
+    }
+}
