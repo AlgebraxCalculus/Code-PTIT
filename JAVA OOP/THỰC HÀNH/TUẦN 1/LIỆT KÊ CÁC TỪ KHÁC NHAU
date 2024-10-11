@@ -1,0 +1,35 @@
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        TreeSet<String> se1 = new TreeSet<>();
+        while (n --> 0) {
+            String[] s1 = sc.nextLine().toLowerCase().split("\\s+");
+            for (String x : s1) {
+                se1.add(x);
+            }
+        }
+        int m = Integer.parseInt(sc.nextLine());
+        TreeSet<String> se2 = new TreeSet<>();
+        while (m --> 0) {
+            String[] s2 = sc.nextLine().toLowerCase().split("\\s+");
+            for (String x : s2) {
+                se2.add(x);
+            }
+        }
+        TreeSet<String> res1 = new TreeSet<>(se1);
+        res1.removeAll(se2);
+        for (String x : res1) {
+            System.out.print(x + " ");
+        }
+        System.out.println();
+        TreeSet<String> res2 = new TreeSet<>(se2);
+        res2.removeAll(se1);
+        for (String x : res2) {
+            System.out.print(x + " ");
+        }
+    }
+}
