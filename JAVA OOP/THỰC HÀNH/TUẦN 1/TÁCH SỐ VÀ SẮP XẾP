@@ -1,0 +1,30 @@
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<BigInteger> a = new ArrayList<>();
+        while (n --> 0) {
+            String s = sc.nextLine() + "@";
+            StringBuilder sb = new StringBuilder("");
+            for (int i = 0; i < s.length(); i++) {
+                if (Character.isDigit(s.charAt(i))) {
+                    sb.append(s.charAt(i));
+                } else {
+                    if (sb.length() != 0) {
+                        a.add(new BigInteger(sb.toString().trim()));
+                        sb.setLength(0);
+                    }
+                }
+            }
+        }
+        Collections.sort(a);
+        for (BigInteger x : a) {
+            System.out.println(x);
+        }
+    }
+}
