@@ -2,6 +2,7 @@ public class Student implements Comparable<Student> {
     private static int cnt = 1;
     private String ma, ten;
     private double diem1, diem2, diem3, diemTB;
+    private int thu_hang;
     public Student (String ten, double diem1, double diem2, double diem3) {
         this.ma = String.format("SV%02d", cnt++);
         this.ten = chuanhoa(ten);
@@ -18,15 +19,20 @@ public class Student implements Comparable<Student> {
         }
         return res;
     }
+    public void setThu_hang (int thu_hang) {
+        this.thu_hang = thu_hang;
+    }
     public double getDiemTB() {
         return diemTB;
     }
     @Override
     public int compareTo(Student o) {
+        if (o.diemTB == diemTB) {
+            return ma.compareTo(o.ma);
+        }
         return Double.compare(o.diemTB, diemTB);
     }
     @Override
     public String toString() {
-        return ma + " " + ten + String.format("%.2f", diemTB);
+        return ma + " " + ten + String.format("%.2f", diemTB) + " " + thu_hang;
     }
-}
