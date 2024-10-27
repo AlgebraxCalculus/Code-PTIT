@@ -1,0 +1,49 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class Main {
+    static class WordSet {
+        private TreeSet<String> se;
+        public WordSet(String x) {
+            se = new TreeSet<>();
+            Scanner sc = new Scanner(x);
+            while (sc.hasNext()) {
+                se.add(sc.next().toLowerCase());
+            }
+        }
+        public WordSet(TreeSet<String> se) {
+            this.se = se;
+        }
+        public WordSet union(WordSet o) {
+            TreeSet<String> tmp = new TreeSet<>(se);
+            tmp.addAll(o.se);
+            return new WordSet(tmp);
+        }
+        public WordSet intersection(WordSet o) {
+            TreeSet<String> tmp = new TreeSet<>();
+            for (String x : se) {
+                if (o.se.contains(x)) {
+                    tmp.add(x);
+                }
+            }
+            return new WordSet(tmp);
+        }
+        @Override
+        public String toString() {
+            StringBuilder s = new StringBuilder();
+            for (String x : se) {
+                s.append(x).append(" ");
+            }
+            return s.toString().trim();
+        }
+    }
+    public static void main (String[] args) throws FileNotFoundException {
+        Scanner in = new Scanner(new File("VANBAN.in"));
+        WordSet s1 = new WordSet(in.nextLine());
+        WordSet s2 = new WordSet(in.nextLine());
+        System.out.println(s1.union(s2));
+        System.out.println(s1.intersection(s2));
+    }
+}
