@@ -1,0 +1,26 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+    private static void solve (BigInteger n) {
+        if (n.mod(BigInteger.valueOf(7)).equals(BigInteger.ZERO) && n.mod(BigInteger.valueOf(13)).equals(BigInteger.ZERO)) {
+            System.out.println("Both");
+        } else if (n.mod(BigInteger.valueOf(7)).equals(BigInteger.ZERO)) {
+            System.out.println("Div 7");
+        } else if (n.mod(BigInteger.valueOf(13)).equals(BigInteger.ZERO)) {
+            System.out.println("Div 13");
+        } else {
+            System.out.println("None");
+        }
+    }
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner sc = new Scanner(new File("SONGUYEN.IN"));
+        int t = sc.nextInt();
+        while (t --> 0) {
+            BigInteger n = sc.nextBigInteger();
+            solve(n);
+        }
+    }
+}
