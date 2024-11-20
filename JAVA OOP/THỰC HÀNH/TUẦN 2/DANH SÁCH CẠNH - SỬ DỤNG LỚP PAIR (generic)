@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    static class Pair<P1, P2> {
+        private P1 p1;
+        private P2 p2;
+        public Pair(P1 p1, P2 p2) {
+            this.p1 = p1;
+            this.p2 = p2;
+        }
+        @Override
+        public String toString() {
+            return "(" + p1 + "," + p2 + ")";
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] a = new int[n][n];
+        ArrayList<Pair<Integer, Integer>> b = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                a[i][j] = sc.nextInt();
+                if (i < j && a[i][j] == 1) {
+                    b.add(new Pair<>(i + 1, j + 1));
+                }
+            }
+        }
+        for (Pair<Integer, Integer> x : b) {
+            System.out.println(x);
+        }
+    }
+}
