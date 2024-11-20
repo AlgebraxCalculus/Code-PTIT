@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class KT4 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int max_val = 0;
+        int[] a = new int[n];
+        int[] cnt = new int[205];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+            max_val = Math.max(max_val, a[i]);
+            cnt[a[i]]++;
+        }
+        boolean ok = false;
+        for (int i = 1; i <= max_val; i++) {
+            if (cnt[i] == 0) {
+                System.out.println(i);
+                ok = true;
+            }
+        }
+        if (!ok) {
+            System.out.println("Excellent!");
+        }
+    }
+}
