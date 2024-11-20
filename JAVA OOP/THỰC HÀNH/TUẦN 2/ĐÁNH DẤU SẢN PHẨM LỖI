@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+    private static String formatRanges(ArrayList<Integer> list) {
+        StringBuilder result = new StringBuilder();
+        int st = list.get(0);
+        int en = st;
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i) == en + 1) {
+                en = list.get(i);
+            } else {
+                if (st == en) {
+                    result.append(st).append(", ");
+                } else {
+                    result.append(st).append("-").append(en).append(", ");
+                }
+                st = list.get(i);
+                en = st;
+            }
+        }
+        if (st == en) {
+            result.append(st);
+        } else {
+            result.append(st).append("-").append(en);
+        }
+        int lastComma = result.lastIndexOf(", ");
+        if (lastComma != -1) {
+            result.replace(lastComma, lastComma + 2, " and ");
+        }
+        return result.toString();
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        HashMap<Integer, Boolean> mp = new HashMap<>();
+        for (int i = 1; i <= n; i++) {
+            mp.put(i, false);
+        }
+        for (int i = 0; i < m; i++) {
+            int x = sc.nextInt();
+            mp.put(x, true);
+        }
+        ArrayList<Integer> error = new ArrayList<>();
+        ArrayList<Integer> correct = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            if (mp.get(i)) {
+                error.add(i);
+            } else {
+                correct.add(i);
+            }
+        }
+        System.out.println("Errors: " + formatRanges(error));
+        System.out.println("Correct: " + formatRanges(correct));
+    }
+}
