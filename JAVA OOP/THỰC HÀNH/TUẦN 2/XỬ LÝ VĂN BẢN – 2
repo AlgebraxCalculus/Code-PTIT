@@ -1,0 +1,32 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class Main {
+    private static boolean check (String s) {
+        if (s.matches(".*[.,!?:].*")) {
+            return false;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isDigit(s.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner sc = new Scanner(new File("VANBAN.in"));
+        TreeSet<String> word = new TreeSet<>();
+        while (sc.hasNext()) {
+            String s = sc.next();
+            if (check(s)) {
+                word.add(s);
+            }
+        }
+        for (String x : word) {
+            System.out.println(x);
+        }
+    }
+}
