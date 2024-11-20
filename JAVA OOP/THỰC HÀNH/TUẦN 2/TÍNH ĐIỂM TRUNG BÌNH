@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        double[] a = new double[n];
+        double max_num = Double.MIN_VALUE, min_num = Double.MAX_VALUE, s = 0;
+        int cnt1 = 0, cnt2 = 0;
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextDouble();
+            s += a[i];
+            max_num = Math.max(max_num, a[i]);
+            min_num = Math.min(min_num, a[i]);
+        }
+        for (int i = 0; i < n; i++) {
+            if (a[i] == max_num) {
+                cnt1++;
+            } 
+            if (a[i] == min_num) {
+                cnt2++;
+            }
+        }
+        double tmp = s - (max_num * cnt1) - (min_num * cnt2);
+        System.out.printf("%.2f", tmp / (n - cnt1 - cnt2));
+    }
+}
