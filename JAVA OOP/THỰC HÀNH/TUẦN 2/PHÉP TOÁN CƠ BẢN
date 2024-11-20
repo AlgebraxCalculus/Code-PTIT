@@ -1,0 +1,25 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner sc = new Scanner(new File("DAYSO.in"));
+        int n = sc.nextInt();
+        ArrayList<BigInteger> a = new ArrayList<>();
+        while (n --> 0) {
+            a.add(sc.nextBigInteger());
+        }
+        Collections.sort(a);
+        BigInteger s = BigInteger.ZERO;
+        for (BigInteger x : a) {
+            s = s.add(x);
+        }
+        System.out.println(a.get(0));
+        System.out.println(a.get(a.size() - 1));
+        System.out.println(s);
+    }
+}
