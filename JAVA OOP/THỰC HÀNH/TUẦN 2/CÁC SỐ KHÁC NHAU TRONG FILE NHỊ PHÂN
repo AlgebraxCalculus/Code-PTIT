@@ -1,0 +1,28 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+        ObjectInputStream o1 = new ObjectInputStream(new FileInputStream("DATA.in"));
+        ArrayList<String> a = (ArrayList<String>) o1.readObject();
+        TreeSet<String> se = new TreeSet<>();
+        for (String x : a) {
+            String[] ss = x.split("\\s+");
+            for (String i : ss) {
+                try {
+                    int n = Integer.parseInt(i);
+                    se.add(i);
+                } catch (NumberFormatException e) {
+                    
+                }
+            }
+        }
+        for (String x : se) {
+            System.out.println(x);
+        }
+    }
+}
