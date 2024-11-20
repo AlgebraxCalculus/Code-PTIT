@@ -1,0 +1,33 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class KT3 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        while (t --> 0){
+            int n = in.nextInt();
+            int m = in.nextInt();
+            Map<Integer, Integer> mp1 = new HashMap<>();
+            Map<Integer, Integer> mp2 = new HashMap<>();
+            while (n --> 0){
+                int tmp = in.nextInt();
+                mp1.put(tmp, mp1.getOrDefault(tmp, 0) + 1);
+            }
+            while(m --> 0){
+                int tmp = in.nextInt();
+                mp2.put(tmp, mp2.getOrDefault(tmp, 0) + 1);
+            }
+            int ok = 0;
+            for(int x : mp2.keySet()){
+                if(mp1.get(x) == null || mp2.get(x) > mp1.get(x)){
+                    ok = 1;
+                    break;
+                }
+            }
+            if(ok == 1) System.out.println("No");
+            else System.out.println("Yes");
+        }
+    }
+}
