@@ -1,0 +1,22 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+public class FileNhiPhanGhepMang {
+    public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+        ObjectInputStream o1 = new ObjectInputStream(new FileInputStream("DATA1.in"));
+        ObjectInputStream o2 = new ObjectInputStream(new FileInputStream("DATA2.in"));
+        ArrayList<String> a = (ArrayList<String>) o1.readObject();
+        ArrayList<Integer> b = (ArrayList<Integer>) o2.readObject();
+        TreeSet<String> se1 = new TreeSet<>(a);
+        TreeSet<Integer> se2 = new TreeSet<>(b);
+        for (String x : se1) {
+            for (int y : se2) {
+                System.out.println(new StringBuilder(x + y).toString());
+            }
+        }
+    }
+}
