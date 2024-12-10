@@ -1,0 +1,25 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException{
+        Scanner sc = new Scanner(new File("DATA.in"));
+        Set<BigInteger> se = new HashSet<>();
+        while (sc.hasNextBigInteger()) { 
+            BigInteger x = sc.nextBigInteger();
+            se.add(x);
+        }
+        BigInteger tong = BigInteger.ZERO, tich = BigInteger.ONE;
+        for (BigInteger x : se) {
+            tong = tong.add(x);
+            tich = tich.multiply(x);
+        }
+        System.out.println(tong);
+        System.out.println(tich);
+    }
+}
