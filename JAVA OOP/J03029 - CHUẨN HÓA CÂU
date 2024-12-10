@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> res = new ArrayList<>();
+        while (sc.hasNextLine()) {
+            String s = sc.nextLine().trim();
+            if (s.isEmpty()) {
+                break;
+            }
+            String[] ss = s.toLowerCase().split("\\s+");
+            if (ss.length > 0) {
+                ss[0] = ss[0].substring(0, 1).toUpperCase() + ss[0].substring(1);
+            }
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < ss.length; i++) {
+                sb.append(ss[i]).append(" ");
+            }
+            String sentence = sb.toString().trim();
+            if (!sentence.endsWith(".") && !sentence.endsWith("?") && !sentence.endsWith("!")) {
+                sentence += ".";
+            } else {
+                sentence = sentence.replaceAll("\\s+([.?!])", "$1");
+            }
+            res.add(sentence);
+        }
+        for (String sentence : res) {
+            System.out.println(sentence);
+        }
+    }
+}
